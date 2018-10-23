@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom';
 class Side extends React.Component{
 	render () {
 	//When rendered I just want the topics to be displayed
-	return ()
+	return (<li>Topics Here!</li>);
 	}
 }
-
 
 // I want all of the buttons for questions to be rendered when the topic item is clicked ie a state change
 
@@ -19,9 +18,10 @@ class Sidebar extends React.Component{
 		topics: [Week1;Week2;Week3;Week4;Week5;Week6;Week7;Week8;Week9;Week10;Week11;Week12;Week13]
 	}
 	}
-	}
 }
 
+export default Sidebar
+
 ReactDOM.render(
-	<Side />,
+	<Sidebar />,
 	document.getElementById('root'));
