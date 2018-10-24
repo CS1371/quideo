@@ -18,6 +18,9 @@ class Sidebar extends React.Component{
 		topics: ['Week1']
 	}
 	}
+	render() {
+		return <Side />;
+	}
 }
 
 export default Sidebar
