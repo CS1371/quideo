@@ -1,10 +1,15 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/Button';
 //I wanna make all the buttons for the topics first
 class Side extends React.Component{
 	render () {
 	//When rendered I just want the topics to be displayed
-	return (<li>Topics Here!</li>);
+	return (<ButtonToolbar>
+				<Button>Topic 1</Button>
+				<Button bsStyle="primary">Topic 2< /Button>
+	</ButtonToolbar>);
 	}
 }
 

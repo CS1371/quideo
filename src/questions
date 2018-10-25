@@ -1,0 +1,33 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class questionsTopic1 extends React.Component{
+    render(){
+    return()
+    }
+}
+class questionsTopic2 extends React.Component{
+    render(){
+    return()
+    }
+}
+class questionsTopic3 extends React.Component{
+    render(){
+    return()
+    }
+}
+class questionsTopic4 extends React.Component{
+    render(){
+    return()
+    }
+}
+class questionsTopic5 extends React.Component{
+    render(){
+    return()
+    }
+}
+class questionsTopic6 extends React.Component{
+    render(){
+    return()
+    }
+}
