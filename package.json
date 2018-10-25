@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "lodash": "^4.17.11",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.6.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.0",
     "react-scripts": "2.0.3",
     "react-shapes": "^0.1.0"
   },
