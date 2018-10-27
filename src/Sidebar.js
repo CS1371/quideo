@@ -1,7 +1,9 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
-import ButtonToolbar from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+//import './button.css';
+
 //I wanna make all the buttons for the topics first
 class Side extends React.Component{
 
@@ -23,7 +25,7 @@ class Side extends React.Component{
 			<Button>Recursion</Button>
 			<Button>Images</Button>
 			<Button>Sorting</Button>
-			<Button>Big O</Button>
+			<Button> Big O</Button>
 			<Button>Graph Theory</Button>
 			</ButtonToolbar>
 	);
