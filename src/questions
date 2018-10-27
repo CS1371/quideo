@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/Button';
 
 class questionsTopic1 extends React.Component{
-    render(){
-    return()
+    render() {
+    return(<Button>Q1</Button>);
     }
 }
 class questionsTopic2 extends React.Component{

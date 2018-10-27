@@ -37,7 +37,7 @@ class Sidebar extends React.Component{
 	constructor (props) {
 	super(props)
 	this.State = {
-		topics: ['Functions']
+		topics: ['Week 1']
 	}
 	}
 
