@@ -23,7 +23,7 @@ class questionsTopic1 extends React.Component{
   <ButtonGroup>
     <Button>1</Button>
   </ButtonGroup>
-</ButtonToolbar>;);
+</ButtonToolbar>;)
     }
 }
 

@@ -8,6 +8,7 @@ class Quideo extends React.Component {
             <div className="quideo">
                 <h1>Choose A Topic to Get Started</h1>
                 <Sidebar />
+                
             </div>
         );
     }

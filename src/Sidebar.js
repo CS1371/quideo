@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
-//import './button.css';
+import './questions'
 
 //I wanna make all the buttons for the topics first
 class Side extends React.Component{
@@ -11,7 +11,7 @@ class Side extends React.Component{
 	//When rendered I just want the topics to be displayed as buttons but stacked
 	return (<ButtonToolbar>
 			<Button>Functions</Button>
-			<questions />
+			<questionsTopic1 />
 			<Button>Vectors</Button>
 			<Button>Strings</Button>
 			<Button>Arrays</Button>
