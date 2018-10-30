@@ -11,6 +11,7 @@ class Side extends React.Component{
 	//When rendered I just want the topics to be displayed as buttons but stacked
 	return (<ButtonToolbar>
 			<Button>Functions</Button>
+			<questions />
 			<Button>Vectors</Button>
 			<Button>Strings</Button>
 			<Button>Arrays</Button>
