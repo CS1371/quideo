@@ -23,7 +23,7 @@ class questionsTopic1 extends React.Component{
   <ButtonGroup>
     <Button>1</Button>
   </ButtonGroup>
-</ButtonToolbar>;)
+</ButtonToolbar>);
     }
 }
 
@@ -46,6 +46,6 @@ class questionsTopic2 extends React.Component{
   <ButtonGroup>
     <Button>8</Button>
   </ButtonGroup>
-</ButtonToolbar>;)
+</ButtonToolbar>);
     }
 }
