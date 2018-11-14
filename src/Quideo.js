@@ -1,5 +1,7 @@
 import React from 'react';
 import './Quideo.css';
+import Question from './Question';
+import RecGuide from './RecGuide';
 
 class Quideo extends React.Component {
     render() {
@@ -9,18 +11,18 @@ class Quideo extends React.Component {
                 <div className="columns">
                     <div className="learn">
                         <h2> Learn </h2>
-                        <p> here is a rec guide </p>
+                        <RecGuide rg></RecGuide>
                         <p> here is a video thumbnail </p>
                     </div>
                     <div className="practice">
                         <h2> Practice </h2>
-                        <p> here is a question! </p>
-                        <p> here is a question! </p>
+                        <Question q></Question>
+                        <Question q></Question>
                     </div>
                     <div className="test">
                         <h2> Test Yourself </h2>
-                        <p> here is a question! </p>
-                        <p> here is a question! </p>
+                        <Question q></Question>
+                        <Question q></Question>
                     </div>
                 </div>
             </div>
