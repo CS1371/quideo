@@ -3,32 +3,33 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import './questions'
+import './Sidebar.css';
 
 //I wanna make all the buttons for the topics first
 class Side extends React.Component{
 
 	render () {
 	//When rendered I just want the topics to be displayed as buttons but stacked
-	return (<ButtonToolbar>
-			<Button>Functions</Button>
-			<questionsTopic1 />
-			<Button>Vectors</Button>
-			<Button>Strings</Button>
-			<Button>Arrays</Button>
-			<Button>Conditionals</Button>
-			<Button>Iteration</Button>
-			<Button>Low Level I/O</Button>
-			<Button>Cells</Button>
-			<Button>High Level I/O</Button>
-			<Button>Structures</Button>
-			<Button>Plotting</Button>
-			<Button>Numerical Methods</Button>
-			<Button>Recursion</Button>
-			<Button>Images</Button>
-			<Button>Sorting</Button>
-			<Button> Big O</Button>
-			<Button>Graph Theory</Button>
-			</ButtonToolbar>
+	return (
+		<ButtonToolbar>
+		<Button>Functions</Button>
+        <Button>Vectors</Button>
+		<Button>Strings</Button>
+		<Button>Arrays</Button>
+		<Button>Conditionals</Button>
+		<Button>Iteration</Button>
+		<Button>Low Level I/O</Button>
+		<Button>Cells</Button>
+		<Button>High Level I/O</Button>
+	    <Button>Structures</Button>
+		<Button>Plotting</Button>
+		<Button>Numerical Methods</Button>
+		<Button>Recursion</Button>
+		<Button>Images</Button>
+		<Button>Sorting</Button>
+		<Button> Big O</Button>
+		<Button>Graph Theory</Button>
+		</ButtonToolbar>
 	);
 	};
 };

@@ -38,14 +38,59 @@ class questionsTopic2 extends React.Component{
   </ButtonGroup>
 
   <ButtonGroup>
-    <Button>5</Button>
-    <Button>6</Button>
-    <Button>7</Button>
+    <Button>1</Button>
+    <Button>2</Button>
+    <Button>3</Button>
   </ButtonGroup>
 
   <ButtonGroup>
-    <Button>8</Button>
+    <Button>1</Button>
   </ButtonGroup>
 </ButtonToolbar>);
     }
+}
+
+class questionsTopic3 extends React.Component{
+  render(){
+  return(<ButtonToolbar>
+<ButtonGroup>
+  <Button>1</Button>
+  <Button>2</Button>
+  <Button>3</Button>
+  <Button>4</Button>
+</ButtonGroup>
+
+<ButtonGroup>
+  <Button>1</Button>
+  <Button>2</Button>
+  <Button>3</Button>
+</ButtonGroup>
+
+<ButtonGroup>
+  <Button>1</Button>
+</ButtonGroup>
+</ButtonToolbar>);
+  }
+}
+class questionsTopic4 extends React.Component{
+  render(){
+  return(<ButtonToolbar>
+<ButtonGroup>
+  <Button>1</Button>
+  <Button>2</Button>
+  <Button>3</Button>
+  <Button>4</Button>
+</ButtonGroup>
+
+<ButtonGroup>
+  <Button>1</Button>
+  <Button>2</Button>
+  <Button>3</Button>
+</ButtonGroup>
+
+<ButtonGroup>
+  <Button>1</Button>
+</ButtonGroup>
+</ButtonToolbar>);
+  }
 }

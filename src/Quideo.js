@@ -6,7 +6,7 @@ class Quideo extends React.Component {
     render() {
         return (
             <div className="quideo">
-                <h1>Choose A Topic to Get Started</h1>
+                <h1>Topics!!</h1>
                 <Sidebar />
                 
             </div>
