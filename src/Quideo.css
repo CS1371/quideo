@@ -5,9 +5,27 @@
     font-size: calc(10px + 2vmin);
     color: white;
     font-family: 'Open Sans', sans-serif;
+    display:flex;
+    flex-direction: row;
 }
 
-table {
-  width: 100%;
-  padding: 10px;
+.learn {
+    dipslay: flex;
+    flex-direction: column;
+    width: 33%;
+    border: dotted;
+}
+
+.practice {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    border: dotted;
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    border: dotted;
 }
