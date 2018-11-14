@@ -6,6 +6,12 @@
     color: white;
     font-family: 'Open Sans', sans-serif;
     display:flex;
+    flex-direction: column;
+    
+}
+
+.columns {
+    display:flex;
     flex-direction: row;
 }
 
@@ -13,6 +19,7 @@
     dipslay: flex;
     flex-direction: column;
     width: 33%;
+    height: inherit;
     border: dotted;
 }
 
