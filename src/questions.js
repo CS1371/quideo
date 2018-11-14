@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import './Sidebar.css';
 
 class questionsTopic1 extends React.Component{
     render() {

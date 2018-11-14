@@ -9,9 +9,8 @@ import './Sidebar.css';
 class Side extends React.Component{
 
 	render () {
-	//When rendered I just want the topics to be displayed as buttons but stacked
+	//When rendered I just want the topics to be displayed as buttons but stacked (Done in the css)
 	return (
-		<ButtonToolbar>
 		<div className = "topics">
 		<Button>Functions</Button>
         <Button>Vectors</Button>
@@ -31,7 +30,6 @@ class Side extends React.Component{
 		<Button> Big O</Button>
 		<Button>Graph Theory</Button>
 		</div>
-		</ButtonToolbar>
 
 	);
 	};
