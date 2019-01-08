@@ -13,6 +13,7 @@
   "author": "CS 1371 <arao81@gatech.edu> (https://github.gatech.edu/CS1371)",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "eslint": "^5.12.0"
   }
