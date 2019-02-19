@@ -1,6 +1,7 @@
 import "./Question.css";
 import React from "react";
 import Tag from "./Tag";
+import PropTypes from "prop-types";
 
 export default class Question extends React.Component {
     /* Props:
@@ -13,6 +14,7 @@ export default class Question extends React.Component {
     * answers
     * tags
     */
+
     render() {
         // for each of our tags, print
         const tags = [];
@@ -34,7 +36,7 @@ export default class Question extends React.Component {
         return (
             <div className="question-view">
                 <div className="question-title">
-                    <h2>{this.props.topic + ": " + this.props.order + " (" + difficulty + ")"}</h2>
+                    <h2>{this.props.topic + ": " + this.props.index + " (" + difficulty + ")"}</h2>
                 </div>
                 <div className="question-tags">
                     {tags}
@@ -43,3 +45,18 @@ export default class Question extends React.Component {
         );
     }
 }
+Question.propTypes = {
+    topic: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    difficulty: PropTypes.number.isRequired,
+    // TODO: Make required!
+    type: PropTypes.string,
+    hints: PropTypes.arrayOf(PropTypes.Object), // Replace with objectOf?
+    prompt: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired
+    })),
+    // TODO: objectOf(Answer) -> Figure out what answers look like and 
+    // make required!
+    answers: PropTypes.arrayOf(PropTypes.Object)
+};
