@@ -19,7 +19,6 @@ export default class Question extends React.Component {
         for (let t of this.props.tags) {
             tags.push(<Tag name={t.name}/>);
         }
-        // TODO: Convert to string
         const difficulties = [
             "Cream Cheese",
             "Mild",
