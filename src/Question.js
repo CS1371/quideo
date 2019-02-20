@@ -36,7 +36,7 @@ export default class Question extends React.Component {
         return (
             <div className="question-view">
                 <div className="question-title">
-                    <h2>{this.props.topic + ": " + this.props.index + " (" + difficulty + ")"}</h2>
+                    <h2>{this.props.topic + ": " + this.props.index + " (" + this.props.type + " - " + difficulty + ")"}</h2>
                 </div>
                 <div className="question-tags">
                     {tags}
@@ -49,14 +49,21 @@ Question.propTypes = {
     topic: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     difficulty: PropTypes.number.isRequired,
-    // TODO: Make required!
-    type: PropTypes.string,
-    hints: PropTypes.arrayOf(PropTypes.Object), // Replace with objectOf?
+    type: PropTypes.string.isRequired,
+    hints: PropTypes.arrayOf(PropTypes.shape({
+        index: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired
+    })),
+    preamble: PropTypes.string.isRequired,
+    questions: PropTypes.arrayOf(PropTypes.shape({
+        index: PropTypes.number.isRequired,
+        prompt: PropTypes.number.isRequired
+    })),
     prompt: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired
     })),
-    // TODO: objectOf(Answer) -> Figure out what answers look like and 
     // make required!
+
     answers: PropTypes.arrayOf(PropTypes.Object)
 };
