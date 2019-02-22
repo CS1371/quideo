@@ -13,57 +13,112 @@ export default class Question extends React.Component {
     * prompt
     * answers
     * tags
+    * rubric
     */
 
+    wassup = () => 1;
     render() {
-        // for each of our tags, print
-        const tags = [];
-        for (let t of this.props.tags) {
-            tags.push(<Tag name={t.name}/>);
-        }
-        const difficulties = [
-            "Cream Cheese",
-            "Mild",
-            "Medium",
-            "Spicy",
-            "Habenero"
-        ];
-        const difficulty = difficulties[this.props.difficulty];
-
-        // print like this:
-        // Topic - Index - Difficulty
-        // Tags (as boxes?)
+        // Print title, then tags. Each tag will be be clickable
+        // Then, print our preamble
+        // Now, it depends on what kind of question we have:
+        // 1. If it's a multiple choice (MC), then we'll have the preamble, then a selection of
+        // answers - some of which are correct.
+        // 2. If it's a short answer (SA), then we'll have the preamble, then a set of
+        // question-answer pairs. However, the question is free response
+        // 3. If it's a long answer (LA), then just the preamble and the editor. This editor
+        // should just be for Courier New.
+        // 4. If it's a fill in the blank (FB). We need to think about this one
+        //
+        /*
+         * This affects our properties. I propose the following:
+         *
+         * index
+         * tags
+         * rubric
+         * preamble
+         * difficulty
+         * type
+         * hints
+         * prompts
+         * answers
+         *
+         * Now, depending on the question, you may or may not have prompts.
+         * So, if it's not SA or FB, you won't have prompts, and only have
+         * one answer. Here's the question - for SA and FB, does it make
+         * more sense to tie the prompt to its corresponding answer?
+         * I'm not so sure.
+         * I think the following:
+         * If SA or FB, prompts and answers will be equal-length arrays
+         * Otherwise, prompts won't exist and answers will be:
+         *   for LA, answers is a single element array
+         *   for MC, answers is an array of all the possible answers
+         * For ease of storage, answers will always look the same, which
+         * means it'll always have that "isCorrect" option. For now. Given
+         * that we're using mongodb, which uses documents, it might not
+         * be a big deal to change it up, but that's what my thought process
+         * is for now.
+         *
+         * Look at prop types for what these actually look like
+         */
+        // Title is the main topic + type of question
+        const a = () => 1;
         return (
             <div className="question-view">
-                <div className="question-title">
-                    <h2>{this.props.topic + ": " + this.props.index + " (" + this.props.type + " - " + difficulty + ")"}</h2>
-                </div>
-                <div className="question-tags">
-                    {tags}
-                </div>
+                <h1>hi</h1>
             </div>
         );
     }
 }
+/*
+ * index
+ * tags
+ * rubric
+ * preamble
+ * difficulty
+ * type
+ * hints
+ * prompts
+ * answers
+ */
 Question.propTypes = {
-    topic: PropTypes.string.isRequired,
+    /** The ordering of this question */
     index: PropTypes.number.isRequired,
-    difficulty: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    hints: PropTypes.arrayOf(PropTypes.shape({
-        index: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired
-    })),
-    preamble: PropTypes.string.isRequired,
-    questions: PropTypes.arrayOf(PropTypes.shape({
-        index: PropTypes.number.isRequired,
-        prompt: PropTypes.number.isRequired
-    })),
-    prompt: PropTypes.string.isRequired,
+    /** The tags that apply to this question */
     tags: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        week: PropTypes.number.isRequired // should this really be a number?
     })),
-    // make required!
-
-    answers: PropTypes.arrayOf(PropTypes.Object)
+    /** The markdown rubric that shows how we'd grade this */
+    rubric: PropTypes.string.isRequired,
+    /** The preamble for a question, and the only part of MC and LA */
+    preamble: PropTypes.string.isRequired,
+    /** The rating, from 0 to 4 */
+    difficulty: PropTypes.number.isRequired,
+    /** The type of question (an enum?) */
+    type: PropTypes.oneOf([
+        "MC", // Multiple choice
+        "SA", // Short Answer
+        "FB", // Fill in the Blank
+        "LA"  // Long Answer
+    ]).isRequired,
+    /** The hints, which is just a string array in the order they should be given */
+    hints: PropTypes.arrayOf(PropTypes.string),
+    /** The question prompts, only for SA and FB */
+    prompts: PropTypes.arrayOf(PropTypes.string),
+    /** The answers as an array. Even though it always has the same shape,
+     * there are important implications on how it should be used in different
+     * question type contexts:
+     * * If we have MC, then this is an array of possible answer choices, with
+     * `isCorrect` set to true if the answer is correct.
+     * * If we have SA, then this is an array of answers whose length should
+     * be the same as prompts
+     * * If we have FB, then this is the same as SA
+     * * If we have LA, this is a unary array with the TA's answer
+     *
+     * All answers support markdown in the entry.
+     */
+    answers: PropTypes.arrayOf(PropTypes.shape({
+        solution: PropTypes.string.isRequired,
+        isCorrect: PropTypes.boolean,
+    }))
 };
