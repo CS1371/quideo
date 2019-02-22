@@ -12,7 +12,6 @@ export default class MultipleChoice extends React.Component {
                     onClick={() => {
                         // do something useful?
                         // It's possible we need to pass in the index?
-                        console.log(ind);
                     }}>
                     {a.text}
                 </button>

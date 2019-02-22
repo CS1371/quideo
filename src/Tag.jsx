@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import "./Tag.css";
 const COLORS = [
     "red",
     "green",
@@ -24,7 +24,7 @@ export default class Tag extends React.Component {
             COLORS[Math.floor(Math.random() * COLORS.length)];
         return (
             <button
-                className={"tag tag" + color}>
+                className={"tag tag-" + color}>
                 {this.props.name}
             </button>
         );

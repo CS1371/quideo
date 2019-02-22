@@ -1,0 +1,21 @@
+.tag {
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid white;
+    font-size: 200%;
+    color: black;
+    margin: 10px;
+    cursor: pointer;
+}
+.tag:hover {
+    background-color: skyblue;
+}
+
+.tag.tag-red {
+    background-color: coral;
+    color: black;
+}
+.tag.tag-red:hover {
+    background-color:lightcoral;
+}

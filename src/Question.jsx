@@ -64,13 +64,11 @@ export default class Question extends React.Component {
         // Title is the main topic + type of question
         // main topic is topic with highest week
         const tags = [];
-        let topic = null;
+        this.props.tags.sort((a, b) => a.week - b.week);
+        const topic = this.props.tags[this.props.tags.length - 1];
         for (let t of this.props.tags) {
-            // regardless, add it to the tags array!
+            // add it to the tags array!
             tags.push(<Tag name={t.name} />);
-            if (topic == null || topic.week < t.week) {
-                topic = t;
-            }
         }
         let title = topic.name + ": ";
         let questionSpace = null;
