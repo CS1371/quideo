@@ -2,6 +2,7 @@ import "./Question.css";
 import React from "react";
 import Tag from "./Tag";
 import PropTypes from "prop-types";
+import MultipleChoice from "./MultipleChoice";
 
 export default class Question extends React.Component {
     /* Props:
@@ -61,10 +62,54 @@ export default class Question extends React.Component {
          * Look at prop types for what these actually look like
          */
         // Title is the main topic + type of question
-        const a = () => 1;
+        // main topic is topic with highest week
+        const tags = [];
+        let topic = null;
+        for (let t of this.props.tags) {
+            // regardless, add it to the tags array!
+            tags.push(<Tag name={t.name} />);
+            if (topic == null || topic.week < t.week) {
+                topic = t;
+            }
+        }
+        let title = topic.name + ": ";
+        let questionSpace = null;
+        
+        switch (this.props.type) {
+        case "MC":
+            title += "Multiple Choice";
+            questionSpace = <MultipleChoice answers={this.props.answers} />;
+            break;
+        case "FB":
+            title += "Fill in the Blank";
+            break;
+        case "SA":
+            title += "Short Answer";
+            break;
+        case "LC":
+            title += "Long Coding";
+            break;
+        default:
+            return null;
+        }
+
+        // Some things will have markdown!
         return (
             <div className="question-view">
-                <h1>hi</h1>
+                <h1>{title}</h1>
+                <div className="question-tags">
+                    {tags}
+                </div>
+                <div className="question-preamble">
+                    {this.props.preamble}
+                </div>
+                {questionSpace}
+                <div className="question-hints">
+
+                </div>
+                <div className="question-rubric">
+                
+                </div>
             </div>
         );
     }
@@ -80,6 +125,11 @@ export default class Question extends React.Component {
  * prompts
  * answers
  */
+Question.defaultProps = {
+    hints: [],
+    prompts: []
+};
+
 Question.propTypes = {
     /** The ordering of this question */
     index: PropTypes.number.isRequired,
@@ -87,7 +137,7 @@ Question.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         week: PropTypes.number.isRequired // should this really be a number?
-    })),
+    })).isRequired,
     /** The markdown rubric that shows how we'd grade this */
     rubric: PropTypes.string.isRequired,
     /** The preamble for a question, and the only part of MC and LA */
@@ -99,7 +149,7 @@ Question.propTypes = {
         "MC", // Multiple choice
         "SA", // Short Answer
         "FB", // Fill in the Blank
-        "LA"  // Long Answer
+        "LC"  // Long Coding
     ]).isRequired,
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.arrayOf(PropTypes.string),
@@ -118,7 +168,7 @@ Question.propTypes = {
      * All answers support markdown in the entry.
      */
     answers: PropTypes.arrayOf(PropTypes.shape({
-        solution: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
         isCorrect: PropTypes.boolean,
-    }))
+    })).isRequired
 };
