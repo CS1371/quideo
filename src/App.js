@@ -56,23 +56,23 @@ class App extends React.Component {
                     week: 14
                 },
                 {
-                    name: "Recursion",
+                    name: "High Level I/O",
                     week: 14
                 },
                 {
-                    name: "Recursion",
+                    name: "Low Level I/O",
                     week: 14
                 },
                 {
-                    name: "Recursion",
+                    name: "Graph Theory",
                     week: 14
                 },
                 {
-                    name: "Recursion",
+                    name: "Conditionals",
                     week: 14
                 },
                 {
-                    name: "Recursion",
+                    name: "Iteration",
                     week: 14
                 },
                 {

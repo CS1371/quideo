@@ -68,7 +68,7 @@ export default class Question extends React.Component {
         const topic = this.props.tags[this.props.tags.length - 1];
         for (let t of this.props.tags) {
             // add it to the tags array!
-            tags.push(<Tag name={t.name} />);
+            tags.push(<Tag key={"question-tag-" + t.name} name={t.name} />);
         }
         let title = topic.name + ": ";
         let questionSpace = null;
@@ -84,8 +84,8 @@ export default class Question extends React.Component {
         case "SA":
             title += "Short Answer";
             break;
-        case "LC":
-            title += "Long Coding";
+        case "CA":
+            title += "Coding Answer";
             break;
         default:
             return null;
@@ -95,9 +95,6 @@ export default class Question extends React.Component {
         return (
             <div className="question-view">
                 <h1>{title}</h1>
-                <div className="question-tags">
-                    {tags}
-                </div>
                 <div className="question-preamble">
                     {this.props.preamble}
                 </div>
@@ -107,6 +104,9 @@ export default class Question extends React.Component {
                 </div>
                 <div className="question-rubric">
                 
+                </div>
+                <div className="question-tags">
+                    {tags}
                 </div>
             </div>
         );
@@ -147,17 +147,18 @@ Question.propTypes = {
         "MC", // Multiple choice
         "SA", // Short Answer
         "FB", // Fill in the Blank
-        "LC"  // Long Coding
+        "CA"  // Coding Answer
     ]).isRequired,
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.arrayOf(PropTypes.string),
-    /** The question prompts, only for SA and FB */
+    /** The question prompts, only for SA */
     prompts: PropTypes.arrayOf(PropTypes.string),
     /** The answers as an array. Even though it always has the same shape,
      * there are important implications on how it should be used in different
      * question type contexts:
      * * If we have MC, then this is an array of possible answer choices, with
-     * `isCorrect` set to true if the answer is correct.
+     * `isCorrect` set to true if the answer is correct. `explanation` is a
+     * markdown string that explains the answer
      * * If we have SA, then this is an array of answers whose length should
      * be the same as prompts
      * * If we have FB, then this is the same as SA
@@ -167,6 +168,7 @@ Question.propTypes = {
      */
     answers: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string.isRequired,
+        explanation: PropTypes.string,
         isCorrect: PropTypes.boolean,
     })).isRequired
 };
