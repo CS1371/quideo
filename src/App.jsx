@@ -7,15 +7,35 @@ const mcResp = {
   tags: [
     {
       name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Indexing',
       week: 1
     },
     {
+      name: 'Indexing',
+      week: 2
+    },
+    {
       name: 'Recursion',
-      week: 14
+      week: 3
+    },
+    {
+      name: 'Recursion',
+      week: 4
+    },
+    {
+      name: 'Recursion',
+      week: 5
+    },
+    {
+      name: 'Recursion',
+      week: 6
+    },
+    {
+      name: 'Recursion',
+      week: 7
+    },
+    {
+      name: 'Recursion',
+      week: 8
     },
     {
       name: 'Recursion',
@@ -23,43 +43,23 @@ const mcResp = {
     },
     {
       name: 'Recursion',
-      week: 14
+      week: 9
     },
     {
       name: 'Recursion',
-      week: 14
+      week: 10
     },
     {
       name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
-      week: 14
+      week: 11
     },
     {
       name: 'High Level I/O',
-      week: 14
+      week: 12
     },
     {
       name: 'Low Level I/O',
-      week: 14
+      week: 13
     },
     {
       name: 'Graph Theory',
@@ -67,19 +67,19 @@ const mcResp = {
     },
     {
       name: 'Conditionals',
-      week: 14
+      week: 15
     },
     {
       name: 'Iteration',
-      week: 14
+      week: 19
     },
     {
       name: 'Recursion',
-      week: 14
+      week: 17
     },
     {
       name: 'Recursion',
-      week: 14
+      week: 18
     }
   ],
   rubric: '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`',

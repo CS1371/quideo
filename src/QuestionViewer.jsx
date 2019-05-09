@@ -4,6 +4,7 @@ import Markdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
 import CodeBlock from './CodeBlock';
+import Tag from './Tag';
 import './QuestionViewer.css';
 import MultipleChoice from './MultipleChoice';
 
@@ -75,7 +76,6 @@ export default class QuestionViewer extends React.Component {
     const { index, tags, rubric, preamble, difficulty, type, hints, prompts, answers } = this.props;
     const { showRubric } = this.state;
     tags.sort((a, b) => a.week - b.week);
-    // const tags = this.props.tags.map((tag) => <Tag key={"question-tag-" + tag.name} name={tag.name} />);
 
     let title = '';
     let question = null;
@@ -106,6 +106,11 @@ export default class QuestionViewer extends React.Component {
       <div className="question-view">
         <h1 className="question-title">{title}</h1>
         <div className="question-difficulty">{peppers}</div>
+        <div className="question-tags">
+          {tags.map(tag => (
+            <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
+          ))}
+        </div>
         <div className="question-preamble">
           <Markdown source={preamble} renderers={{ code: CodeBlock }} />
         </div>
