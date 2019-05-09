@@ -4,6 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .question-preamble {
   word-wrap: normal;
   background-color: lightgrey;
@@ -19,20 +20,27 @@
   margin: auto;
   margin-top: 10px;
 }
+
 .question-difficulty {
   color: red;
   font-size: 200%;
 }
+
 .question-rubric button {
   font-size: 200%;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
+  background-color: rgb(43, 43, 43);
+  color: white;
+  border: 2px solid white;
 }
+
 .question-rubric .rubric-text {
   text-align: center;
   display: none;
 }
+
 .question-rubric .rubric-text.rubric-show {
   display: inherit;
 }

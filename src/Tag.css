@@ -1,0 +1,60 @@
+.tag {
+  background-color: lightblue;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid white;
+  font-size: 150%;
+  color: black;
+  margin: 10px;
+  cursor: pointer;
+  width: 20vw;
+}
+
+.tag:hover {
+  background-color: skyblue;
+}
+
+.tag.tag-red {
+  background-color: coral;
+  color: black;
+}
+
+.tag.tag-red:hover {
+  background-color: lightcoral;
+}
+
+.tag.tag-green {
+  background-color: lightgreen;
+  color: black;
+}
+
+.tag.tag-green:hover {
+  background-color: lightseagreen;
+}
+
+.tag.tag-blue {
+  background-color: lightblue;
+  color: black;
+}
+
+.tag.tag-blue:hover {
+  background-color: skyblue;
+}
+
+.tag.tag-orange {
+  background-color: salmon;
+  color: black;
+}
+
+.tag.tag-orange:hover {
+  background-color: lightsalmon;
+}
+
+.tag.tag-grey {
+  background-color: slategray;
+  color: black;
+}
+
+.tag.tag-grey:hover {
+  background-color: lightgray;
+}
