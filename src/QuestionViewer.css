@@ -1,0 +1,38 @@
+.question-tags {
+  border-bottom: 1px solid grey;
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.question-preamble {
+  word-wrap: normal;
+  background-color: lightgrey;
+  color: black;
+  border: 3px solid white;
+  border-radius: 5px;
+  display: block;
+  width: fit-content;
+  max-width: 90vw;
+  font-size: 150%;
+  text-align: left;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+}
+.question-difficulty {
+  color: red;
+  font-size: 200%;
+}
+.question-rubric button {
+  font-size: 200%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+.question-rubric .rubric-text {
+  text-align: center;
+  display: none;
+}
+.question-rubric .rubric-text.rubric-show {
+  display: inherit;
+}
