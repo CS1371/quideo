@@ -9,6 +9,7 @@ import Tag from './Tag';
 import MultipleChoice from './MultipleChoice';
 import Hint from './Hint';
 import Rubric from './Rubric';
+import ShortAnswer from './ShortAnswer';
 import './QuestionViewer.css';
 
 export default class QuestionViewer extends React.Component {
@@ -38,7 +39,12 @@ export default class QuestionViewer extends React.Component {
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.arrayOf(PropTypes.string).isRequired,
     /** The question prompts, only for SA */
-    prompts: PropTypes.arrayOf(PropTypes.string),
+    prompts: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        isCode: PropTypes.bool.isRequired
+      })
+    ),
     /** The answers as an array. Even though it always has the same shape,
      * there are important implications on how it should be used in different
      * question type contexts:
@@ -89,6 +95,7 @@ export default class QuestionViewer extends React.Component {
         title = `${index}: ${tags[tags.length - 1].name} - Multiple Choice`;
         break;
       case 'SA':
+        question = <ShortAnswer prompts={prompts} answers={answers.map(a => a.text)} />;
         title = `${index}: ${tags[tags.length - 1].name} - Short Answer`;
         break;
       case 'FB':

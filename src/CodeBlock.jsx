@@ -5,12 +5,13 @@ import { darcula } from 'react-syntax-highlighter/dist/styles/prism';
 
 export default class CodeBlock extends PureComponent {
   static propTypes = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     language: PropTypes.string
   };
 
   static defaultProps = {
-    language: null
+    language: 'matlab',
+    value: ''
   };
 
   render() {
