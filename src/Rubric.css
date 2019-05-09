@@ -1,0 +1,14 @@
+.rubric {
+  width: 75vw;
+  border: 7px solid white;
+  border-radius: 10px;
+  background-color: lightgray;
+  font-size: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  color: black;
+  cursor: pointer;
+}

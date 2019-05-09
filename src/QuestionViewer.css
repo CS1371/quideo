@@ -31,16 +31,20 @@
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
-  background-color: rgb(43, 43, 43);
-  color: white;
+  color: rgb(43, 43, 43);
+  background-color: white;
   border: 2px solid white;
+  cursor: pointer;
 }
 
-.question-rubric .rubric-text {
-  text-align: center;
+.question-hints button {
+  font-size: 150%;
+  border-radius: 5px;
+  color: rgb(43, 43, 43);
+  background-color: white;
+  cursor: pointer;
+}
+
+.question-hints button.no-hints {
   display: none;
-}
-
-.question-rubric .rubric-text.rubric-show {
-  display: inherit;
 }

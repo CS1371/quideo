@@ -8,18 +8,21 @@ import './MultipleChoice.css';
 const MultipleChoice = props => {
   const { answers } = props;
   return (
-    <div className="mc-question">
-      <div className="mc-answers">
-        {answers.map(ans => (
-          <Option
-            key={hash(ans.text)}
-            text={ans.text}
-            explanation={ans.explanation}
-            isCorrect={ans.isCorrect}
-          />
-        ))}
+    <React.Fragment>
+      <p>Click the answer you think is correct</p>
+      <div className="mc-question">
+        <div className="mc-answers">
+          {answers.map(ans => (
+            <Option
+              key={hash(ans.text)}
+              text={ans.text}
+              explanation={ans.explanation}
+              isCorrect={ans.isCorrect}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

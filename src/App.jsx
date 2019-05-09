@@ -14,75 +14,60 @@ const mcResp = {
       week: 2
     },
     {
-      name: 'Recursion',
+      name: 'Sorting',
       week: 3
     },
     {
-      name: 'Recursion',
+      name: 'Images',
       week: 4
     },
     {
-      name: 'Recursion',
+      name: 'Iteration',
       week: 5
     },
     {
-      name: 'Recursion',
+      name: 'Graph Theory',
       week: 6
     },
     {
-      name: 'Recursion',
+      name: 'High Level I/O',
       week: 7
     },
     {
-      name: 'Recursion',
+      name: 'Low Level I/O',
       week: 8
     },
     {
-      name: 'Recursion',
-      week: 14
-    },
-    {
-      name: 'Recursion',
+      name: 'Conditionals',
       week: 9
     },
     {
-      name: 'Recursion',
+      name: 'Functions',
       week: 10
     },
     {
-      name: 'Recursion',
+      name: 'Introduction',
       week: 11
     },
     {
-      name: 'High Level I/O',
+      name: 'Vectors',
       week: 12
     },
     {
-      name: 'Low Level I/O',
+      name: 'Structures',
       week: 13
     },
     {
-      name: 'Graph Theory',
+      name: 'Plotting',
       week: 14
     },
     {
-      name: 'Conditionals',
+      name: 'Numerical Methods',
       week: 15
-    },
-    {
-      name: 'Iteration',
-      week: 19
-    },
-    {
-      name: 'Recursion',
-      week: 17
-    },
-    {
-      name: 'Recursion',
-      week: 18
     }
   ],
-  rubric: '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`',
+  rubric:
+    '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
   preamble:
     'If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a?  ',
   difficulty: 2,

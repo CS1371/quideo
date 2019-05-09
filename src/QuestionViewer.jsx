@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
+import hash from 'object-hash';
 import CodeBlock from './CodeBlock';
 import Tag from './Tag';
-import './QuestionViewer.css';
 import MultipleChoice from './MultipleChoice';
+import Hint from './Hint';
+import Rubric from './Rubric';
+import './QuestionViewer.css';
 
 export default class QuestionViewer extends React.Component {
   static propTypes = {
@@ -66,7 +69,8 @@ export default class QuestionViewer extends React.Component {
     super(props);
 
     this.state = {
-      showRubric: false
+      showRubric: false,
+      showHints: 0
     };
   }
   // Some stuff is common, some not so much. We print the common stuff,
@@ -74,7 +78,7 @@ export default class QuestionViewer extends React.Component {
 
   render() {
     const { index, tags, rubric, preamble, difficulty, type, hints, prompts, answers } = this.props;
-    const { showRubric } = this.state;
+    const { showRubric, showHints } = this.state;
     tags.sort((a, b) => a.week - b.week);
 
     let title = '';
@@ -115,7 +119,25 @@ export default class QuestionViewer extends React.Component {
           <Markdown source={preamble} renderers={{ code: CodeBlock }} />
         </div>
         <div className="question-content">{question}</div>
-        <div className="question-hints">{hints}</div>
+        <div className="question-hints">
+          <button
+            className={showHints < hints.length ? '' : 'no-hints'}
+            type="button"
+            onClick={() => {
+              // Make next hint available
+              this.setState({
+                showHints: showHints + 1
+              });
+            }}
+          >
+            {showHints === 0 ? 'Show a Hint' : 'Show Another Hint'}
+          </button>
+          <ol>
+            {hints.map((h, ind) => (
+              <Hint key={hash(h)} text={h} isShown={ind < showHints} />
+            ))}
+          </ol>
+        </div>
         <div className="question-rubric">
           <button
             type="button"
@@ -127,11 +149,7 @@ export default class QuestionViewer extends React.Component {
           >
             {showRubric ? 'Hide Rubric' : 'Show Rubric'}
           </button>
-          <Markdown
-            className={`rubric-text ${showRubric ? 'rubric-show' : ''}`}
-            source={rubric}
-            renderers={{ code: CodeBlock }}
-          />
+          <Rubric isShown={showRubric} text={rubric} />
         </div>
       </div>
     );

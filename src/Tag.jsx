@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Tag.css';
 
-const COLORS = ['red', 'green', 'blue', 'orange', 'grey'];
+const COLORS = ['red', 'green', 'blue', 'orange', 'grey', 'random'];
 
 const Tag = props => {
   const { name, color, week, handler } = props;
   let tagColor = '';
-  if (color !== '') {
+  if (color !== 'random') {
     tagColor = color;
   } else if (week > -1) {
-    tagColor = COLORS[week % COLORS.length];
+    tagColor = COLORS[week % (COLORS.length - 1)];
   } else {
     // Random!
-    tagColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    tagColor = COLORS[Math.floor(Math.random() * (COLORS.length - 1))];
   }
   return (
     <button type="button" className={`tag tag-${tagColor}`} onClick={handler}>
@@ -36,7 +36,7 @@ Tag.propTypes = {
 Tag.defaultProps = {
   // For random, nothing!
   week: -1,
-  color: '',
+  color: 'random',
   handler: () => {}
 };
 
