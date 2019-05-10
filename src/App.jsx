@@ -2,6 +2,34 @@ import React from 'react';
 import './App.css';
 import QuestionViewer from './question-viewer/QuestionViewer';
 
+const lcResp = {
+  index: 2,
+  tags: [
+    {
+      name: 'Recursion',
+      week: 1
+    }
+  ],
+  rubric:
+    '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
+  preamble:
+    '# Function Name: `memeify`\n\n## Inputs: (1)\n\n* (`char`) File Name\n* (`double`) Likes\n\n## Outputs: (1)\n\n* (`uint8`): `MxNx3` image\n\n## Description\n\nYou are given an image, and think "hey, why don\'t I do this?" So you do\n\nMake a function `memeify` that takes in a filename and the number of likes to add, and outputs the new image.',
+  difficulty: 8,
+  hints: [
+    'How many likes do you have?',
+    'Do you know what the input image will be in terms of size?'
+  ],
+  type: 'LC',
+  answers: [
+    {
+      text:
+        '``` matlab\n\nfunction out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend\n```',
+      isCorrect: true,
+      explanation: ''
+    }
+  ]
+};
+/*
 const saResp = {
   index: 1,
   tags: [
@@ -34,22 +62,22 @@ const saResp = {
   answers: [
     {
       text: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
-      isCorrect: true,
-      explanation: 'Wassup'
+      isCorrect: null,
+      explanation: ''
     },
     {
       text: '2',
-      isCorrect: false,
-      explanation: 'Wassup'
+      isCorrect: null,
+      explanation: ''
     },
     {
       text: '1.0',
-      isCorrect: true,
-      explanation: 'Wassup'
+      isCorrect: null,
+      explanation: ''
     }
   ]
 };
-/*
+
 const mcResp = {
   index: 0,
   tags: [
@@ -144,17 +172,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <QuestionViewer
-          index={saResp.index}
-          tags={saResp.tags}
-          rubric={saResp.rubric}
-          preamble={saResp.preamble}
-          difficulty={saResp.difficulty}
-          type={saResp.type}
-          hints={saResp.hints}
-          prompts={saResp.prompts}
-          answers={saResp.answers}
-        />
+        <QuestionViewer {...lcResp} />
       </header>
     </div>
   );

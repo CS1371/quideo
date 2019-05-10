@@ -51,7 +51,7 @@ export default class Prompt extends React.Component {
           <div className="user-answer code-editor">
             {userArea}
             <Markdown
-              source={`\`\`\` matlab\n${userAnswer}\n\`\`\``}
+              source={`\`\`\` matlab\n${userAnswer.replace(/^\s*`{3,}\s*$/g, '\n')}\n\`\`\``}
               renderers={{ code: CodeBlock }}
             />
           </div>
