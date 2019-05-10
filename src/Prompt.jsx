@@ -47,6 +47,7 @@ export default class Prompt extends React.Component {
       // with instructions...
       ans = (
         <React.Fragment>
+          <p>Your Code</p>
           <div className="user-answer code-editor">
             {userArea}
             <Markdown
@@ -67,6 +68,7 @@ export default class Prompt extends React.Component {
         <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
           {ans}
           <div className="actual-answer">
+            <p>Solution</p>
             <Markdown source={answer} renderers={{ code: CodeBlock }} />
           </div>
         </div>
