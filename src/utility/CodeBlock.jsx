@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/dist/styles/prism';
+import matlab from './matlab';
 import './CodeBlock.css';
 
 export class CodeBlock extends PureComponent {
@@ -17,13 +17,25 @@ export class CodeBlock extends PureComponent {
 
   render() {
     const { language, value } = this.props;
+    if (language === 'matlab-cw') {
+      return (
+        <SyntaxHighlighter
+          className="code-block"
+          customStyle={{ padding: '', margin: '' }}
+          language="matlab"
+          style={matlab}
+        >
+          {value}
+        </SyntaxHighlighter>
+      );
+    }
     return (
       <SyntaxHighlighter
         className="code-block"
         customStyle={{ padding: '', margin: '' }}
         showLineNumbers
         language={language}
-        style={darcula}
+        style={matlab}
       >
         {value}
       </SyntaxHighlighter>
