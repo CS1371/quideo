@@ -42,7 +42,8 @@
 
 .question-hints button {
   font-size: 150%;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid white;
   color: rgb(43, 43, 43);
   background-color: white;
   cursor: pointer;
