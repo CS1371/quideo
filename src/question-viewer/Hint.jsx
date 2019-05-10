@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import CodeBlock from '../utility/CodeBlock';
+import { CodeBlock } from '../utility/CodeBlock';
 import './Hint.css';
 
 const Hint = props => {

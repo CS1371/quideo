@@ -4,7 +4,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { darcula } from 'react-syntax-highlighter/dist/styles/prism';
 import './CodeBlock.css';
 
-export default class CodeBlock extends PureComponent {
+export class CodeBlock extends PureComponent {
   static propTypes = {
     value: PropTypes.string,
     language: PropTypes.string
@@ -29,3 +29,5 @@ export default class CodeBlock extends PureComponent {
     );
   }
 }
+
+export const codeLines = 10;

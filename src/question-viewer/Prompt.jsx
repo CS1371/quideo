@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import TextAreaAutosize from 'react-autosize-textarea';
-import CodeBlock from '../utility';
+import { CodeBlock, codeLines } from '../utility';
 import './Prompt.css';
 
 export default class Prompt extends React.Component {
@@ -26,25 +26,28 @@ export default class Prompt extends React.Component {
   render() {
     const { showAnswer, userAnswer } = this.state;
     const { prompt, answer } = this.props;
-    const userArea = (
-      <TextAreaAutosize
-        value={userAnswer}
-        placeholder="Type your answer here..."
-        onChange={e => {
-          this.setState({
-            userAnswer: e.target.value
-          });
-        }}
-      />
-    );
+
     // Depends on if we have code. If we do, then show 50/50. If we don't,
     // Then just show the text box as a whole.
     //
     // Regardless, when we show the answer, animate to half of what it was!
     let ans = null;
+    let userArea = null;
     if (prompt.isCode) {
       // 50/50
       // with instructions...
+      userArea = (
+        <TextAreaAutosize
+          value={userAnswer}
+          placeholder="Type your code here..."
+          rows={codeLines}
+          onChange={e => {
+            this.setState({
+              userAnswer: e.target.value
+            });
+          }}
+        />
+      );
       ans = (
         <React.Fragment>
           <p>Your Code</p>

@@ -1,1 +1,1 @@
-export { default } from './CodeBlock';
+export { CodeBlock, codeLines } from './CodeBlock';

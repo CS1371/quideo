@@ -2,7 +2,7 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import TextAreaAutosize from 'react-autosize-textarea';
-import CodeBlock from '../utility';
+import { CodeBlock, codeLines } from '../utility';
 import './CodingAnswer.css';
 
 export default class CodingAnswer extends React.Component {
@@ -31,12 +31,13 @@ export default class CodingAnswer extends React.Component {
         <div className={`code-area ${showAnswer ? 'answer-show' : 'answer-hide'}`}>
           <TextAreaAutosize
             value={userAnswer}
+            placeholder="Type your code here..."
             onChange={e => {
               this.setState({
                 userAnswer: e.target.value
               });
             }}
-            rows={10}
+            rows={codeLines}
           />
           <Markdown
             className="user-code-viewer"
