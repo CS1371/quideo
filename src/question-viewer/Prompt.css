@@ -47,7 +47,7 @@
   overflow: auto !important;
 }
 
-.user-answer.code-editor textarea {
+.code-editor textarea {
   width: 50%;
 }
 

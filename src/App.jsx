@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import QuestionViewer from './QuestionViewer';
+import QuestionViewer from './question-viewer/QuestionViewer';
 
 const saResp = {
   index: 1,
