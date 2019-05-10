@@ -29,7 +29,7 @@ const caResp = {
     }
   ]
 };
-/*
+
 const saResp = {
   index: 1,
   tags: [
@@ -167,13 +167,13 @@ const mcResp = {
     }
   ]
 };
-*/
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <QuestionViewer {...caResp} />
-      </header>
+      <QuestionViewer {...caResp} />
+      <QuestionViewer {...saResp} />
+      <QuestionViewer {...mcResp} />
     </div>
   );
 }
