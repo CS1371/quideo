@@ -3,9 +3,9 @@ import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import TextAreaAutosize from 'react-autosize-textarea';
 import CodeBlock from '../utility';
-import './LongCoding.css';
+import './CodingAnswer.css';
 
-export default class LongCoding extends React.Component {
+export default class CodingAnswer extends React.Component {
   static propTypes = {
     answer: PropTypes.string.isRequired
   };

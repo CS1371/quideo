@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import QuestionViewer from './question-viewer/QuestionViewer';
 
-const lcResp = {
+const caResp = {
   index: 2,
   tags: [
     {
@@ -19,7 +19,7 @@ const lcResp = {
     'How many likes do you have?',
     'Do you know what the input image will be in terms of size?'
   ],
-  type: 'LC',
+  type: 'CA',
   answers: [
     {
       text:
@@ -172,7 +172,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <QuestionViewer {...lcResp} />
+        <QuestionViewer {...caResp} />
       </header>
     </div>
   );

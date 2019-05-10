@@ -11,7 +11,7 @@ import Hint from './Hint';
 import Rubric from './Rubric';
 import ShortAnswer from './ShortAnswer';
 import './QuestionViewer.css';
-import LongCoding from './LongCoding';
+import CodingAnswer from './CodingAnswer';
 
 export default class QuestionViewer extends React.Component {
   static propTypes = {
@@ -35,7 +35,7 @@ export default class QuestionViewer extends React.Component {
       'MC', // Multiple choice
       'SA', // Short Answer
       'FB', // Fill in the Blank
-      'LC' // Long Coding
+      'CA' // Coding Answer
     ]).isRequired,
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -102,8 +102,8 @@ export default class QuestionViewer extends React.Component {
       case 'FB':
         title = `${index}: ${tags[tags.length - 1].name} - Fill in the Blank`;
         break;
-      case 'LC':
-        question = <LongCoding answer={answers[0].text} />;
+      case 'CA':
+        question = <CodingAnswer answer={answers[0].text} />;
         title = `${index}: ${tags[tags.length - 1].name} - Long Coding`;
         break;
       default:
