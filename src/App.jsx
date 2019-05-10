@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import QuestionViewer from './question-viewer/QuestionViewer';
+import Question from './question-viewer';
 
 const caResp = {
   index: 2,
@@ -171,9 +171,9 @@ const mcResp = {
 function App() {
   return (
     <div className="App">
-      <QuestionViewer {...caResp} />
-      <QuestionViewer {...saResp} />
-      <QuestionViewer {...mcResp} />
+      <Question {...caResp} />
+      <Question {...saResp} />
+      <Question {...mcResp} />
     </div>
   );
 }

@@ -10,9 +10,9 @@ import Rubric from './Rubric';
 import ShortAnswer from './ShortAnswer';
 import CodingAnswer from './CodingAnswer';
 import Preamble from './Preamble';
-import './QuestionViewer.css';
+import './Question.css';
 
-export default class QuestionViewer extends React.Component {
+export default class Question extends React.Component {
   static propTypes = {
     /** The ordering of this question */
     index: PropTypes.number.isRequired,
