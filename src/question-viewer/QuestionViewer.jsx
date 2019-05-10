@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
 import hash from 'object-hash';
-import { CodeBlock } from '../utility';
 import Tag from './Tag';
 import MultipleChoice from './MultipleChoice';
 import Hint from './Hint';
 import Rubric from './Rubric';
 import ShortAnswer from './ShortAnswer';
-import './QuestionViewer.css';
 import CodingAnswer from './CodingAnswer';
+import Preamble from './Preamble';
+import './QuestionViewer.css';
 
 export default class QuestionViewer extends React.Component {
   static propTypes = {
@@ -124,9 +123,7 @@ export default class QuestionViewer extends React.Component {
             <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
           ))}
         </div>
-        <div className="question-preamble">
-          <Markdown source={preamble} renderers={{ code: CodeBlock }} />
-        </div>
+        <Preamble preamble={preamble} />
         <div className="question-content">{question}</div>
         <div className="question-hints">
           <button

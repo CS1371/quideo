@@ -9,21 +9,6 @@
   flex-wrap: wrap;
 }
 
-.question-preamble {
-  word-wrap: normal;
-  background-color: lightgrey;
-  color: black;
-  border: 3px solid white;
-  border-radius: 5px;
-  display: block;
-  width: fit-content;
-  max-width: 90vw;
-  text-align: left;
-  padding: 10px;
-  margin: auto;
-  margin-top: 10px;
-}
-
 .question-difficulty {
   color: red;
   font-size: 200%;
