@@ -21,6 +21,7 @@ export class CodeBlock extends PureComponent {
       <SyntaxHighlighter
         className="code-block"
         customStyle={{ padding: '', margin: '' }}
+        showLineNumbers
         language={language}
         style={darcula}
       >
