@@ -2,6 +2,8 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentTimes, faCommentCheck } from '@fortawesome/pro-solid-svg-icons';
 import { CodeBlock } from '../utility/CodeBlock';
 import './MultipleChoice.css';
 
@@ -67,15 +69,16 @@ class Option extends React.Component {
             });
           }}
         >
-          <Markdown source={text} renderers={{ code: CodeBlock }} />
+          <Markdown source={text} renderers={{ code: CodeBlock }} p2="hi" />
         </button>
-        <p
+        <div
           className={`mc-explanation ${isCorrect ? 'mc-correct' : 'mc-incorrect'} ${
             isChosen ? 'mc-chosen' : ''
           }`}
         >
-          {explanation}
-        </p>
+          <FontAwesomeIcon icon={isCorrect ? faCommentCheck : faCommentTimes} />
+          <Markdown source={explanation} renderers={{ code: CodeBlock }} />
+        </div>
       </div>
     );
   }

@@ -42,7 +42,19 @@
 }
 
 .mc-explanation.mc-incorrect {
-  background-color: rgb(236, 122, 122);
+  background-color: rgb(238, 159, 159);
+}
+
+.mc-explanation svg {
+  font-size: 200%;
+}
+
+.mc-explanation.mc-incorrect svg {
+  color: darkred;
+}
+
+.mc-explanation.mc-correct svg {
+  color: darkgreen;
 }
 
 .mc-explanation.mc-chosen {

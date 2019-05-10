@@ -54,7 +54,7 @@ export default class Question extends React.Component {
      * * If we have SA, then this is an array of answers whose length should
      * be the same as prompts
      * * If we have FB, then this is the same as SA
-     * * If we have LA, this is a unary array with the TA's answer
+     * * If we have CA, this is a unary array with the TA's answer
      *
      * All answers support markdown in the entry.
      */
