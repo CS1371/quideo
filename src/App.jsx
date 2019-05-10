@@ -47,7 +47,7 @@ const saResp = {
   prompts: [
     {
       text:
-        'a. Suppose the following is defined in the current folder:\n\n```matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = 2;\nc = zeros(1, 100);\nd = c(1:end/2);\nout = d;\nend\n```\n What is the output when the following is run in the command window?\n\n```\n>> myFun(1, 2);\n```',
+        'a. Suppose the following is defined in the current folder:\n\n```matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = 2;\nc = zeros(1, 100);\nd = c(1:end/2);\nout = d;\nend\n```\n What is the output when the following is run in the command window?\n\n```matlab-cw\n>> myFun(1, 2);\n```',
       isCode: true
     },
     {
