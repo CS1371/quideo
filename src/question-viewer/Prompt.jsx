@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import TextAreaAutosize from 'react-autosize-textarea';
-import CodeBlock from './CodeBlock';
+import CodeBlock from '../utility';
 import './Prompt.css';
 
 export default class Prompt extends React.Component {

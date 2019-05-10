@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import CodeBlock from './CodeBlock';
+import CodeBlock from '../utility';
 import './Rubric.css';
 
 const Rubric = props => {

@@ -4,7 +4,7 @@ import Markdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
 import hash from 'object-hash';
-import CodeBlock from './CodeBlock';
+import CodeBlock from '../utility';
 import Tag from './Tag';
 import MultipleChoice from './MultipleChoice';
 import Hint from './Hint';
