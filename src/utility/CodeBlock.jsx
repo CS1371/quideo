@@ -17,7 +17,8 @@ export class CodeBlock extends PureComponent {
 
   render() {
     const { language, value } = this.props;
-    if (language === 'matlab-cw') {
+    // if in command window OR only one line, no new lines
+    if (language === 'matlab-cw' || value.indexOf('\n') === -1) {
       return (
         <SyntaxHighlighter
           className="code-block"
