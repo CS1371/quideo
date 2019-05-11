@@ -10,6 +10,7 @@ import Rubric from './Rubric';
 import ShortAnswer from './ShortAnswer';
 import CodingAnswer from './CodingAnswer';
 import Preamble from './Preamble';
+import Blanks from './Blanks';
 import './Question.css';
 
 export default class Question extends React.Component {
@@ -99,6 +100,7 @@ export default class Question extends React.Component {
         title = `${index}: ${tags[tags.length - 1].name} - Short Answer`;
         break;
       case 'FB':
+        question = <Blanks answers={answers.map(a => a.text)} />;
         title = `${index}: ${tags[tags.length - 1].name} - Fill in the Blank`;
         break;
       case 'CA':

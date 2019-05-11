@@ -78,6 +78,40 @@ const saResp = {
   ]
 };
 
+const fbResp = {
+  index: 1,
+  tags: [
+    {
+      name: 'Recursion',
+      week: 1
+    }
+  ],
+  rubric:
+    '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
+  preamble: 'Please answer the following questions',
+  difficulty: 5,
+  hints: ["What's up?", 'Who is there?'],
+  type: 'FB',
+  prompts: [],
+  answers: [
+    {
+      text: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
+      isCorrect: null,
+      explanation: ''
+    },
+    {
+      text: '2',
+      isCorrect: null,
+      explanation: ''
+    },
+    {
+      text: '1.0',
+      isCorrect: null,
+      explanation: ''
+    }
+  ]
+};
+
 const mcResp = {
   index: 0,
   tags: [
@@ -174,6 +208,7 @@ function App() {
       <Question {...caResp} />
       <Question {...saResp} />
       <Question {...mcResp} />
+      <Question {...fbResp} />
     </div>
   );
 }
