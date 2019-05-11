@@ -102,19 +102,11 @@ export default class Prompt extends React.Component {
     return (
       <div className="prompt-answer">
         <div className="prompt">
-          <Markdown
-            source={prompt.text}
-            disallowedTypes={['thematicBreak']}
-            rawSourcePos
-            sourcePos
-            includeNodeIndex
-            renderers={{ code: CodeBlock }}
-          />
+          <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
         </div>
         <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
           {ans}
           <div className="actual-answer">
-            <p>Solution</p>
             <Markdown source={answer} renderers={{ code: CodeBlock }} />
           </div>
         </div>
