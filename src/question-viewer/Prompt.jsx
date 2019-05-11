@@ -5,6 +5,7 @@ import TextAreaAutosize from 'react-autosize-textarea';
 import { CodeBlock, codeLines } from '../utility';
 import './Prompt.css';
 
+const TAB_KEY = 9;
 export default class Prompt extends React.Component {
   static propTypes = {
     prompt: PropTypes.shape({
@@ -22,6 +23,28 @@ export default class Prompt extends React.Component {
       userAnswer: ''
     };
   }
+
+  handleTab = e => {
+    const { userAnswer } = this.state;
+    if (e.keyCode === TAB_KEY) {
+      // see how many spaces we have until four on current line
+      // get current line
+      let ind = userAnswer.lastIndexOf('\n');
+      if (ind === -1) {
+        // just get length, no new lines
+        ind = userAnswer.length;
+      } else {
+        ind = userAnswer.length - ind - 1;
+      }
+      // mod ind with 4 to get left
+      ind = 4 - (ind % 4);
+      const newAnswer = userAnswer.padEnd(userAnswer.length + ind, ' ');
+      this.setState({
+        userAnswer: newAnswer
+      });
+      e.preventDefault();
+    }
+  };
 
   render() {
     const { showAnswer, userAnswer } = this.state;
@@ -46,6 +69,7 @@ export default class Prompt extends React.Component {
               userAnswer: e.target.value
             });
           }}
+          onKeyDown={this.handleTab}
         />
       );
       ans = (
@@ -61,12 +85,31 @@ export default class Prompt extends React.Component {
         </React.Fragment>
       );
     } else {
+      userArea = (
+        <TextAreaAutosize
+          value={userAnswer}
+          placeholder="Type your answer here..."
+          onChange={e => {
+            this.setState({
+              userAnswer: e.target.value
+            });
+          }}
+          onKeyDown={this.handleTab}
+        />
+      );
       ans = <div className="user-answer">{userArea}</div>;
     }
     return (
       <div className="prompt-answer">
         <div className="prompt">
-          <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
+          <Markdown
+            source={prompt.text}
+            disallowedTypes={['thematicBreak']}
+            rawSourcePos
+            sourcePos
+            includeNodeIndex
+            renderers={{ code: CodeBlock }}
+          />
         </div>
         <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
           {ans}

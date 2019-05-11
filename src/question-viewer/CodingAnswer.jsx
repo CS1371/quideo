@@ -5,6 +5,8 @@ import TextAreaAutosize from 'react-autosize-textarea';
 import { CodeBlock, codeLines } from '../utility';
 import './CodingAnswer.css';
 
+const TAB_KEY = 9;
+
 export default class CodingAnswer extends React.Component {
   static propTypes = {
     answer: PropTypes.string.isRequired
@@ -18,6 +20,28 @@ export default class CodingAnswer extends React.Component {
       userAnswer: ''
     };
   }
+
+  handleTab = e => {
+    const { userAnswer } = this.state;
+    if (e.keyCode === TAB_KEY) {
+      // see how many spaces we have until four on current line
+      // get current line
+      let ind = userAnswer.lastIndexOf('\n');
+      if (ind === -1) {
+        // just get length, no new lines
+        ind = userAnswer.length;
+      } else {
+        ind = userAnswer.length - ind - 1;
+      }
+      // mod ind with 4 to get left
+      ind = 4 - (ind % 4);
+      const newAnswer = userAnswer.padEnd(userAnswer.length + ind, ' ');
+      this.setState({
+        userAnswer: newAnswer
+      });
+      e.preventDefault();
+    }
+  };
 
   render() {
     // if showing answer, we want our code side by side with theirs. Otherwise,
@@ -38,6 +62,7 @@ export default class CodingAnswer extends React.Component {
               });
             }}
             rows={codeLines}
+            onKeyDown={this.handleTab}
           />
           <Markdown
             className="user-code-viewer"
