@@ -20,7 +20,7 @@ export default class CodingAnswer extends React.Component {
     super(props);
 
     this.state = {
-      showAnswer: false,
+      showAnswer: null,
       userAnswer: ''
     };
   }
@@ -31,10 +31,16 @@ export default class CodingAnswer extends React.Component {
     const { showAnswer, userAnswer } = this.state;
     const { answer, hints } = this.props;
 
+    let aceClass = '';
+    if (showAnswer !== null && showAnswer) {
+      aceClass = 'answer-show';
+    } else if (showAnswer !== null && !showAnswer) {
+      aceClass = 'answer-hide';
+    }
     return (
       <div className="coding-answer">
         <p>Type your code below. When ready, press Show Answer to compare</p>
-        <div className={`code-area ${showAnswer ? 'answer-show' : 'answer-hide'}`}>
+        <div className={`code-area ${aceClass}`}>
           <AceEditor
             mode="matlab"
             theme="sqlserver"
@@ -44,8 +50,9 @@ export default class CodingAnswer extends React.Component {
                 userAnswer: val
               });
             }}
-            editorProps={{ $blockScrolling: Infinity }}
-            width=""
+            setOptions={{ autoScrollEditorIntoView: true }}
+            editorProps={{ $blockScrolling: true }}
+            width="45vw"
             className="code-editor"
             fontSize={18}
           />
@@ -55,9 +62,9 @@ export default class CodingAnswer extends React.Component {
             value={answer}
             className="answer-code-viewer"
             fontSize={18}
-            width=""
-            // Can we specify fontSize via CSS?
+            width="45vw"
             editorProps={{ $blockScrolling: Infinity }}
+            setOptions={{ autoScrollEditorIntoView: true }}
             readOnly
           />
         </div>

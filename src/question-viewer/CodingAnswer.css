@@ -6,24 +6,18 @@
   max-width: 95vw;
 }
 
+.answer-code-viewer {
+  opacity: 0;
+}
+
 .answer-hide .answer-code-viewer {
-  width: 0;
-  transition: width 1s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .answer-show .answer-code-viewer {
-  width: 45vw;
-  transition: width 1s ease-in-out;
-}
-
-.answer-hide .code-editor {
-  width: 90vw;
-  transition: width 1s ease-in-out;
-}
-
-.answer-show .code-editor {
-  width: 45vw;
-  transition: width 1s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .btn-answer {
