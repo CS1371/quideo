@@ -19,7 +19,7 @@ const caResp = {
     'How many likes do you have?',
     'Do you know what the input image will be in terms of size?'
   ],
-  type: 'CA',
+  type: 'Coding',
   answers:
     'function out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend'
 };
@@ -36,7 +36,7 @@ const saResp = {
     '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
   preamble: 'Please answer the following questions',
   difficulty: 5,
-  type: 'SA',
+  type: 'Short Answer',
   hints: [
     ["What's up1?", 'Who is there?'],
     ["What's up2?", 'Who is there?'],
@@ -77,7 +77,7 @@ const fbResp = {
     ["What's up2?", 'Who is there?'],
     ["What's up3?", 'Who is there?']
   ],
-  type: 'FB',
+  type: 'Fill in the Blank',
   prompts: [],
   answers: ['\n```matlab\nfunction out = myFun(in)\n\nend\n```', '2', '1.0']
 };
@@ -151,7 +151,7 @@ const mcResp = {
   preamble:
     'If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a? If I write `a = 1;`, what is a?  ',
   difficulty: 2,
-  type: 'MC',
+  type: 'Multiple Choice',
   hints: ['Have you considered A?', 'How about B? Could it work?'],
   answers: [
     {

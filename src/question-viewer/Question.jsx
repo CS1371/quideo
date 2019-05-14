@@ -11,6 +11,13 @@ import Preamble from './Preamble';
 import Blanks from './Blanks';
 import './Question.css';
 
+const TYPES = {
+  MC: 'Multiple Choice',
+  SA: 'Short Answer',
+  FB: 'Fill in the Blank',
+  CA: 'Coding'
+};
+
 export default class Question extends React.Component {
   static propTypes = {
     /** The ordering of this question */
@@ -30,10 +37,10 @@ export default class Question extends React.Component {
     difficulty: PropTypes.number.isRequired,
     /** The type of question (an enum?) */
     type: PropTypes.oneOf([
-      'MC', // Multiple choice
-      'SA', // Short Answer
-      'FB', // Fill in the Blank
-      'CA' // Coding Answer
+      'Multiple Choice', // Multiple choice
+      'Short Answer', // Short Answer
+      'Fill in the Blank', // Fill in the Blank
+      'Coding' // Coding Answer
     ]).isRequired,
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.oneOfType([
@@ -87,50 +94,48 @@ export default class Question extends React.Component {
   // Some stuff is common, some not so much. We print the common stuff,
   // feed the other stuff accordingly!
 
-  render() {
-    const { index, tags, rubric, preamble, difficulty, type, hints, prompts, answers } = this.props;
-    const { showRubric } = this.state;
-    tags.sort((a, b) => a.week - b.week);
-
-    let title = '';
-    let question = null;
+  renderQuestion = () => {
+    const { prompts, answers, hints, type } = this.props;
     switch (type) {
-      case 'MC':
-        question = <MultipleChoice answers={answers} hints={hints} />;
-        title = `${index}: ${tags[tags.length - 1].name} - Multiple Choice`;
-        break;
-      case 'SA':
-        question = <ShortAnswer prompts={prompts} answers={answers} hints={hints} />;
-        title = `${index}: ${tags[tags.length - 1].name} - Short Answer`;
-        break;
-      case 'FB':
-        question = <Blanks answers={answers} hints={hints} />;
-        title = `${index}: ${tags[tags.length - 1].name} - Fill in the Blank`;
-        break;
-      case 'CA':
-        question = <CodingAnswer answer={answers} hints={hints} />;
-        title = `${index}: ${tags[tags.length - 1].name} - Long Coding`;
-        break;
+      case TYPES.MC:
+        return <MultipleChoice answers={answers} hints={hints} />;
+      case TYPES.SA:
+        return <ShortAnswer prompts={prompts} answers={answers} hints={hints} />;
+      case TYPES.FB:
+        return <Blanks answers={answers} hints={hints} />;
+      case TYPES.CA:
+        return <CodingAnswer answer={answers} hints={hints} />;
       default:
-        title = `${index}: ${tags[tags.length - 1].name} - Unknown`;
-        break;
+        return null;
     }
+  };
+
+  renderPeppers = () => {
+    const { difficulty } = this.props;
     const peppers = [];
     for (let i = 0; i < difficulty; i++) {
       peppers.push(<FontAwesomeIcon key={i} icon={faPepperHot} />);
     }
+    return peppers;
+  };
 
+  render() {
+    const { index, tags, rubric, preamble, type } = this.props;
+    const { showRubric } = this.state;
+    tags.sort((a, b) => a.week - b.week);
+
+    const title = `${index}: ${tags[tags.length - 1].name} - ${type}`;
     return (
       <div className="question-view">
         <h1 className="question-title">{title}</h1>
-        <div className="question-difficulty">{peppers}</div>
+        <div className="question-difficulty">{this.renderPeppers()}</div>
         <div className="question-tags">
           {tags.map(tag => (
             <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
           ))}
         </div>
         <Preamble preamble={preamble} />
-        <div className="question-content">{question}</div>
+        <div className="question-content">{this.renderQuestion()}</div>
         <div className="question-rubric">
           <button
             type="button"
