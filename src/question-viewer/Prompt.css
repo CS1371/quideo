@@ -12,60 +12,16 @@
   color: black;
 }
 
-.prompt-answer button {
-  font-size: 125%;
-  border-radius: 5px;
-  border: 1px solid black;
-  background-color: palegreen;
-  margin-bottom: 20px;
-  padding: 20px;
-  color: black;
-  cursor: pointer;
-}
-
 .user-answer {
-  width: 100%;
-  display: flex;
-}
-
-.user-answer textarea {
-  width: 100%;
+  width: 50vw;
   font-size: 100%;
   white-space: nowrap;
   border: 1px solid white;
   resize: vertical;
   border-radius: 8px;
   font-family: 'Courier New', Courier, monospace;
-  line-height: 1.5;
-  tab-size: 4;
-  hyphens: none;
   padding: 1em;
-  margin: 0.5em 0;
   visibility: visible;
-
-  /* Need this because of TextAreaAutosize.... */
-  overflow: auto !important;
-}
-
-.code-editor textarea {
-  width: 50%;
-}
-
-.show-answer .code-editor textarea {
-  width: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  opacity: 0;
-}
-
-.user-answer pre {
-  width: 50%;
-}
-
-.show-answer .user-answer pre {
-  width: 100%;
 }
 
 .actual-answer {

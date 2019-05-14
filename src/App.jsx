@@ -23,7 +23,7 @@ const caResp = {
   answers: [
     {
       text:
-        '``` matlab\n\nfunction out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend\n```',
+        'function out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend',
       isCorrect: true,
       explanation: ''
     }
@@ -61,7 +61,7 @@ const saResp = {
   ],
   answers: [
     {
-      text: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
+      text: 'function out = myFun(in)\n\nend\n',
       isCorrect: null,
       explanation: ''
     },

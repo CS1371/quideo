@@ -6,95 +6,33 @@
   max-width: 95vw;
 }
 
-.code-area textarea {
-  font-family: 'Courier New', Courier, monospace;
-  width: 50%;
-  min-width: 50%;
-  max-width: 100%;
-  font-size: 100%;
-  white-space: nowrap;
-  border: 1px solid white;
-  resize: vertical;
-  border-radius: 8px;
-  line-height: 1.5;
-  tab-size: 4;
-  hyphens: none;
-  padding: 1em;
-  margin: 0.5em 0;
-
-  /* Need this because of TextAreaAutosize.... */
-  overflow: auto !important;
-  transition:
-    max-width 1s ease-in-out,
-    min-width 1s ease-in-out,
-    width 1s ease-in-out,
-    margin-left 1s ease-in-out,
-    margin-right 1s ease-in-out,
-    padding-left 1s ease-in-out,
-    padding-right 1s ease-in-out;
-}
-
-.user-code-viewer {
-  width: 45%;
-}
-
-.answer-hide .answer-code-viewer pre {
+.answer-hide .answer-code-viewer {
   width: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  transition:
-    width 1s ease-in-out,
-    margin-left 1s ease-in-out,
-    margin-right 1s ease-in-out,
-    padding-left 1s ease-in-out,
-    padding-right 1s ease-in-out;
+  transition: width 1s ease-in-out;
 }
 
-.answer-show.code-area textarea {
-  min-width: 0;
-  max-width: 0;
-  width: 0;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  border: 0;
-  transition:
-    max-width 1s ease-in-out,
-    min-width 1s ease-in-out,
-    width 1s ease-in-out,
-    margin-left 1s ease-in-out,
-    margin-right 1s ease-in-out,
-    padding-left 1s ease-in-out,
-    padding-right 1s ease-in-out;
-}
-
-.answer-show .answer-code-viewer pre,
-.answer-show .user-code-viewer pre {
-  width: 42vw;
-  transition:
-    max-width 1s ease-in-out,
-    min-width 1s ease-in-out,
-    width 1s ease-in-out,
-    margin-left 1s ease-in-out,
-    margin-right 1s ease-in-out,
-    padding-left 1s ease-in-out,
-    padding-right 1s ease-in-out;
-}
-
-.answer-show .user-code-viewer,
 .answer-show .answer-code-viewer {
-  width: 50%;
+  width: 45vw;
+  transition: width 1s ease-in-out;
 }
 
-.question-long button {
+.answer-hide .code-editor {
+  width: 90vw;
+  transition: width 1s ease-in-out;
+}
+
+.answer-show .code-editor {
+  width: 45vw;
+  transition: width 1s ease-in-out;
+}
+
+.btn-answer {
   font-size: 125%;
   border-radius: 5px;
   border: 1px solid black;
   background-color: palegreen;
   margin-bottom: 20px;
+  margin-top: 20px;
   padding: 20px;
   color: black;
   cursor: pointer;
