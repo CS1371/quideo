@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
-import hash from 'object-hash';
 import Tag from './Tag';
 import MultipleChoice from './MultipleChoice';
-import Hint from './Hint';
 import Rubric from './Rubric';
 import ShortAnswer from './ShortAnswer';
 import CodingAnswer from './CodingAnswer';
@@ -76,8 +74,7 @@ export default class Question extends React.Component {
     super(props);
 
     this.state = {
-      showRubric: false,
-      showHints: 0
+      showRubric: false
     };
   }
   // Some stuff is common, some not so much. We print the common stuff,
@@ -85,26 +82,28 @@ export default class Question extends React.Component {
 
   render() {
     const { index, tags, rubric, preamble, difficulty, type, hints, prompts, answers } = this.props;
-    const { showRubric, showHints } = this.state;
+    const { showRubric } = this.state;
     tags.sort((a, b) => a.week - b.week);
 
     let title = '';
     let question = null;
     switch (type) {
       case 'MC':
-        question = <MultipleChoice answers={answers} />;
+        question = <MultipleChoice answers={answers} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Multiple Choice`;
         break;
       case 'SA':
-        question = <ShortAnswer prompts={prompts} answers={answers.map(a => a.text)} />;
+        question = (
+          <ShortAnswer prompts={prompts} answers={answers.map(a => a.text)} hints={hints} />
+        );
         title = `${index}: ${tags[tags.length - 1].name} - Short Answer`;
         break;
       case 'FB':
-        question = <Blanks answers={answers.map(a => a.text)} />;
+        question = <Blanks answers={answers.map(a => a.text)} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Fill in the Blank`;
         break;
       case 'CA':
-        question = <CodingAnswer answer={answers[0].text} />;
+        question = <CodingAnswer answer={answers[0].text} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Long Coding`;
         break;
       default:
@@ -127,25 +126,6 @@ export default class Question extends React.Component {
         </div>
         <Preamble preamble={preamble} />
         <div className="question-content">{question}</div>
-        <div className="question-hints">
-          <button
-            className={showHints < hints.length ? '' : 'no-hints'}
-            type="button"
-            onClick={() => {
-              // Make next hint available
-              this.setState({
-                showHints: showHints + 1
-              });
-            }}
-          >
-            {showHints === 0 ? 'Show a Hint' : 'Show Another Hint'}
-          </button>
-          <ol>
-            {hints.map((h, ind) => (
-              <Hint key={hash(h)} text={h} isShown={ind < showHints} />
-            ))}
-          </ol>
-        </div>
         <div className="question-rubric">
           <button
             type="button"

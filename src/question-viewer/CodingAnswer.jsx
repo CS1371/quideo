@@ -4,10 +4,16 @@ import AceEditor from 'react-ace';
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
 import './CodingAnswer.css';
+import HintList from './HintList';
 
 export default class CodingAnswer extends React.Component {
   static propTypes = {
-    answer: PropTypes.string.isRequired
+    answer: PropTypes.string.isRequired,
+    hints: PropTypes.arrayOf(PropTypes.string)
+  };
+
+  static defaultProps = {
+    hints: []
   };
 
   constructor(props) {
@@ -23,7 +29,7 @@ export default class CodingAnswer extends React.Component {
     // if showing answer, we want our code side by side with theirs. Otherwise,
     // show our textarea and their preview.
     const { showAnswer, userAnswer } = this.state;
-    const { answer } = this.props;
+    const { answer, hints } = this.props;
 
     return (
       <div className="coding-answer">
@@ -53,6 +59,7 @@ export default class CodingAnswer extends React.Component {
             readOnly
           />
         </div>
+        <HintList hints={hints} />
         <button
           type="button"
           className="btn-answer"

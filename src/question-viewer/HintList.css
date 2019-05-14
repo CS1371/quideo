@@ -1,0 +1,13 @@
+.btn-hint {
+  font-size: 100%;
+  border-radius: 8px;
+  border: 1px solid white;
+  color: rgb(43, 43, 43);
+  background-color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn-no-hint {
+  display: none;
+}

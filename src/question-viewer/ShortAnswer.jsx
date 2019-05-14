@@ -9,9 +9,16 @@ import Prompt from './Prompt';
 // Then, when we ask for answer, get rid of text area and only show code side by side!
 const ShortAnswer = props => {
   // For each one, add a prompt/answer pair.
-  const { prompts, answers } = props;
-  // map each one to a prompt/answer pair
-  return prompts.map((p, ind) => <Prompt key={hash(p.text)} prompt={p} answer={answers[ind]} />);
+  const { prompts, answers, hints } = props;
+  // map each one to a prompt/answer with hints
+  return prompts.map((p, ind) => (
+    <Prompt
+      key={hash(p.text)}
+      prompt={p}
+      answer={answers[ind]}
+      hints={hints.length === 0 ? [] : hints[ind]}
+    />
+  ));
 };
 
 ShortAnswer.propTypes = {
@@ -21,7 +28,12 @@ ShortAnswer.propTypes = {
       isCode: PropTypes.bool.isRequired
     })
   ).isRequired,
-  answers: PropTypes.arrayOf(PropTypes.string).isRequired
+  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  hints: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
+};
+
+ShortAnswer.defaultProps = {
+  hints: []
 };
 
 export default ShortAnswer;

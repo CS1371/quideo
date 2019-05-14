@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
 import CodingAnswer from './CodingAnswer';
+import HintList from './HintList';
 import './Prompt.css';
 
 export default class Prompt extends React.Component {
@@ -11,7 +12,12 @@ export default class Prompt extends React.Component {
       text: PropTypes.string.isRequired,
       isCode: PropTypes.bool.isRequired
     }).isRequired,
-    answer: PropTypes.string.isRequired
+    answer: PropTypes.string.isRequired,
+    hints: PropTypes.arrayOf(PropTypes.string)
+  };
+
+  static defaultProps = {
+    hints: []
   };
 
   constructor(props) {
@@ -25,16 +31,18 @@ export default class Prompt extends React.Component {
 
   render() {
     const { showAnswer, userAnswer } = this.state;
-    const { prompt, answer } = this.props;
+    const { prompt, answer, hints } = this.props;
     // If we have code, just use the codingAnswer?
     if (prompt.isCode) {
       return (
-        <div className="prompt-answer">
-          <div className="prompt">
-            <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
+        <React.Fragment>
+          <div className="prompt-answer">
+            <div className="prompt">
+              <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
+            </div>
+            <CodingAnswer answer={answer} hints={hints} />
           </div>
-          <CodingAnswer answer={answer} />
-        </div>
+        </React.Fragment>
       );
     }
     return (
@@ -53,6 +61,9 @@ export default class Prompt extends React.Component {
               });
             }}
           />
+          <div>
+            <HintList hints={hints} />
+          </div>
           <div className="actual-answer">
             <Markdown source={answer} renderers={{ code: CodeBlock }} />
           </div>

@@ -5,10 +5,11 @@ import hash from 'object-hash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentTimes, faCommentCheck } from '@fortawesome/pro-solid-svg-icons';
 import { CodeBlock } from '../utility/CodeBlock';
+import HintList from './HintList';
 import './MultipleChoice.css';
 
 const MultipleChoice = props => {
-  const { answers } = props;
+  const { answers, hints } = props;
   return (
     <React.Fragment>
       <p>Click the answer you think is correct</p>
@@ -24,6 +25,9 @@ const MultipleChoice = props => {
           ))}
         </div>
       </div>
+      <div>
+        <HintList hints={hints} />
+      </div>
     </React.Fragment>
   );
 };
@@ -35,7 +39,12 @@ MultipleChoice.propTypes = {
       explanation: PropTypes.string,
       isCorrect: PropTypes.bool
     })
-  ).isRequired
+  ).isRequired,
+  hints: PropTypes.arrayOf(PropTypes.string)
+};
+
+MultipleChoice.defaultProps = {
+  hints: []
 };
 
 class Option extends React.Component {
