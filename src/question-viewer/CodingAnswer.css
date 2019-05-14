@@ -37,3 +37,8 @@
   color: black;
   cursor: pointer;
 }
+
+/* Override the builtin-function highlighting */
+.code-area .ace-sqlserver .ace_support.ace_function {
+  color: black;
+}
