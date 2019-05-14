@@ -36,7 +36,10 @@ export default class Question extends React.Component {
       'CA' // Coding Answer
     ]).isRequired,
     /** The hints, which is just a string array in the order they should be given */
-    hints: PropTypes.arrayOf(PropTypes.string).isRequired,
+    hints: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string).isRequired,
+      PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired
+    ]).isRequired,
     /** The question prompts, only for SA */
     prompts: PropTypes.arrayOf(
       PropTypes.shape({

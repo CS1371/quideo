@@ -44,7 +44,8 @@ export default class CodingAnswer extends React.Component {
                 userAnswer: val
               });
             }}
-            width
+            editorProps={{ $blockScrolling: Infinity }}
+            width=""
             className="code-editor"
             fontSize={18}
           />
@@ -54,8 +55,9 @@ export default class CodingAnswer extends React.Component {
             value={answer}
             className="answer-code-viewer"
             fontSize={18}
+            width=""
             // Can we specify fontSize via CSS?
-            width
+            editorProps={{ $blockScrolling: Infinity }}
             readOnly
           />
         </div>

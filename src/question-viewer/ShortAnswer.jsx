@@ -5,8 +5,6 @@ import Prompt from './Prompt';
 // For each prompt, we have an answer. The preamble
 // is already written, but each part has a prompt!
 
-// If we have code, start with 50/50 text area and resulting code
-// Then, when we ask for answer, get rid of text area and only show code side by side!
 const ShortAnswer = props => {
   // For each one, add a prompt/answer pair.
   const { prompts, answers, hints } = props;
