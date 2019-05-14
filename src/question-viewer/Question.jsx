@@ -60,13 +60,17 @@ export default class Question extends React.Component {
      *
      * All answers support markdown in the entry.
      */
-    answers: PropTypes.arrayOf(
-      PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        explanation: PropTypes.string,
-        isCorrect: PropTypes.boolean
-      })
-    ).isRequired
+    answers: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          text: PropTypes.string.isRequired,
+          explanation: PropTypes.string,
+          isCorrect: PropTypes.boolean
+        })
+      ).isRequired,
+      PropTypes.arrayOf(PropTypes.string).isRequired,
+      PropTypes.string.isRequired
+    ]).isRequired
   };
 
   static defaultProps = {
@@ -96,17 +100,15 @@ export default class Question extends React.Component {
         title = `${index}: ${tags[tags.length - 1].name} - Multiple Choice`;
         break;
       case 'SA':
-        question = (
-          <ShortAnswer prompts={prompts} answers={answers.map(a => a.text)} hints={hints} />
-        );
+        question = <ShortAnswer prompts={prompts} answers={answers} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Short Answer`;
         break;
       case 'FB':
-        question = <Blanks answers={answers.map(a => a.text)} hints={hints} />;
+        question = <Blanks answers={answers} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Fill in the Blank`;
         break;
       case 'CA':
-        question = <CodingAnswer answer={answers[0].text} hints={hints} />;
+        question = <CodingAnswer answer={answers} hints={hints} />;
         title = `${index}: ${tags[tags.length - 1].name} - Long Coding`;
         break;
       default:

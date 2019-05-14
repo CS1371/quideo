@@ -20,14 +20,8 @@ const caResp = {
     'Do you know what the input image will be in terms of size?'
   ],
   type: 'CA',
-  answers: [
-    {
-      text:
-        'function out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend',
-      isCorrect: true,
-      explanation: ''
-    }
-  ]
+  answers:
+    'function out = memeify(img, likes)\n\nimg = imread(img);\n[r, g, b] = deal(img(:, :, 1), img(:, :, 2), img(:, :, 3));\nmask = r == 0 & g == 0 & b == 0;\nr(mask) = b(mask);\n b(mask) = g(mask);\nfor n = 1:likes\n\tr(n, 1) = g(n, 1) + 1;\nend\nout = cat(3, r, g, b);\nend'
 };
 
 const saResp = {
@@ -63,23 +57,7 @@ const saResp = {
       isCode: false
     }
   ],
-  answers: [
-    {
-      text: 'function out = myFun(in)\n\nend\n',
-      isCorrect: null,
-      explanation: ''
-    },
-    {
-      text: '2',
-      isCorrect: null,
-      explanation: ''
-    },
-    {
-      text: '1.0',
-      isCorrect: null,
-      explanation: ''
-    }
-  ]
+  answers: ['function out = myFun(in)\n\nend\n', '2', '1.0']
 };
 
 const fbResp = {
@@ -101,23 +79,7 @@ const fbResp = {
   ],
   type: 'FB',
   prompts: [],
-  answers: [
-    {
-      text: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
-      isCorrect: null,
-      explanation: ''
-    },
-    {
-      text: '2',
-      isCorrect: null,
-      explanation: ''
-    },
-    {
-      text: '1.0',
-      isCorrect: null,
-      explanation: ''
-    }
-  ]
+  answers: ['\n```matlab\nfunction out = myFun(in)\n\nend\n```', '2', '1.0']
 };
 
 const mcResp = {
