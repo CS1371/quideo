@@ -9,8 +9,8 @@ Qudieo is the next generation of online learning.
 To install, clone the repository and use `yarn`:
 
 ``` shell
-$ git clone https://github.gatech.edu/CS1371/quideo
-$ cd quideo
-$ yarn install
-$ yarn start
+git clone https://github.gatech.edu/CS1371/quideo
+cd quideo
+yarn install
+yarn start
 ```
