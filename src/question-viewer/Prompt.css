@@ -2,7 +2,6 @@
   border: 7px solid white;
   border-radius: 10px;
   background-color: lightgray;
-  font-size: 100%;
   text-align: left;
   padding: 10px;
   margin-left: auto;
@@ -14,7 +13,6 @@
 
 .user-answer {
   width: 50vw;
-  font-size: 100%;
   white-space: nowrap;
   border: 1px solid white;
   resize: vertical;

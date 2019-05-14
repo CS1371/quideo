@@ -15,7 +15,7 @@
 }
 
 .question-rubric button {
-  font-size: 200%;
+  font-size: 100%;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
@@ -26,7 +26,7 @@
 }
 
 .question-hints button {
-  font-size: 150%;
+  font-size: 100%;
   border-radius: 8px;
   border: 1px solid white;
   color: rgb(43, 43, 43);
