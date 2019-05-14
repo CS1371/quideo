@@ -52,9 +52,10 @@
 
 .tag.tag-grey {
   background-color: slategray;
-  color: black;
+  color: white;
 }
 
 .tag.tag-grey:hover {
   background-color: lightgray;
+  color: black;
 }
