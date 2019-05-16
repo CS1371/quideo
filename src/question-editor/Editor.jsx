@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TagChooser from './TagChooser';
 import TypeChooser from './TypeChooser';
+import Preamble from './Preamble';
 import './Editor.css';
 
 export default class Editor extends React.Component {
@@ -93,6 +94,14 @@ export default class Editor extends React.Component {
           onChange={t => {
             this.setState({
               type: t
+            });
+          }}
+        />
+        <Preamble
+          value={preamble}
+          onChange={val => {
+            this.setState({
+              preamble: val
             });
           }}
         />

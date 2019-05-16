@@ -1,0 +1,13 @@
+.preamble-editor {
+  display: flex;
+  justify-content: center;
+}
+
+.preamble-editor .question-preamble {
+  width: 40vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 465px;
+  overflow: auto;
+  white-space: normal;
+}

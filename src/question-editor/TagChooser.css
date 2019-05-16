@@ -14,3 +14,7 @@
 .tag-selector.is-valid button {
   background-color: aquamarine;
 }
+
+.selected-tags .tag {
+  font-size: 125%;
+}
