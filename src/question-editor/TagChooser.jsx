@@ -52,56 +52,71 @@ export default class TagChooser extends React.Component {
     }
   };
 
-  render() {
+  renderChosen = () => {
     const { value, onChange } = this.props;
+    return (
+      <div className="selected-tags">
+        {value.map(tag => {
+          return (
+            <Tag
+              {...tag}
+              key={tag.name}
+              handler={() => {
+                onChange(value.filter(v => v.name !== tag.name));
+              }}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  renderSelector = () => {
     const { searchTerm } = this.state;
 
     const isValid =
       this.possibleTags().filter(
         t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
       ).length !== 0;
+
+    return (
+      <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
+        <input
+          list="possibleTags"
+          placeholder="Type a tag name..."
+          value={searchTerm}
+          onChange={e => {
+            this.setState({
+              searchTerm: e.target.value
+            });
+          }}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              this.addTag();
+            }
+          }}
+        />
+        <datalist id="possibleTags">
+          {this.possibleTags().map(tag => (
+            <option key={tag.name} value={tag.name} />
+          ))}
+        </datalist>
+        <button type="button" onClick={() => this.addTag()} disabled={!isValid}>
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      </div>
+    );
+  };
+
+  render() {
+    const { value } = this.props;
+
     return (
       <div className="tag-search">
-        <div className="selected-tags">
-          {value.map(tag => {
-            return (
-              <Tag
-                {...tag}
-                key={tag.name}
-                handler={() => {
-                  onChange(value.filter(v => v.name !== tag.name));
-                }}
-              />
-            );
-          })}
-        </div>
+        {this.renderChosen()}
         {value.length !== 0 ? <hr /> : null}
-        <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
-          <input
-            list="possibleTags"
-            placeholder="Type a tag name..."
-            value={searchTerm}
-            onChange={e => {
-              this.setState({
-                searchTerm: e.target.value
-              });
-            }}
-            onKeyDown={e => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-                this.addTag();
-              }
-            }}
-          />
-          <datalist id="possibleTags">
-            {this.possibleTags().map(tag => (
-              <option key={tag.name} value={tag.name} />
-            ))}
-          </datalist>
-          <button type="button" onClick={() => this.addTag()} disabled={!isValid}>
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
-        </div>
+        {this.renderSelector()}
       </div>
     );
   }
