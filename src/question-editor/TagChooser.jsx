@@ -74,6 +74,7 @@ export default class TagChooser extends React.Component {
             );
           })}
         </div>
+        {value.length !== 0 ? <hr /> : null}
         <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
           <input
             list="possibleTags"
