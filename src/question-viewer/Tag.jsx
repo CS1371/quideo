@@ -17,7 +17,7 @@ const Tag = props => {
   }
   return (
     <button type="button" className={`tag tag-${tagColor}`} onClick={handler}>
-      {name}
+      {`#${name}`}
     </button>
   );
 };
