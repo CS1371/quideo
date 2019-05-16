@@ -1,0 +1,16 @@
+.tag-selector input {
+  font-size: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.tag-selector button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: lightblue;
+}
+
+.tag-selector.is-valid button {
+  background-color: aquamarine;
+}
