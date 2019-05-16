@@ -26,7 +26,7 @@ export default class Question extends React.Component {
     primaryTag: PropTypes.shape({
       name: PropTypes.string.isRequired,
       week: PropTypes.number.isRequired
-    }),
+    }).isRequired,
     /** The tags that apply to this question */
     tags: PropTypes.arrayOf(
       PropTypes.shape({
