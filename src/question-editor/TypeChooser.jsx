@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/pro-light-svg-icons';
 import './TypeChooser.css';
 
 const TypeChooser = props => {
   const { availableTypes, value, onChange } = props;
   return (
     <div className="question-type">
-      <p>I am making a...</p>
+      <p>What type of problem are we making today?</p>
       <div className="type-buttons">
         {availableTypes.map(t => (
           <button
@@ -16,6 +18,7 @@ const TypeChooser = props => {
             className={value === t ? 'type-selected' : ''}
             onClick={() => onChange(t)}
           >
+            {value === t ? <FontAwesomeIcon icon={faCheckCircle} /> : null}
             {t}
           </button>
         ))}

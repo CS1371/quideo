@@ -14,6 +14,10 @@
 }
 
 .type-buttons button.type-selected {
-  background-color: lightblue;
+  background-color: lightgreen;
   color: black;
+}
+
+.type-buttons button svg {
+  padding-right: 8px;
 }
