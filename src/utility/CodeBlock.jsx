@@ -11,19 +11,19 @@ export class CodeBlock extends PureComponent {
   };
 
   static defaultProps = {
-    language: 'matlab',
+    language: '',
     value: ''
   };
 
   render() {
     const { language, value } = this.props;
     // if in command window OR only one line, no new lines
-    if (language === 'matlab-cw' || value.indexOf('\n') === -1) {
+    if (language !== 'matlab') {
       return (
         <SyntaxHighlighter
           className="code-block"
           customStyle={{ padding: '', margin: '' }}
-          language="matlab"
+          language="plain"
           style={matlab}
         >
           {value}
