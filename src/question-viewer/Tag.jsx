@@ -29,7 +29,7 @@ Tag.propTypes = {
   color: PropTypes.oneOf(COLORS),
   /** the week to use, for the color. If colors is given, this has no effect */
   week: PropTypes.number,
-  /** the URL for this tag to use */
+  /** The click handler */
   handler: PropTypes.func
 };
 

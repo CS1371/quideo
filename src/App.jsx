@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Question from './question-viewer';
+import { Question } from './question-viewer';
+import Editor from './question-editor';
 
 const caResp = {
   index: 2,
@@ -175,6 +176,7 @@ const mcResp = {
 function App() {
   return (
     <div className="App">
+      <Editor availableTags={mcResp.tags} />
       <Question {...caResp} />
       <Question {...saResp} />
       <Question {...mcResp} />
