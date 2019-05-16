@@ -40,7 +40,7 @@ export default class TagChooser extends React.Component {
     const { value, onChange } = this.props;
     const { searchTerm } = this.state;
 
-    const tag = this.possibleTags.filter(
+    const tag = this.possibleTags().filter(
       t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
     );
     if (tag.length !== 0) {
