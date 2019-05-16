@@ -30,13 +30,17 @@ export default class TagChooser extends React.Component {
     };
   }
 
+  possibleTags = () => {
+    const { availableTags, value } = this.props;
+    return availableTags.filter(tag1 => !value.map(v => v.name).includes(tag1.name));
+  };
+
   addTag = () => {
     // If we have valid tag, make it!
-    const { availableTags, value, onChange } = this.props;
+    const { value, onChange } = this.props;
     const { searchTerm } = this.state;
 
-    const possibleTags = availableTags.filter(tag1 => !value.map(v => v.name).includes(tag1.name));
-    const tag = possibleTags.filter(
+    const tag = this.possibleTags.filter(
       t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
     );
     if (tag.length !== 0) {
@@ -49,14 +53,11 @@ export default class TagChooser extends React.Component {
   };
 
   render() {
-    const { availableTags, value, onChange } = this.props;
+    const { value, onChange } = this.props;
     const { searchTerm } = this.state;
 
-    // Get effectively available tags
-    const possibleTags = availableTags.filter(tag1 => !value.map(v => v.name).includes(tag1.name));
-    // see if matches any
     const isValid =
-      possibleTags.filter(
+      this.possibleTags().filter(
         t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
       ).length !== 0;
     return (
@@ -93,7 +94,7 @@ export default class TagChooser extends React.Component {
             }}
           />
           <datalist id="possibleTags">
-            {possibleTags.map(tag => (
+            {this.possibleTags().map(tag => (
               <option key={tag.name} value={tag.name} />
             ))}
           </datalist>
