@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TagChooser from './TagChooser';
+import TypeChooser from './TypeChooser';
+import './Editor.css';
 
 export default class Editor extends React.Component {
   static propTypes = {
@@ -9,7 +11,8 @@ export default class Editor extends React.Component {
         name: PropTypes.string,
         week: PropTypes.number
       })
-    ).isRequired
+    ).isRequired,
+    availableTypes: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
   constructor(props) {
@@ -38,7 +41,7 @@ export default class Editor extends React.Component {
 
   render() {
     const { tags, type, preamble, prompts, answers, hints, rubric, difficulty } = this.state;
-    const { availableTags } = this.props;
+    const { availableTags, availableTypes } = this.props;
 
     // Order:
     // 1. What is this question about? (Tags)
@@ -55,16 +58,45 @@ export default class Editor extends React.Component {
     // 5. Any hints? (Hints)
     // 6. Rubric
     // 7. Difficulty
+
+    // For all, we need preamble -> own component?
+    // sort tags by week
+    const tagSorter = (t1, t2) => t1.week - t2.week;
+    tags.sort(tagSorter);
+    availableTags.sort(tagSorter);
+    const topic = tags.length === 0 ? '' : tags[tags.length - 1].name;
+    let title = '';
+    if (topic === '' && type === '') {
+      title = 'Question Editor';
+    } else if (topic === '') {
+      title = `Question Editor: ${type}`;
+    } else if (type === '') {
+      title = `Question Editor: ${topic}`;
+    } else {
+      title = `Question Editor: ${topic} - ${type}`;
+    }
     return (
-      <TagChooser
-        availableTags={availableTags}
-        value={tags}
-        onChange={val => {
-          this.setState({
-            tags: val
-          });
-        }}
-      />
+      <div className="question-editor">
+        <h1>{title}</h1>
+        <TagChooser
+          availableTags={availableTags}
+          value={tags}
+          onChange={val => {
+            this.setState({
+              tags: val
+            });
+          }}
+        />
+        <TypeChooser
+          availableTypes={availableTypes}
+          value={type}
+          onChange={t => {
+            this.setState({
+              type: t
+            });
+          }}
+        />
+      </div>
     );
   }
 }
