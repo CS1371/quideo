@@ -5,6 +5,10 @@ import Editor from './question-editor';
 
 const caResp = {
   index: 2,
+  primaryTag: {
+    name: 'Indexing',
+    week: 5
+  },
   tags: [
     {
       name: 'Recursion',
@@ -27,6 +31,10 @@ const caResp = {
 
 const saResp = {
   index: 1,
+  primaryTag: {
+    name: 'Indexing',
+    week: 5
+  },
   tags: [
     {
       name: 'Recursion',
@@ -63,6 +71,10 @@ const saResp = {
 
 const fbResp = {
   index: 1,
+  primaryTag: {
+    name: 'Indexing',
+    week: 5
+  },
   tags: [
     {
       name: 'Recursion',
@@ -85,14 +97,14 @@ const fbResp = {
 
 const mcResp = {
   index: 0,
+  primaryTag: {
+    name: 'Indexing',
+    week: 2
+  },
   tags: [
     {
       name: 'Recursion',
       week: 1
-    },
-    {
-      name: 'Indexing',
-      week: 2
     },
     {
       name: 'Sorting',

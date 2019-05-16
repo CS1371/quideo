@@ -73,6 +73,7 @@ export default class TagChooser extends React.Component {
 
   renderSelector = () => {
     const { searchTerm } = this.state;
+    const { value } = this.props;
 
     const isValid =
       this.possibleTags().filter(
@@ -81,6 +82,11 @@ export default class TagChooser extends React.Component {
 
     return (
       <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
+        <p>
+          {value.length === 0
+            ? 'What is this problem primarily about?'
+            : 'Anything else related to this problem?'}
+        </p>
         <input
           list="possibleTags"
           placeholder="Type a tag name..."

@@ -22,6 +22,11 @@ export default class Question extends React.Component {
   static propTypes = {
     /** The ordering of this question */
     index: PropTypes.number.isRequired,
+    /** The primary topic for this question */
+    primaryTag: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      week: PropTypes.number.isRequired
+    }),
     /** The tags that apply to this question */
     tags: PropTypes.arrayOf(
       PropTypes.shape({
@@ -120,11 +125,12 @@ export default class Question extends React.Component {
   };
 
   render() {
-    const { index, tags, rubric, preamble, type } = this.props;
+    const { index, tags, primaryTag, rubric, preamble, type } = this.props;
     const { showRubric } = this.state;
     tags.sort((a, b) => a.week - b.week);
+    tags.unshift(primaryTag);
 
-    const title = `${index}: ${tags[tags.length - 1].name} - ${type}`;
+    const title = `${index}: ${primaryTag.name} - ${type}`;
     return (
       <div className="question-view">
         <h1 className="question-title">{title}</h1>

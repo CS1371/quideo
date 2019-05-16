@@ -63,9 +63,8 @@ export default class Editor extends React.Component {
     // For all, we need preamble -> own component?
     // sort tags by week
     const tagSorter = (t1, t2) => t1.week - t2.week;
-    tags.sort(tagSorter);
     availableTags.sort(tagSorter);
-    const topic = tags.length === 0 ? '' : tags[tags.length - 1].name;
+    const topic = tags.length === 0 ? '' : tags[0].name;
     let title = '';
     if (topic === '' && type === '') {
       title = 'Question Editor';
