@@ -6,7 +6,12 @@ import './HintList.css';
 
 export default class HintList extends React.Component {
   static propTypes = {
-    hints: PropTypes.arrayOf(PropTypes.string).isRequired
+    hints: PropTypes.arrayOf(PropTypes.string).isRequired,
+    showAll: PropTypes.bool
+  };
+
+  static defaultProps = {
+    showAll: false
   };
 
   constructor(props) {
@@ -19,7 +24,7 @@ export default class HintList extends React.Component {
 
   render() {
     const { showHints } = this.state;
-    const { hints } = this.props;
+    const { hints, showAll } = this.props;
     return (
       <React.Fragment>
         <button
@@ -36,7 +41,7 @@ export default class HintList extends React.Component {
         </button>
         <ol>
           {hints.map((h, ind) => (
-            <Hint key={hash(h)} text={h} isShown={ind < showHints} />
+            <Hint key={hash(h)} text={h} isShown={showAll || ind < showHints} />
           ))}
         </ol>
       </React.Fragment>
