@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import hash from 'object-hash';
 import MarkdownEditor from './MarkdownEditor';
 import CodingAnswer from './CodingAnswer';
 
@@ -60,16 +61,14 @@ export default class ShortAnswer extends React.Component {
       <div className="short-answer-editor">
         <div className="confirmed-answers">
           <OrderedList
-            onSwap={(a, b) => {
-              [value[a], value[b]] = [value[b], value[a]];
-              onChange(value);
-            }}
-            onRemove={i => {
-              value.splice(i, 1);
-              onChange(value);
-            }}
+            render={(n, i) => (
+              <div key={hash(n)} className="short-answer">
+                <p>{n + i}</p>
+              </div>
+            )}
+            onChange={onChange}
           >
-            {value.map(v => v)}
+            {value}
           </OrderedList>
         </div>
         <div className="new-short-answer">

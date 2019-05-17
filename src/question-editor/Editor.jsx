@@ -107,7 +107,7 @@ export default class Editor extends React.Component {
       case TYPES.SA:
         help =
           "While this isn't a question, here you can provide a setup for each of the part(s) you will write in the next step";
-        specifics = <ShortAnswer value={1} onChange={v => 1} />
+        specifics = <ShortAnswer value={prompts} onChange={v => 1} />
         break;
       case TYPES.FB:
         help = "Here you'll the complete question, with blanks written as <>";

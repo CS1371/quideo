@@ -46,11 +46,6 @@ export default class MultipleChoice extends React.Component {
     });
   };
 
-  removeChoice = i => {
-    const { value, onChange } = this.props;
-
-  };
-
   renderEditor = () => {
     const { answer, explanation, isCorrect } = this.state;
     const { value } = this.props;
@@ -125,29 +120,21 @@ export default class MultipleChoice extends React.Component {
         <div className="confirmed-choices">
           {value.length !== 0 ? <p>Click on a choice to edit it</p> : null}
           <OrderedList
-            onSwap={(a, b) => {
-              [value[a], value[b]] = [value[b], value[a]];
-              onChange(value);
-            }}
-            onRemove={i => {
-              value.splice(i, 1);
-              onChange(value);
-            }}
+            render={(v, i) => (
+              <Option
+                key={hash(v)}
+                {...v}
+                shouldExpand
+                handler={() => {
+                  this.setState(v);
+                  value.splice(i, 1);
+                  onChange(value);
+                }}
+              />
+            )}
+            onChange={onChange}
           >
-            {value.map((c, i) => {
-              return (
-                <Option
-                  key={hash(c)}
-                  {...c}
-                  shouldExpand
-                  handler={() => {
-                    this.setState(c);
-                    value.splice(i, 1);
-                    onChange(value);
-                  }}
-                />
-              );
-            })}
+            {value}
           </OrderedList>
         </div>
         {this.renderEditor()}

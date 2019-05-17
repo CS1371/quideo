@@ -8,7 +8,24 @@ import {
 } from '@fortawesome/pro-solid-svg-icons';
 import './OrderedList.css';
 
-const renderMovers = (i, onSwap, children) => {
+const onSwap = (a, b, value, onChange) => {
+  if (a < 0 || a >= value.length || b < 0 || b >= value.length) {
+    return;
+  }
+  // eslint-disable-next-line no-param-reassign
+  [value[a], value[b]] = [value[b], value[a]];
+  onChange(value);
+};
+
+const onRemove = (i, value, onChange) => {
+  if (i < 0 || i >= value.length) {
+    return;
+  }
+  value.splice(i, 1);
+  onChange(value);
+};
+
+const renderMovers = (i, children, onChange) => {
   const moveModifier = `${i === 0 ? 'no-up' : ''} ${i === children.length - 1 ? 'no-down' : ''}`;
   return (
     <div className={`list-movers ${moveModifier}`}>
@@ -16,20 +33,14 @@ const renderMovers = (i, onSwap, children) => {
         key="move-up"
         icon={faChevronSquareUp}
         onClick={() => {
-          if (i - 1 < 0) {
-            return;
-          }
-          onSwap(i, i - 1);
+          onSwap(i, i - 1, children, onChange);
         }}
       />
       <FontAwesomeIcon
         key="move-down"
         icon={faChevronSquareDown}
         onClick={() => {
-          if (i + 1 >= children.length) {
-            return;
-          }
-          onSwap(i, i + 1);
+          onSwap(i, i + 1, children, onChange);
         }}
       />
     </div>
@@ -37,17 +48,17 @@ const renderMovers = (i, onSwap, children) => {
 };
 
 const renderChildren = props => {
-  const { children, onRemove, onSwap } = props;
+  const { children, render, onChange } = props;
   return children.map((n, i) => {
     // for each child, map with the FA, the x, and the item itself
     return (
       <div key={n.key} className="list-item">
-        {renderMovers(i, onSwap, children)}
-        {n}
+        {renderMovers(i, children, onChange)}
+        {render(n, i)}
         <FontAwesomeIcon
           icon={faTimesSquare}
           onClick={() => {
-            onRemove(i);
+            onRemove(i, children, onChange);
           }}
         />
       </div>
@@ -56,14 +67,14 @@ const renderChildren = props => {
 };
 
 const OrderedList = props => {
-  const { children, onSwap, onRemove } = props;
-  return <React.Fragment>{renderChildren({ children, onSwap, onRemove })}</React.Fragment>;
+  const { children, render, onChange } = props;
+  return <React.Fragment>{renderChildren({ children, render, onChange })}</React.Fragment>;
 };
 
 OrderedList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  onSwap: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired
+  render: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default OrderedList;
