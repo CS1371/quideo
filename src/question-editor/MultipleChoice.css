@@ -26,37 +26,6 @@
   cursor: not-allowed;
 }
 
-.single-choice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.single-choice svg {
-  color: rgb(250, 132, 132);
-  font-size: 200%;
-  margin-right: 20px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-.choice-movers {
-  display: flex;
-  flex-direction: column;
-}
-
-.single-choice .choice-movers svg {
-  color: lightgreen;
-}
-
-.single-choice .choice-movers.no-up svg:first-child {
-  visibility: hidden;
-}
-
-.single-choice .choice-movers.no-down svg:last-child {
-  visibility: hidden;
-}
-
 .reason-invalid {
   color: rgb(226, 102, 102);
   font-size: 200%;

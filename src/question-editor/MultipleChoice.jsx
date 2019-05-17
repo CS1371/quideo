@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTimesSquare,
-  faChevronSquareUp,
-  faChevronSquareDown
-} from '@fortawesome/pro-solid-svg-icons';
 import { MultipleChoiceAnswer as AnswerType } from '../utility';
 import { Option } from '../question-viewer';
 import MarkdownEditor from './MarkdownEditor';
 
 import './MultipleChoice.css';
+import OrderedList from '../utility/OrderedList';
 
 export default class MultipleChoice extends React.Component {
   static propTypes = {
@@ -37,7 +32,6 @@ export default class MultipleChoice extends React.Component {
     if (answer === '') {
       return;
     }
-
     value.push({
       answer,
       isCorrect,
@@ -66,29 +60,6 @@ export default class MultipleChoice extends React.Component {
     }
     [value[a], value[b]] = [value[b], value[a]];
     onChange(value);
-  };
-
-  renderMovers = i => {
-    const { value } = this.props;
-    const moveModifier = `${i === 0 ? 'no-up' : ''} ${i === value.length - 1 ? 'no-down' : ''}`;
-    return (
-      <div className={`choice-movers ${moveModifier}`}>
-        <FontAwesomeIcon
-          key="move-up"
-          icon={faChevronSquareUp}
-          onClick={() => {
-            this.swapChoice(i, i - 1);
-          }}
-        />
-        <FontAwesomeIcon
-          key="move-down"
-          icon={faChevronSquareDown}
-          onClick={() => {
-            this.swapChoice(i, i + 1);
-          }}
-        />
-      </div>
-    );
   };
 
   renderEditor = () => {
@@ -164,12 +135,18 @@ export default class MultipleChoice extends React.Component {
         <h2>Possible Choices</h2>
         <div className="confirmed-choices">
           {value.length !== 0 ? <p>Click on a choice to edit it</p> : null}
-          {value.map((c, i) => {
-            // What if the user makes two identical answers? Alert if hash would be the same
-            return (
-              <div key={hash(c)} className="single-choice">
-                {this.renderMovers(i)}
+          <OrderedList
+            onSwap={(a, b) => {
+              this.swapChoice(a, b);
+            }}
+            onRemove={i => {
+              this.removeChoice(i);
+            }}
+          >
+            {value.map((c, i) => {
+              return (
                 <Option
+                  key={hash(c)}
                   {...c}
                   shouldExpand
                   handler={() => {
@@ -177,15 +154,9 @@ export default class MultipleChoice extends React.Component {
                     this.removeChoice(i);
                   }}
                 />
-                <FontAwesomeIcon
-                  icon={faTimesSquare}
-                  onClick={() => {
-                    this.removeChoice(i);
-                  }}
-                />
-              </div>
-            );
-          })}
+              );
+            })}
+          </OrderedList>
         </div>
         {this.renderEditor()}
       </div>
