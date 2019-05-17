@@ -1,11 +1,8 @@
 import React from 'react';
-import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentTimes, faCommentCheck } from '@fortawesome/pro-solid-svg-icons';
-import { CodeBlock } from '../utility/CodeBlock';
 import HintList from './HintList';
+import Option from './Option';
 import './MultipleChoice.css';
 
 const MultipleChoice = props => {
@@ -46,51 +43,5 @@ MultipleChoice.propTypes = {
 MultipleChoice.defaultProps = {
   hints: []
 };
-
-class Option extends React.Component {
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    explanation: PropTypes.string.isRequired,
-    isCorrect: PropTypes.bool.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isChosen: false
-    };
-  }
-
-  render() {
-    const { isChosen } = this.state;
-    const eClass = isChosen ? 'mc-chosen' : '';
-    const { text, explanation, isCorrect } = this.props;
-
-    return (
-      <div className="mc-option">
-        <button
-          className={`mc-answer ${eClass}`}
-          type="button"
-          onClick={() => {
-            this.setState({
-              isChosen: !isChosen
-            });
-          }}
-        >
-          <Markdown source={text} renderers={{ code: CodeBlock }} p2="hi" />
-        </button>
-        <div
-          className={`mc-explanation ${isCorrect ? 'mc-correct' : 'mc-incorrect'} ${
-            isChosen ? 'mc-chosen' : ''
-          }`}
-        >
-          <FontAwesomeIcon icon={isCorrect ? faCommentCheck : faCommentTimes} />
-          <Markdown source={explanation} renderers={{ code: CodeBlock }} />
-        </div>
-      </div>
-    );
-  }
-}
 
 export default MultipleChoice;

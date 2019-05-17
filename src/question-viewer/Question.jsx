@@ -9,14 +9,8 @@ import ShortAnswer from './ShortAnswer';
 import CodingAnswer from './CodingAnswer';
 import Preamble from './Preamble';
 import Blanks from './Blanks';
+import TYPES from './QuestionTypes';
 import './Question.css';
-
-const TYPES = {
-  MC: 'Multiple Choice',
-  SA: 'Short Answer',
-  FB: 'Fill in the Blank',
-  CA: 'Coding'
-};
 
 export default class Question extends React.Component {
   static propTypes = {
@@ -41,12 +35,7 @@ export default class Question extends React.Component {
     /** The rating, from 0 to 4 */
     difficulty: PropTypes.number.isRequired,
     /** The type of question (an enum?) */
-    type: PropTypes.oneOf([
-      'Multiple Choice', // Multiple choice
-      'Short Answer', // Short Answer
-      'Fill in the Blank', // Fill in the Blank
-      'Coding' // Coding Answer
-    ]).isRequired,
+    type: PropTypes.oneOf(Object.values(TYPES)).isRequired,
     /** The hints, which is just a string array in the order they should be given */
     hints: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.string).isRequired,

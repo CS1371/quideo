@@ -1,0 +1,25 @@
+.preamble-editor {
+  display: flex;
+  justify-content: center;
+}
+
+.preamble-container.preamble-hidden {
+  opacity: 0;
+}
+
+.preamble-container {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.preamble-editor .question-preamble {
+  width: 40%;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 465px;
+  overflow: auto;
+  white-space: normal;
+}

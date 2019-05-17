@@ -1,0 +1,56 @@
+.mc-answer {
+  background-color: rgb(43, 43, 43);
+  padding: 5px;
+  color: white;
+  font-size: 100%;
+  width: 60vw;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.mc-answer.mc-chosen {
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0 solid white;
+}
+
+.mc-explanation {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #d3f2af;
+  color: rgb(53, 53, 53);
+  width: 60vw;
+  margin: auto;
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: none;
+}
+
+.mc-explanation.mc-correct {
+  background-color: #d3f2af;
+}
+
+.mc-explanation.mc-incorrect {
+  background-color: rgb(238, 159, 159);
+}
+
+.mc-explanation svg {
+  font-size: 200%;
+}
+
+.mc-explanation.mc-incorrect svg {
+  color: darkred;
+}
+
+.mc-explanation.mc-correct svg {
+  color: darkgreen;
+}
+
+.mc-explanation.mc-chosen {
+  display: inherit;
+}
