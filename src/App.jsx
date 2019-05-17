@@ -168,17 +168,17 @@ const mcResp = {
   hints: ['Have you considered A?', 'How about B? Could it work?'],
   answers: [
     {
-      text: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
+      answer: '\n```matlab\nfunction out = myFun(in)\n\nend\n```',
       isCorrect: true,
       explanation: 'Wassup'
     },
     {
-      text: '2',
+      answer: '2',
       isCorrect: false,
       explanation: 'Wassup'
     },
     {
-      text: '1.0',
+      answer: '1.0',
       isCorrect: true,
       explanation: 'Wassup'
     }

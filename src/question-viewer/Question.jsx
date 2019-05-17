@@ -10,6 +10,7 @@ import CodingAnswer from './CodingAnswer';
 import Preamble from './Preamble';
 import Blanks from './Blanks';
 import TYPES from './QuestionTypes';
+import { MultipleChoiceAnswer as AnswerType } from '../utility';
 import './Question.css';
 
 export default class Question extends React.Component {
@@ -62,13 +63,7 @@ export default class Question extends React.Component {
      * All answers support markdown in the entry.
      */
     answers: PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          text: PropTypes.string.isRequired,
-          explanation: PropTypes.string,
-          isCorrect: PropTypes.boolean
-        })
-      ).isRequired,
+      PropTypes.arrayOf(AnswerType).isRequired,
       PropTypes.arrayOf(PropTypes.string).isRequired,
       PropTypes.string.isRequired
     ]).isRequired

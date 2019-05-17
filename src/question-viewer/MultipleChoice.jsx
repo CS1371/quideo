@@ -14,12 +14,7 @@ const MultipleChoice = props => {
       <div className="mc-question">
         <div className="mc-answers">
           {answers.map(ans => (
-            <Option
-              key={hash(ans.text)}
-              answer={ans.text}
-              explanation={ans.explanation}
-              isCorrect={ans.isCorrect}
-            />
+            <Option key={hash(ans.answer)} {...ans} />
           ))}
         </div>
       </div>

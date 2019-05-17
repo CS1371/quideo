@@ -6,7 +6,7 @@ const Tag = PropTypes.shape({
 });
 
 const MultipleChoiceAnswer = PropTypes.shape({
-  text: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
   explanation: PropTypes.string.isRequired,
   isCorrect: PropTypes.bool.isRequired
 });

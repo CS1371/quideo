@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesSquare } from '@fortawesome/pro-solid-svg-icons';
 import { MultipleChoiceAnswer as AnswerType } from '../utility';
 import { Option } from '../question-viewer';
 import MarkdownEditor from './MarkdownEditor';
@@ -44,6 +46,12 @@ export default class MultipleChoice extends React.Component {
       isCorrect: true,
       explanation: ''
     });
+  };
+
+  removeChoice = i => {
+    const { value, onChange } = this.props;
+    value.splice(i, 1);
+    onChange(value);
   };
 
   renderEditor = () => {
@@ -109,15 +117,22 @@ export default class MultipleChoice extends React.Component {
           {value.map((c, i) => {
             // What if the user makes two identical answers? Alert if hash would be the same
             return (
-              <Option
-                {...c}
-                key={hash(c.answer)}
-                shouldExpand
-                handler={() => {
-                  value.splice(i, 1);
-                  onChange(value);
-                }}
-              />
+              <div key={hash(c)} className="single-choice">
+                <FontAwesomeIcon
+                  icon={faTimesSquare}
+                  onClick={() => {
+                    this.removeChoice(i);
+                  }}
+                />
+                <Option
+                  {...c}
+                  shouldExpand
+                  handler={() => {
+                    this.setState(c);
+                    this.removeChoice(i);
+                  }}
+                />
+              </div>
             );
           })}
         </div>

@@ -25,3 +25,16 @@
   color: rgb(48, 48, 48);
   cursor: not-allowed;
 }
+
+.single-choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-choice svg {
+  color: rgb(250, 132, 132);
+  font-size: 200%;
+  margin-right: 20px;
+  cursor: pointer;
+}
