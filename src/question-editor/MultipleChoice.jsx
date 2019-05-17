@@ -48,18 +48,7 @@ export default class MultipleChoice extends React.Component {
 
   removeChoice = i => {
     const { value, onChange } = this.props;
-    value.splice(i, 1);
-    onChange(value);
-  };
 
-  swapChoice = (a, b) => {
-    const { value, onChange } = this.props;
-    // check bounds
-    if (a >= value.length || a < 0 || b >= value.length || b < 0) {
-      return;
-    }
-    [value[a], value[b]] = [value[b], value[a]];
-    onChange(value);
   };
 
   renderEditor = () => {
@@ -129,7 +118,7 @@ export default class MultipleChoice extends React.Component {
   };
 
   render() {
-    const { value } = this.props;
+    const { onChange, value } = this.props;
     return (
       <div className="multipe-choice-container">
         <h2>Possible Choices</h2>
@@ -137,10 +126,12 @@ export default class MultipleChoice extends React.Component {
           {value.length !== 0 ? <p>Click on a choice to edit it</p> : null}
           <OrderedList
             onSwap={(a, b) => {
-              this.swapChoice(a, b);
+              [value[a], value[b]] = [value[b], value[a]];
+              onChange(value);
             }}
             onRemove={i => {
-              this.removeChoice(i);
+              value.splice(i, 1);
+              onChange(value);
             }}
           >
             {value.map((c, i) => {
@@ -151,7 +142,8 @@ export default class MultipleChoice extends React.Component {
                   shouldExpand
                   handler={() => {
                     this.setState(c);
-                    this.removeChoice(i);
+                    value.splice(i, 1);
+                    onChange(value);
                   }}
                 />
               );

@@ -28,16 +28,6 @@ export default class ShortAnswer extends React.Component {
     };
   }
 
-  swap = (a, b) => {
-    const { value, onChange } = this.props;
-    // check bounds
-    if (a >= value.length || a < 0 || b >= value.length || b < 0) {
-      return;
-    }
-    [value[a], value[b]] = [value[b], value[a]];
-    onChange(value);
-  };
-
   render() {
     const { value, onChange } = this.props;
     const { prompt, answer, isCode } = this.state;
@@ -71,14 +61,16 @@ export default class ShortAnswer extends React.Component {
         <div className="confirmed-answers">
           <OrderedList
             onSwap={(a, b) => {
-              this.swap()
+              [value[a], value[b]] = [value[b], value[a]];
+              onChange(value);
             }}
             onRemove={i => {
-
+              value.splice(i, 1);
+              onChange(value);
             }}
-            >
-              {value.map(v => v)}
-            </OrderedList>
+          >
+            {value.map(v => v)}
+          </OrderedList>
         </div>
         <div className="new-short-answer">
           <MarkdownEditor
