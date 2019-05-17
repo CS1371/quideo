@@ -42,8 +42,57 @@ export default class Editor extends React.Component {
   // That way we can submit when ready from here.
   save = () => {};
 
+  renderQuestion = () => {
+    const { type, preamble, prompts, answers } = this.state;
+    let help = '';
+    let specifics = null;
+    switch (type) {
+      case TYPES.MC:
+        help =
+          "Here you'll write your question; you'll write the possible answers in the next step";
+        specifics = (
+          <MultipleChoice
+            value={answers}
+            onChange={v => {
+              this.setState({
+                answers: v
+              });
+            }}
+          />
+        );
+        break;
+      case TYPES.SA:
+        help =
+          "While this isn't a question, here you can provide a setup for each of the part(s) you will write in the next step";
+        break;
+      case TYPES.FB:
+        help = "Here you'll the complete question, with blanks written as <>";
+        break;
+      case TYPES.CA:
+        help = "Here you'll give the complete coding question, with all the test cases, etc.";
+        break;
+      default:
+        break;
+    }
+    return (
+      <React.Fragment>
+        <MarkdownEditor
+          value={preamble}
+          title={type}
+          help={help}
+          onChange={val => {
+            this.setState({
+              preamble: val
+            });
+          }}
+        />
+        {specifics}
+      </React.Fragment>
+    );
+  };
+
   render() {
-    const { tags, type, preamble, prompts, answers, hints, rubric, difficulty } = this.state;
+    const { tags, type, hints, rubric, difficulty } = this.state;
     const { availableTags, availableTypes } = this.props;
 
     // Order:
@@ -77,36 +126,7 @@ export default class Editor extends React.Component {
     } else {
       title = `Question Editor: ${topic} - ${type}`;
     }
-    let specifics = null;
-    let help = '';
-    switch (type) {
-      case TYPES.MC:
-        help =
-          "Here you'll write your question; you'll write the possible answers in the next step";
-        specifics = (
-          <MultipleChoice
-            value={answers}
-            onChange={v => {
-              this.setState({
-                answers: v
-              });
-            }}
-          />
-        );
-        break;
-      case TYPES.SA:
-        help =
-          "While this isn't a question, here you can provide a setup for each of the part(s) you will write in the next step";
-        break;
-      case TYPES.FB:
-        help = "Here you'll the complete question, with blanks written as <>";
-        break;
-      case TYPES.CA:
-        help = "Here you'll give the complete coding question, with all the test cases, etc.";
-        break;
-      default:
-        break;
-    }
+
     return (
       <div className="question-editor">
         <h1>{title}</h1>
@@ -128,17 +148,7 @@ export default class Editor extends React.Component {
             });
           }}
         />
-        <MarkdownEditor
-          value={preamble}
-          title={type}
-          help={help}
-          onChange={val => {
-            this.setState({
-              preamble: val
-            });
-          }}
-        />
-        {specifics}
+        {this.renderQuestion()}
       </div>
     );
   }
