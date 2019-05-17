@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import Markdown from 'react-markdown';
-import { CodeBlock } from '../utility';
+import { CodeBlock, MultipleChoiceAnswer as Answer} from '../utility';
 import { Option } from '../question-viewer';
 import MarkdownEditor from './MarkdownEditor';
 
@@ -10,13 +10,7 @@ import './MultipleChoice.css';
 
 export default class MultipleChoice extends React.Component {
   static propTypes = {
-    value: PropTypes.arrayOf(
-      PropTypes.shape({
-        text: PropTypes.string.isRequired,
-        explanation: PropTypes.string,
-        isCorrect: PropTypes.boolean
-      })
-    ).isRequired,
+    value: PropTypes.arrayOf(Answer).isRequired,
     onChange: PropTypes.func.isRequired
   };
 

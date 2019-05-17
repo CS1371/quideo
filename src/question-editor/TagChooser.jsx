@@ -3,22 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import { Tag } from '../question-viewer';
+import { Tag as TagShape } from '../utility';
 import './TagChooser.css';
 
 export default class TagChooser extends React.Component {
   static propTypes = {
-    availableTags: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        week: PropTypes.number
-      })
-    ).isRequired,
-    value: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        week: PropTypes.number
-      })
-    ).isRequired,
+    availableTags: PropTypes.arrayOf(TagShape).isRequired,
+    value: PropTypes.arrayOf(TagShape).isRequired,
     onChange: PropTypes.func.isRequired
   };
 

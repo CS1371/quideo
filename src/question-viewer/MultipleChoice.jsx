@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import HintList from './HintList';
 import Option from './Option';
+import { MultipleChoiceAnswer as Answer } from '../utility';
 import './MultipleChoice.css';
 
 const MultipleChoice = props => {
@@ -30,13 +31,7 @@ const MultipleChoice = props => {
 };
 
 MultipleChoice.propTypes = {
-  answers: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      explanation: PropTypes.string,
-      isCorrect: PropTypes.bool
-    })
-  ).isRequired,
+  answers: PropTypes.arrayOf(Answer).isRequired,
   hints: PropTypes.arrayOf(PropTypes.string)
 };
 
