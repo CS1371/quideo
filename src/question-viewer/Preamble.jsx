@@ -5,16 +5,16 @@ import { CodeBlock } from '../utility';
 import './Preamble.css';
 
 const Preamble = props => {
-  const { preamble } = props;
+  const { value } = props;
   return (
     <div className="question-preamble">
-      <Markdown source={preamble} renderers={{ code: CodeBlock }} />
+      <Markdown source={value} renderers={{ code: CodeBlock }} />
     </div>
   );
 };
 
 Preamble.propTypes = {
-  preamble: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired
 };
 
 export default Preamble;

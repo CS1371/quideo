@@ -40,7 +40,9 @@ export default class Editor extends React.Component {
   //
   // The key is that WE store everything here - NOT in individual components
   // That way we can submit when ready from here.
-  save = () => {};
+  save = () => {
+    console.log(this.state);
+  };
 
   renderQuestion = () => {
     const { type, preamble, prompts, answers } = this.state;
@@ -149,6 +151,9 @@ export default class Editor extends React.Component {
           }}
         />
         {this.renderQuestion()}
+        <button type="button" onClick={this.save}>
+          Save
+        </button>
       </div>
     );
   }

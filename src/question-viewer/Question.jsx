@@ -124,7 +124,7 @@ export default class Question extends React.Component {
             <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
           ))}
         </div>
-        <Preamble preamble={preamble} />
+        <Preamble value={preamble} />
         <div className="question-content">{this.renderQuestion()}</div>
         <div className="question-rubric">
           <button

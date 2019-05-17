@@ -27,7 +27,7 @@ const MarkdownEditor = props => {
           className="code-editor"
           fontSize={18}
         />
-        {!hidePreview ? <Viewer preamble={value} /> : null}
+        {!hidePreview ? <Viewer value={value} /> : null}
       </div>
     </div>
   );
