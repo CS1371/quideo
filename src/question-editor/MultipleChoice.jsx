@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import Markdown from 'react-markdown';
-import { CodeBlock, MultipleChoiceAnswer as Answer} from '../utility';
+import { MultipleChoiceAnswer as AnswerType } from '../utility';
 import { Option } from '../question-viewer';
 import MarkdownEditor from './MarkdownEditor';
 
@@ -10,7 +9,7 @@ import './MultipleChoice.css';
 
 export default class MultipleChoice extends React.Component {
   static propTypes = {
-    value: PropTypes.arrayOf(Answer).isRequired,
+    value: PropTypes.arrayOf(AnswerType).isRequired,
     onChange: PropTypes.func.isRequired
   };
 
@@ -24,51 +23,54 @@ export default class MultipleChoice extends React.Component {
     };
   }
 
-  render() {
-    const { value, onChange } = this.props;
+  addChoice = () => {
+    // Add new choice, clear our state
     const { answer, isCorrect, explanation } = this.state;
-
-    let preview = null;
-    if (answer !== '') {
-      preview = (
-        <React.Fragment>
-          <p>{`Click the Preview to mark your answer as ${isCorrect ? 'Incorrect' : 'Correct'}`}</p>
-          <Option
-            text={answer}
-            explanation={explanation}
-            isCorrect={isCorrect}
-            shouldExpand
-            handler={() => {
-              this.setState({
-                isCorrect: !isCorrect
-              });
-            }}
-          />
-        </React.Fragment>
-      );
+    const { value, onChange } = this.props;
+    // if we don't have an answer, don't do anything
+    if (answer === '') {
+      return;
     }
 
+    value.push({
+      answer,
+      isCorrect,
+      explanation
+    });
+    onChange(value);
+
+    this.setState({
+      answer: '',
+      isCorrect: true,
+      explanation: ''
+    });
+  };
+
+  renderEditor = () => {
+    const { answer, explanation, isCorrect } = this.state;
+    const preview = (
+      <React.Fragment>
+        <p>{`Click the Preview to mark your answer as ${isCorrect ? 'Incorrect' : 'Correct'}`}</p>
+        <Option
+          answer={answer === '' ? '_Start typing to see your answer_' : answer}
+          explanation={explanation === '' ? '_Start typing to see your explanation_' : explanation}
+          isCorrect={isCorrect}
+          shouldExpand
+          handler={() => {
+            this.setState({
+              isCorrect: !isCorrect
+            });
+          }}
+        />
+      </React.Fragment>
+    );
     return (
-      <div className="multipe-choice-container">
-        <div className="confirmed-choices">
-          {value.map((c, i) => {
-            // What if the user makes two identical answers? Alert if hash would be the same
-            return (
-              <Choice
-                {...c}
-                key={hash(c.answer)}
-                onDelete={() => {
-                  value.splice(i, 1);
-                  onChange(value);
-                }}
-              />
-            );
-          })}
-        </div>
+      <div className="choice-creator">
+        <h2>Create a New Choice</h2>
         <div className="new-choices">
           <MarkdownEditor
             title="Answer"
-            help="Start typing to see a preview of your choice"
+            help="Start typing to see a preview"
             value={answer}
             hidePreview
             onChange={v => {
@@ -90,28 +92,37 @@ export default class MultipleChoice extends React.Component {
           />
         </div>
         <div className="new-preview">{preview}</div>
+        <button type="button" id="addChoice" onClick={this.addChoice} disabled={answer === ''}>
+          Add this Choice
+        </button>
+      </div>
+    );
+  };
+
+  render() {
+    const { value, onChange } = this.props;
+    return (
+      <div className="multipe-choice-container">
+        <h2>Possible Choices</h2>
+        <div className="confirmed-choices">
+          {value.length !== 0 ? <p>Click on a choice to delete it</p> : null}
+          {value.map((c, i) => {
+            // What if the user makes two identical answers? Alert if hash would be the same
+            return (
+              <Option
+                {...c}
+                key={hash(c.answer)}
+                shouldExpand
+                handler={() => {
+                  value.splice(i, 1);
+                  onChange(value);
+                }}
+              />
+            );
+          })}
+        </div>
+        {this.renderEditor()}
       </div>
     );
   }
 }
-
-const Choice = props => {
-  const { answer, isCorrect, explanation, onDelete } = props;
-  return (
-    <div className="single-choice">
-      <p>{`The ${isCorrect ? 'Correct' : 'Incorrect'} answer`}</p>
-      <button type="button" onClick={onDelete}>
-        Delete this Choice
-      </button>
-      <Markdown source={answer} renderers={{ code: CodeBlock }} />
-      <Markdown source={explanation} renderers={{ code: CodeBlock }} />
-    </div>
-  );
-};
-
-Choice.propTypes = {
-  answer: PropTypes.string.isRequired,
-  isCorrect: PropTypes.bool.isRequired,
-  explanation: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired
-};

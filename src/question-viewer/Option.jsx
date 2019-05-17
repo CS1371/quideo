@@ -9,7 +9,7 @@ import './Option.css';
 
 export default class Option extends React.Component {
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
     explanation: PropTypes.string.isRequired,
     isCorrect: PropTypes.bool.isRequired,
     handler: PropTypes.func,
@@ -31,7 +31,7 @@ export default class Option extends React.Component {
 
   render() {
     const { isChosen } = this.state;
-    const { text, explanation, isCorrect, shouldExpand, handler } = this.props;
+    const { answer, explanation, isCorrect, shouldExpand, handler } = this.props;
     const eClass = isChosen || shouldExpand ? 'mc-chosen' : '';
 
     return (
@@ -46,7 +46,7 @@ export default class Option extends React.Component {
             });
           }}
         >
-          <Markdown source={text} renderers={{ code: CodeBlock }} p2="hi" />
+          <Markdown source={answer} renderers={{ code: CodeBlock }} p2="hi" />
         </button>
         <div
           className={`mc-explanation ${isCorrect ? 'mc-correct' : 'mc-incorrect'} ${

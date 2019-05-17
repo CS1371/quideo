@@ -16,7 +16,7 @@ const MultipleChoice = props => {
           {answers.map(ans => (
             <Option
               key={hash(ans.text)}
-              text={ans.text}
+              answer={ans.text}
               explanation={ans.explanation}
               isCorrect={ans.isCorrect}
             />

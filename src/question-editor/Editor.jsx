@@ -81,8 +81,18 @@ export default class Editor extends React.Component {
     let help = '';
     switch (type) {
       case TYPES.MC:
-        help = "Here you'll write your question; you'll write the possible answers in the next step";
-        specifics = <MultipleChoice value={answers} onChange={v => 1} />;
+        help =
+          "Here you'll write your question; you'll write the possible answers in the next step";
+        specifics = (
+          <MultipleChoice
+            value={answers}
+            onChange={v => {
+              this.setState({
+                answers: v
+              });
+            }}
+          />
+        );
         break;
       case TYPES.SA:
         help =

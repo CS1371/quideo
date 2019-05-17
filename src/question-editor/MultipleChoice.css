@@ -2,3 +2,26 @@
   width: 100%;
   display: flex;
 }
+
+.choice-creator {
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#addChoice {
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+  cursor: pointer;
+  background-color: lightgreen;
+  color: black;
+}
+
+#addChoice:disabled {
+  background-color: lightgray;
+  color: rgb(48, 48, 48);
+  cursor: not-allowed;
+}
