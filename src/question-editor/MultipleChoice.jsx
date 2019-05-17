@@ -95,7 +95,7 @@ export default class MultipleChoice extends React.Component {
     const { answer, explanation, isCorrect } = this.state;
     const preview = (
       <React.Fragment>
-        <p>{`Click the Preview to mark your answer as ${isCorrect ? 'Incorrect' : 'Correct'}`}</p>
+        <p>{`Click the Preview to mark your answer as ${isCorrect ? 'incorrect' : 'correct'}`}</p>
         <Option
           answer={answer === '' ? '_Start typing to see your answer_' : answer}
           explanation={explanation === '' ? '_Start typing to see your explanation_' : explanation}
@@ -115,7 +115,6 @@ export default class MultipleChoice extends React.Component {
         <div className="new-choices">
           <MarkdownEditor
             title="Answer"
-            help="Start typing to see a preview"
             value={answer}
             hidePreview
             onChange={v => {
@@ -126,7 +125,6 @@ export default class MultipleChoice extends React.Component {
           />
           <MarkdownEditor
             title="Explanation"
-            help={`Why is your answer ${isCorrect ? 'correct' : 'incorrect'}?`}
             value={explanation}
             hidePreview
             onChange={v => {
