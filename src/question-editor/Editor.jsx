@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import TagChooser from './TagChooser';
 import TypeChooser from './TypeChooser';
 import MarkdownEditor from './MarkdownEditor';
-import './Editor.css';
 import { TYPES } from '../question-viewer';
 import MultipleChoice from './MultipleChoice';
+import CodingAnswer from './CodingAnswer';
+import './Editor.css';
 
 export default class Editor extends React.Component {
   static propTypes = {
@@ -44,6 +45,45 @@ export default class Editor extends React.Component {
     console.log(this.state);
   };
 
+  setType = t => {
+    switch (t) {
+      case TYPES.MC:
+        this.setState({
+          type: t,
+          prompts: null,
+          answers: []
+        });
+        break;
+      case TYPES.SA:
+        this.setState({
+          type: t,
+          prompts: [],
+          answers: []
+        });
+        break;
+      case TYPES.FB:
+        this.setState({
+          type: t,
+          prompts: null,
+          answers: []
+        });
+        break;
+      case TYPES.CA:
+        this.setState({
+          type: t,
+          prompts: null,
+          answers: ''
+        });
+        break;
+      default:
+        this.setState({
+          type: t,
+          prompts: null,
+          answers: null
+        });
+    }
+  };
+
   renderQuestion = () => {
     const { type, preamble, prompts, answers } = this.state;
     let help = '';
@@ -72,6 +112,16 @@ export default class Editor extends React.Component {
         break;
       case TYPES.CA:
         help = "Here you'll give the complete coding question, with all the test cases, etc.";
+        specifics = (
+          <CodingAnswer
+            value={answers}
+            onChange={v => {
+              this.setState({
+                answers: v
+              });
+            }}
+          />
+        );
         break;
       default:
         break;
@@ -141,15 +191,7 @@ export default class Editor extends React.Component {
             });
           }}
         />
-        <TypeChooser
-          availableTypes={availableTypes}
-          value={type}
-          onChange={t => {
-            this.setState({
-              type: t
-            });
-          }}
-        />
+        <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
         {this.renderQuestion()}
         <button type="button" onClick={this.save}>
           Save

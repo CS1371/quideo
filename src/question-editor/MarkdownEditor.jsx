@@ -35,13 +35,15 @@ const MarkdownEditor = props => {
 
 MarkdownEditor.propTypes = {
   value: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  help: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  help: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   hidePreview: PropTypes.bool
 };
 
 MarkdownEditor.defaultProps = {
+  title: '',
+  help: '',
   hidePreview: false
 };
 
