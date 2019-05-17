@@ -127,7 +127,7 @@ export default class Editor extends React.Component {
         break;
     }
     return (
-      <React.Fragment>
+      <div className={`specific-editor ${specifics === null ? 'editor-hide' : 'editor-show'}`}>
         <MarkdownEditor
           value={preamble}
           title={type}
@@ -139,7 +139,7 @@ export default class Editor extends React.Component {
           }}
         />
         {specifics}
-      </React.Fragment>
+      </div>
     );
   };
 

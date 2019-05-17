@@ -8,8 +8,6 @@
 }
 
 .preamble-container {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
