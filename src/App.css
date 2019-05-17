@@ -14,3 +14,8 @@ button,
 textarea {
   font-size: 100%;
 }
+
+/* Override the builtin-function highlighting */
+.ace_editor.ace-sqlserver .ace_support.ace_function {
+  color: black;
+}
