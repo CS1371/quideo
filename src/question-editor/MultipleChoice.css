@@ -56,3 +56,8 @@
 .single-choice .choice-movers.no-down svg:last-child {
   visibility: hidden;
 }
+
+.reason-invalid {
+  color: rgb(226, 102, 102);
+  font-size: 200%;
+}

@@ -93,9 +93,10 @@ export default class MultipleChoice extends React.Component {
 
   renderEditor = () => {
     const { answer, explanation, isCorrect } = this.state;
+    const { value } = this.props;
     const preview = (
       <React.Fragment>
-        <p>{`Click the Preview to mark your answer as ${isCorrect ? 'incorrect' : 'correct'}`}</p>
+        <p>{`Click the preview to mark your answer as ${isCorrect ? 'incorrect' : 'correct'}`}</p>
         <Option
           answer={answer === '' ? '_Start typing to see your answer_' : answer}
           explanation={explanation === '' ? '_Start typing to see your explanation_' : explanation}
@@ -109,6 +110,8 @@ export default class MultipleChoice extends React.Component {
         />
       </React.Fragment>
     );
+    // compare answers...
+    const ind = value.findIndex(a => a.answer === answer);
     return (
       <div className="choice-creator">
         <h2>Create a New Choice</h2>
@@ -116,6 +119,7 @@ export default class MultipleChoice extends React.Component {
           <MarkdownEditor
             title="Answer"
             value={answer}
+            height="250px"
             hidePreview
             onChange={v => {
               this.setState({
@@ -126,6 +130,7 @@ export default class MultipleChoice extends React.Component {
           <MarkdownEditor
             title="Explanation"
             value={explanation}
+            height="250px"
             hidePreview
             onChange={v => {
               this.setState({
@@ -134,8 +139,18 @@ export default class MultipleChoice extends React.Component {
             }}
           />
         </div>
+        {ind === -1 ? null : (
+          <p className="reason-invalid">
+            <i>{`You've already given this as an answer (see #${ind + 1})`}</i>
+          </p>
+        )}
         <div className="new-preview">{preview}</div>
-        <button type="button" id="addChoice" onClick={this.addChoice} disabled={answer === ''}>
+        <button
+          type="button"
+          id="addChoice"
+          onClick={this.addChoice}
+          disabled={answer === '' || ind !== -1}
+        >
           Add this Choice
         </button>
       </div>
@@ -148,7 +163,7 @@ export default class MultipleChoice extends React.Component {
       <div className="multipe-choice-container">
         <h2>Possible Choices</h2>
         <div className="confirmed-choices">
-          {value.length !== 0 ? <p>Click on a choice to edit</p> : null}
+          {value.length !== 0 ? <p>Click on a choice to edit it</p> : null}
           {value.map((c, i) => {
             // What if the user makes two identical answers? Alert if hash would be the same
             return (
