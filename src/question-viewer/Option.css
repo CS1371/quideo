@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-.mc-answer.mc-chosen {
+.mc-chosen .mc-answer {
   margin-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -29,13 +29,18 @@
   padding-top: 10px;
   padding-bottom: 10px;
   display: none;
+  cursor: pointer;
 }
 
-.mc-explanation.mc-correct {
+.mc-chosen .mc-explanation {
+  display: inherit;
+}
+
+.mc-correct .mc-explanation {
   background-color: #d3f2af;
 }
 
-.mc-explanation.mc-incorrect {
+.mc-incorrect .mc-explanation {
   background-color: rgb(238, 159, 159);
 }
 
@@ -43,14 +48,10 @@
   font-size: 200%;
 }
 
-.mc-explanation.mc-incorrect svg {
-  color: darkred;
-}
-
-.mc-explanation.mc-correct svg {
+.mc-correct .mc-explanation svg {
   color: darkgreen;
 }
 
-.mc-explanation.mc-chosen {
-  display: inherit;
+.mc-incorrect .mc-explanation svg {
+  color: darkred;
 }

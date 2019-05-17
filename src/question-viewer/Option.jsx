@@ -35,9 +35,9 @@ export default class Option extends React.Component {
     const eClass = isChosen || shouldExpand ? 'mc-chosen' : '';
 
     return (
-      <div className="mc-option">
+      <div className={`mc-option ${isCorrect ? 'mc-correct' : 'mc-incorrect'} ${eClass}`}>
         <button
-          className={`mc-answer ${eClass}`}
+          className="mc-answer"
           type="button"
           onClick={() => {
             handler();
@@ -46,16 +46,21 @@ export default class Option extends React.Component {
             });
           }}
         >
-          <Markdown source={answer} renderers={{ code: CodeBlock }} p2="hi" />
+          <Markdown source={answer} renderers={{ code: CodeBlock }} />
         </button>
-        <div
-          className={`mc-explanation ${isCorrect ? 'mc-correct' : 'mc-incorrect'} ${
-            isChosen || shouldExpand ? 'mc-chosen' : ''
-          }`}
+        <button
+          type="button"
+          className="mc-explanation"
+          onClick={() => {
+            handler();
+            this.setState({
+              isChosen: !isChosen
+            });
+          }}
         >
           <FontAwesomeIcon icon={isCorrect ? faCommentCheck : faCommentTimes} />
           <Markdown source={explanation} renderers={{ code: CodeBlock }} />
-        </div>
+        </button>
       </div>
     );
   }
