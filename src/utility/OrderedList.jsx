@@ -72,7 +72,8 @@ const OrderedList = props => {
 };
 
 OrderedList.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  children: PropTypes.array.isRequired,
   render: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired
 };
