@@ -9,7 +9,7 @@ import './Prompt.css';
 export default class Prompt extends React.Component {
   static propTypes = {
     prompt: PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      prompt: PropTypes.string.isRequired,
       isCode: PropTypes.bool.isRequired
     }).isRequired,
     answer: PropTypes.string.isRequired,
@@ -38,7 +38,7 @@ export default class Prompt extends React.Component {
         <React.Fragment>
           <div className="prompt-answer">
             <div className="prompt">
-              <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
+              <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
             </div>
             <CodingAnswer answer={answer} hints={hints} />
           </div>
@@ -48,7 +48,7 @@ export default class Prompt extends React.Component {
     return (
       <div className="prompt-answer">
         <div className="prompt">
-          <Markdown source={prompt.text} renderers={{ code: CodeBlock }} />
+          <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
         </div>
         <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
           <textarea

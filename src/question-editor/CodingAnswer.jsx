@@ -5,6 +5,8 @@ import AceEditor from 'react-ace';
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
 
+import './CodingAnswer.css';
+
 const CodingAnswer = props => {
   const { value, onChange } = props;
   return (
@@ -17,7 +19,7 @@ const CodingAnswer = props => {
         value={value}
         onChange={onChange}
         editorProps={{ $blockScrolling: true }}
-        width="90vw"
+        width="90%"
       />
     </div>
   );

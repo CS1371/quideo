@@ -11,7 +11,7 @@ const ShortAnswer = props => {
   // map each one to a prompt/answer with hints
   return prompts.map((p, ind) => (
     <Prompt
-      key={hash(p.text)}
+      key={hash(p.prompt)}
       prompt={p}
       answer={answers[ind]}
       hints={hints.length === 0 ? [] : hints[ind]}
@@ -22,7 +22,7 @@ const ShortAnswer = props => {
 ShortAnswer.propTypes = {
   prompts: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      prompt: PropTypes.string.isRequired,
       isCode: PropTypes.bool.isRequired
     })
   ).isRequired,

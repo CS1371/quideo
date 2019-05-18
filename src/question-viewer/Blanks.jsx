@@ -8,7 +8,7 @@ const Blanks = props => {
   const { answers, hints } = props;
   const prompts = Array.from(Array(answers.length).keys()).map(e => {
     return {
-      text: `Blank \\#**${e + 1}**`,
+      prompt: `Blank \\#**${e + 1}**`,
       isCode: false
     };
   });

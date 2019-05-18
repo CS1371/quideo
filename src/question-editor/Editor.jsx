@@ -6,8 +6,8 @@ import MarkdownEditor from './MarkdownEditor';
 import { TYPES } from '../question-viewer';
 import MultipleChoice from './MultipleChoice';
 import CodingAnswer from './CodingAnswer';
-import './Editor.css';
 import ShortAnswer from './ShortAnswer';
+import './Editor.css';
 
 export default class Editor extends React.Component {
   static propTypes = {
@@ -42,6 +42,8 @@ export default class Editor extends React.Component {
   //
   // The key is that WE store everything here - NOT in individual components
   // That way we can submit when ready from here.
+  //
+  // For SA and FB, we'll need to redefine prompts to ->prompts, answers
   save = () => {
     console.log(this.state);
   };
@@ -92,7 +94,7 @@ export default class Editor extends React.Component {
     switch (type) {
       case TYPES.MC:
         help =
-          "Here you'll write your question; you'll write the possible answers in the next step";
+          'Here you will write your question. You will write the possible answers in the next step';
         specifics = (
           <MultipleChoice
             value={answers}
@@ -105,12 +107,20 @@ export default class Editor extends React.Component {
         );
         break;
       case TYPES.SA:
-        help =
-          "While this isn't a question, here you can provide a setup for each of the part(s) you will write in the next step";
-        specifics = <ShortAnswer value={prompts} onChange={v => 1} />
+        help = 'Here you can provide a setup for each of the part(s) you will write below';
+        specifics = (
+          <ShortAnswer
+            value={prompts}
+            onChange={v => {
+              this.setState({
+                prompts: v
+              });
+            }}
+          />
+        );
         break;
       case TYPES.FB:
-        help = "Here you'll the complete question, with blanks written as <>";
+        help = "Here you'll write the complete question, with blanks written as <>";
         break;
       case TYPES.CA:
         help = "Here you'll give the complete coding question, with all the test cases, etc.";

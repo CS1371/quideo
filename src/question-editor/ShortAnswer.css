@@ -1,3 +1,41 @@
-.short-answer {
-  
+.new-short-answer {
+  border: 3px solid white;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.short-type-toggler,
+.prompt-edit-btn,
+.add-part-btn {
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: lightgreen;
+  cursor: pointer;
+}
+
+.prompt-view {
+  display: flex;
+  border: 3px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 80vw;
+  justify-content: center;
+}
+
+.prompt {
+  min-width: 45%;
+  margin: 10px;
+}
+
+.prompt-answer {
+  margin: 10px;
+  min-width: 45%;
+}
+
+.prompt-edit-btn {
+  background-color: lightblue;
+  color: black;
 }

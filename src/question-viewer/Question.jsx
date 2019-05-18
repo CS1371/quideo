@@ -45,7 +45,7 @@ export default class Question extends React.Component {
     /** The question prompts, only for SA */
     prompts: PropTypes.arrayOf(
       PropTypes.shape({
-        text: PropTypes.string.isRequired,
+        prompt: PropTypes.string.isRequired,
         isCode: PropTypes.bool.isRequired
       })
     ),
