@@ -52,7 +52,7 @@ const renderChildren = props => {
   return children.map((n, i) => {
     // for each child, map with the FA, the x, and the item itself
     return (
-      <div key={n.key} className="list-item">
+      <div key={render(n).key} className="list-item">
         {renderMovers(i, children, onChange)}
         {render(n, i)}
         <FontAwesomeIcon
