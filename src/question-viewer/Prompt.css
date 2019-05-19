@@ -1,14 +1,6 @@
 .prompt {
-  border: 7px solid white;
-  border-radius: 10px;
-  background-color: lightgray;
-  text-align: left;
-  padding: 10px;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 15px;
   margin-bottom: 15px;
-  color: black;
 }
 
 .user-answer {

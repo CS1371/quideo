@@ -2,6 +2,7 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { CodeBlock } from '../utility';
+import '../utility/MarkdownArea.css';
 import './Rubric.css';
 
 const Rubric = props => {
@@ -10,7 +11,7 @@ const Rubric = props => {
     return null;
   }
   return (
-    <div className="rubric">
+    <div className="rubric markdown-preview">
       <Markdown source={text} renderers={{ code: CodeBlock }} />
     </div>
   );

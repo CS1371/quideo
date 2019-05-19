@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
-import './Preamble.css';
+import '../utility/MarkdownArea.css';
 
 const Preamble = props => {
   const { value } = props;
   return (
-    <div className="question-preamble">
+    <div className="question-preamble markdown-preview">
       <Markdown source={value} renderers={{ code: CodeBlock }} />
     </div>
   );

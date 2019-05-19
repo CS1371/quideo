@@ -4,6 +4,7 @@ import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
 import CodingAnswer from './CodingAnswer';
 import HintList from './HintList';
+import '../utility/MarkdownArea.css';
 import './Prompt.css';
 
 export default class Prompt extends React.Component {
@@ -37,7 +38,7 @@ export default class Prompt extends React.Component {
       return (
         <React.Fragment>
           <div className="prompt-answer">
-            <div className="prompt">
+            <div className="prompt markdown-preview">
               <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
             </div>
             <CodingAnswer answer={answer} hints={hints} />
@@ -47,7 +48,7 @@ export default class Prompt extends React.Component {
     }
     return (
       <div className="prompt-answer">
-        <div className="prompt">
+        <div className="prompt markdown-preview">
           <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
         </div>
         <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
@@ -64,7 +65,7 @@ export default class Prompt extends React.Component {
           <div>
             <HintList hints={hints} />
           </div>
-          <div className="actual-answer">
+          <div className="actual-answer markdown-preview">
             <Markdown source={answer} renderers={{ code: CodeBlock }} />
           </div>
         </div>

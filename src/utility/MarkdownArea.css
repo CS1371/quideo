@@ -1,8 +1,8 @@
-.question-preamble {
+.markdown-preview {
   word-wrap: normal;
   background-color: lightgrey;
   color: black;
-  border: 3px solid white;
+  border: 8px solid white;
   border-radius: 5px;
   display: block;
   width: fit-content;
