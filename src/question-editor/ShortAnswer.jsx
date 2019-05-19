@@ -39,11 +39,16 @@ export default class ShortAnswer extends React.Component {
     };
   }
 
+  isReady = () => {
+    const { prompt, answer } = this.state;
+    return prompt !== '' && answer !== '';
+  };
+
   addPart = () => {
     // check that we are valid
     const { prompt, answer, isCode } = this.state;
     const { value, onChange } = this.props;
-    if (prompt === '' || answer === '') {
+    if (!this.isReady()) {
       return;
     }
     value.push({
@@ -135,7 +140,12 @@ export default class ShortAnswer extends React.Component {
           {this.renderAnswer()}
         </div>
         {this.renderPreview()}
-        <button type="button" className="add-part-btn" onClick={this.addPart}>
+        <button
+          type="button"
+          disabled={!this.isReady()}
+          className="add-part-btn"
+          onClick={this.addPart}
+        >
           Add Part
         </button>
       </div>

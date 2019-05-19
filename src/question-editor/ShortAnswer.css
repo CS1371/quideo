@@ -15,6 +15,12 @@
   cursor: pointer;
 }
 
+.add-part-btn:disabled {
+  background-color: lightgray;
+  color: black;
+  cursor: not-allowed;
+}
+
 .short-answer-editors.short-free {
   display: flex;
 }
@@ -27,7 +33,8 @@
 .short-answer-preview .preview-prompt,
 .short-answer-preview .preview-answer {
   width: 50%;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .prompt-view {
