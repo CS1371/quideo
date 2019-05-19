@@ -1,19 +1,19 @@
-.preamble-editor {
+.markdown-editor {
   display: flex;
   justify-content: center;
 }
 
-.preamble-container.preamble-hidden {
+.markdown-container.markdown-hidden {
   opacity: 0;
 }
 
-.preamble-container {
+.markdown-container {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.preamble-editor .question-preamble {
+.markdown-editor .markdown-preview {
   width: 40%;
   margin-top: 0;
   margin-bottom: 0;

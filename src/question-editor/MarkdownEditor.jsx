@@ -12,10 +12,10 @@ const MarkdownEditor = props => {
   const { value, title, help, onChange, hidePreview, height } = props;
   // if the type isn't specified, hidden!
   return (
-    <div className={`preamble-container ${title === '' ? 'preamble-hidden' : 'preamble-shown'}`}>
+    <div className={`markdown-container ${title === '' ? 'markdown-hidden' : 'markdown-shown'}`}>
       <h2>{title}</h2>
       <p>{help}</p>
-      <div className="preamble-editor" title="I support Markdown!">
+      <div className="markdown-editor" title="I support Markdown!">
         <AceEditor
           mode="markdown"
           theme="tomorrow_night_bright"

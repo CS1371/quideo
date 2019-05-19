@@ -8,17 +8,18 @@ import 'brace/theme/sqlserver';
 import './CodingAnswer.css';
 
 const CodingAnswer = props => {
-  const { value, onChange } = props;
+  const { value, onChange, title, help } = props;
   return (
     <div className="coding-editor">
-      <h2>Solution Code</h2>
-      <p>Write your solution code as it would appear in MATLAB</p>
+      <h2>{title}</h2>
+      <p>{help}</p>
       <AceEditor
         mode="matlab"
         theme="sqlserver"
         value={value}
         onChange={onChange}
         editorProps={{ $blockScrolling: true }}
+        fontSize={18}
         width="90%"
       />
     </div>
@@ -27,7 +28,14 @@ const CodingAnswer = props => {
 
 CodingAnswer.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  title: PropTypes.node,
+  help: PropTypes.node
+};
+
+CodingAnswer.defaultProps = {
+  title: 'Coding Answer',
+  help: 'Write your solution code as it would appear in MATLAB'
 };
 
 export default CodingAnswer;

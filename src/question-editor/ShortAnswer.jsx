@@ -7,13 +7,16 @@ import AceEditor from 'react-ace';
 import MarkdownEditor from './MarkdownEditor';
 import CodingAnswer from './CodingAnswer';
 import { OrderedList, CodeBlock } from '../utility';
-import './ShortAnswer.css';
-import '../question-viewer/Prompt.css';
 
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
 
+import './ShortAnswer.css';
+import '../utility/MarkdownArea.css';
+
 // Each prompt will either be code or free response (markdown)
+
+const HEIGHT_MULT = 1.4;
 
 export default class ShortAnswer extends React.Component {
   static propTypes = {
@@ -36,21 +39,38 @@ export default class ShortAnswer extends React.Component {
     };
   }
 
+  addPart = () => {
+    // check that we are valid
+    const { prompt, answer, isCode } = this.state;
+    const { value, onChange } = this.props;
+    if (prompt === '' || answer === '') {
+      return;
+    }
+    value.push({
+      prompt,
+      answer,
+      isCode
+    });
+    onChange(value);
+    this.setState({
+      prompt: '',
+      answer: '',
+      isCode: false
+    });
+  };
+
   renderAnswer = () => {
     const { answer, isCode } = this.state;
     if (isCode) {
       return (
-        <React.Fragment>
-          <h2>Coding Entry</h2>
-          <CodingAnswer
-            value={answer}
-            onChange={v => {
-              this.setState({
-                answer: v
-              });
-            }}
-          />
-        </React.Fragment>
+        <CodingAnswer
+          value={answer}
+          onChange={v => {
+            this.setState({
+              answer: v
+            });
+          }}
+        />
       );
     }
     return (
@@ -61,27 +81,34 @@ export default class ShortAnswer extends React.Component {
             answer: v
           });
         }}
+        hidePreview
         title="Free Form Answer"
       />
     );
   };
 
-  renderEditor = () => {
-    const { value, onChange } = this.props;
+  renderPreview = () => {
     const { prompt, answer, isCode } = this.state;
+    if (isCode) {
+      return null;
+    }
+    return (
+      <div className="short-answer-preview">
+        <div className="preview-prompt markdown-preview">
+          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+        </div>
+        <div className="preview-answer markdown-preview">
+          <Markdown source={answer} renderers={{ code: CodeBlock }} />
+        </div>
+      </div>
+    );
+  };
+
+  renderEditor = () => {
+    const { prompt, isCode } = this.state;
     return (
       <div className="new-short-answer">
         <h2>New Short Answer</h2>
-        <MarkdownEditor
-          onChange={v => {
-            this.setState({
-              prompt: v
-            });
-          }}
-          value={prompt}
-          title="Prompt"
-          help="The prompt for this part"
-        />
         <button
           type="button"
           className="short-type-toggler"
@@ -93,44 +120,39 @@ export default class ShortAnswer extends React.Component {
         >
           {isCode ? 'Change to Free Form' : 'Change to Code Entry'}
         </button>
-        {this.renderAnswer()}
-        <button
-          type="button"
-          className="add-part-btn"
-          onClick={() => {
-            // check that we are valid
-            if (prompt === '' || answer === '') {
-              return;
-            }
-            value.push({
-              prompt,
-              answer,
-              isCode
-            });
-            onChange(value);
-            this.setState({
-              prompt: '',
-              answer: '',
-              isCode: false
-            });
-          }}
-        >
+        <div className={`short-answer-editors ${isCode ? 'short-code' : 'short-free'}`}>
+          <MarkdownEditor
+            onChange={v => {
+              this.setState({
+                prompt: v
+              });
+            }}
+            hidePreview={!isCode}
+            value={prompt}
+            title="Prompt"
+            help=""
+          />
+          {this.renderAnswer()}
+        </div>
+        {this.renderPreview()}
+        <button type="button" className="add-part-btn" onClick={this.addPart}>
           Add Part
         </button>
       </div>
     );
   };
 
-  renderPrompt = (n, i) => {
+  renderConfirmed = (n, i) => {
     const { value, onChange } = this.props;
     const { prompt, answer, isCode } = n;
     let answerArea = null;
-
     if (isCode) {
       answerArea = (
         <AceEditor
           value={answer}
           width="100%"
+          fontSize={18}
+          height={`${Math.min((answer.match(/\n/g) || '').length + 1, 20) * HEIGHT_MULT}em`}
           mode="matlab"
           theme="sqlserver"
           readOnly
@@ -143,10 +165,10 @@ export default class ShortAnswer extends React.Component {
     return (
       <div key={hash(n)} className="single-prompt">
         <div className="prompt-view">
-          <div className="prompt">
+          <div className="prompt markdown-preview">
             <Markdown source={prompt} renderers={{ code: CodeBlock }} />
           </div>
-          <div className="prompt-answer">{answerArea}</div>
+          <div className={`prompt-answer ${isCode ? '' : 'markdown-preview'}`}>{answerArea}</div>
         </div>
         <button
           type="button"
@@ -169,7 +191,7 @@ export default class ShortAnswer extends React.Component {
     return (
       <div className="short-answer-editor">
         <div className="confirmed-answers">
-          <OrderedList render={this.renderPrompt} onChange={onChange}>
+          <OrderedList render={this.renderConfirmed} onChange={onChange}>
             {value}
           </OrderedList>
         </div>

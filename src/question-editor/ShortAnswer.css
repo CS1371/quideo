@@ -15,18 +15,37 @@
   cursor: pointer;
 }
 
-.prompt-view {
+.short-answer-editors.short-free {
   display: flex;
-  border: 3px solid white;
-  border-radius: 5px;
+}
+
+.short-answer-preview {
+  display: flex;
+  margin: 10px;
+}
+
+.short-answer-preview .preview-prompt,
+.short-answer-preview .preview-answer {
+  width: 50%;
+  margin: 10px;
+}
+
+.prompt-view {
   padding: 10px;
   margin: 10px;
   width: 80vw;
   justify-content: center;
 }
 
-.prompt {
-  min-width: 45%;
+.prompt,
+.prompt-answer {
+  margin: 10px;
+  width: auto;
+}
+
+.single-prompt {
+  border: 3px solid white;
+  border-radius: 10px;
   margin: 10px;
 }
 
