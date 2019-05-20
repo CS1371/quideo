@@ -112,49 +112,26 @@ export default class ShortAnswer extends React.Component {
   renderEditor = () => {
     const { prompt, isCode } = this.state;
     return (
-      <div className="new-short-answer">
-        <h2>New Short Answer</h2>
-        <button
-          type="button"
-          className="short-type-toggler"
-          onClick={() => {
+      <div className={`short-answer-editors ${isCode ? 'short-code' : 'short-free'}`}>
+        <MarkdownEditor
+          onChange={v => {
             this.setState({
-              isCode: !isCode
+              prompt: v
             });
           }}
-        >
-          {isCode ? 'Change to Free Form' : 'Change to Code Entry'}
-        </button>
-        <div className={`short-answer-editors ${isCode ? 'short-code' : 'short-free'}`}>
-          <MarkdownEditor
-            onChange={v => {
-              this.setState({
-                prompt: v
-              });
-            }}
-            hidePreview={!isCode}
-            value={prompt}
-            title="Prompt"
-            help=""
-          />
-          {this.renderAnswer()}
-        </div>
-        {this.renderPreview()}
-        <button
-          type="button"
-          disabled={!this.isReady()}
-          className="add-part-btn"
-          onClick={this.addPart}
-        >
-          Add Part
-        </button>
+          hidePreview={!isCode}
+          value={prompt}
+          title="Prompt"
+          help=""
+        />
+        {this.renderAnswer()}
       </div>
     );
   };
 
   render() {
     const { value, onChange } = this.props;
-
+    const { isCode } = this.state;
     return (
       <div className="short-answer-editor">
         <div className="confirmed-answers">
@@ -162,7 +139,30 @@ export default class ShortAnswer extends React.Component {
             {value}
           </OrderedList>
         </div>
-        {this.renderEditor()}
+        <div className="new-short-answer">
+          <h2>New Short Answer</h2>
+          <button
+            type="button"
+            className="short-type-toggler"
+            onClick={() => {
+              this.setState({
+                isCode: !isCode
+              });
+            }}
+          >
+            {isCode ? 'Change to Free Form' : 'Change to Code Entry'}
+          </button>
+          {this.renderEditor()}
+          {this.renderPreview()}
+          <button
+            type="button"
+            disabled={!this.isReady()}
+            className="add-part-btn"
+            onClick={this.addPart}
+          >
+            Add Part
+          </button>
+        </div>
       </div>
     );
   }
