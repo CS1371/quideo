@@ -8,6 +8,7 @@ import MultipleChoice from './MultipleChoice';
 import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
 import './Editor.css';
+import Blanks from './Blanks';
 
 export default class Editor extends React.Component {
   static propTypes = {
@@ -48,6 +49,32 @@ export default class Editor extends React.Component {
     console.log(this.state);
   };
 
+  onPreamble = preamble => {
+    const { type, preamble: prePreamble, answers: preAnswers } = this.state;
+    const prompts = [];
+    const answers = [];
+    if (type === TYPES.FB) {
+      // check that count has changed before we do anything...
+      const oldCount = (prePreamble.match(/<\\>/g) || []).length;
+      const count = (preamble.match(/<\\>/g) || []).length;
+      for (let i = 0; i < count; i++) {
+        prompts.push(`Prompt #${i + 1}`);
+      }
+      for (let i = 0; i < oldCount; i++) {
+        answers.push(preAnswers[i]);
+      }
+      for (let i = oldCount; i < count; i++) {
+        answers.push('');
+      }
+      answers.length = count;
+    }
+    this.setState({
+      preamble,
+      prompts,
+      answers
+    });
+  };
+
   setType = t => {
     switch (t) {
       case TYPES.MC:
@@ -67,7 +94,7 @@ export default class Editor extends React.Component {
       case TYPES.FB:
         this.setState({
           type: t,
-          prompts: null,
+          prompts: [],
           answers: []
         });
         break;
@@ -119,9 +146,21 @@ export default class Editor extends React.Component {
           />
         );
         break;
-      case TYPES.FB:
-        help = "Here you'll write the complete question, with blanks written as <>";
+      case TYPES.FB: {
+        help = "Here you'll write the complete question, with blanks written as <\\>";
+        specifics = (
+          <Blanks
+            prompts={prompts}
+            value={answers}
+            onChange={v => {
+              this.setState({
+                answers: v
+              });
+            }}
+          />
+        );
         break;
+      }
       case TYPES.CA:
         help = "Here you'll give the complete coding question, with all the test cases, etc.";
         specifics = (
@@ -140,16 +179,7 @@ export default class Editor extends React.Component {
     }
     return (
       <div className={`specific-editor ${specifics === null ? 'editor-hide' : 'editor-show'}`}>
-        <MarkdownEditor
-          value={preamble}
-          title={type}
-          help={help}
-          onChange={val => {
-            this.setState({
-              preamble: val
-            });
-          }}
-        />
+        <MarkdownEditor value={preamble} title={type} help={help} onChange={this.onPreamble} />
         {specifics}
       </div>
     );

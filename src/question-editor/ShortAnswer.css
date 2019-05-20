@@ -53,6 +53,8 @@
 .prompt-answer {
   margin: 10px;
   min-width: 45%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .prompt-edit-btn {

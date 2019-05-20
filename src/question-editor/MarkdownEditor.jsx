@@ -28,7 +28,7 @@ const MarkdownEditor = props => {
           className="code-editor"
           fontSize={18}
         />
-        {!hidePreview ? <Viewer value={value} /> : null}
+        {!hidePreview ? <Viewer value={value.replace(/<\\>/g, '\\_\\_\\_\\_\\_\\_')} /> : null}
       </div>
     </div>
   );
