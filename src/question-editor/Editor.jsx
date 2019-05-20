@@ -118,61 +118,29 @@ export default class Editor extends React.Component {
     const { type, preamble, prompts, answers } = this.state;
     let help = '';
     let specifics = null;
+    const onChange = v => {
+      this.setState({
+        answers: v
+      });
+    };
     switch (type) {
       case TYPES.MC:
         help =
           'Here you will write your question. You will write the possible answers in the next step';
-        specifics = (
-          <MultipleChoice
-            value={answers}
-            onChange={v => {
-              this.setState({
-                answers: v
-              });
-            }}
-          />
-        );
+        specifics = <MultipleChoice value={answers} onChange={onChange} />;
         break;
       case TYPES.SA:
         help = 'Here you can provide a setup for each of the part(s) you will write below';
-        specifics = (
-          <ShortAnswer
-            value={prompts}
-            onChange={v => {
-              this.setState({
-                prompts: v
-              });
-            }}
-          />
-        );
+        specifics = <ShortAnswer value={answers} onChange={onChange} />;
         break;
       case TYPES.FB: {
         help = "Here you'll write the complete question, with blanks written as <\\>";
-        specifics = (
-          <Blanks
-            prompts={prompts}
-            value={answers}
-            onChange={v => {
-              this.setState({
-                answers: v
-              });
-            }}
-          />
-        );
+        specifics = <Blanks prompts={prompts} value={answers} onChange={onChange} />;
         break;
       }
       case TYPES.CA:
         help = "Here you'll give the complete coding question, with all the test cases, etc.";
-        specifics = (
-          <CodingAnswer
-            value={answers}
-            onChange={v => {
-              this.setState({
-                answers: v
-              });
-            }}
-          />
-        );
+        specifics = <CodingAnswer value={answers} onChange={onChange} />;
         break;
       default:
         break;
