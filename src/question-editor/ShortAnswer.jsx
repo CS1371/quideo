@@ -1,22 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import hash from 'object-hash';
 import Markdown from 'react-markdown';
-import AceEditor from 'react-ace';
 
 import MarkdownEditor from './MarkdownEditor';
 import CodingAnswer from './CodingAnswer';
 import { OrderedList, CodeBlock } from '../utility';
-
-import 'brace/mode/matlab';
-import 'brace/theme/sqlserver';
+import confirmedShort from './confirmedShort';
 
 import './ShortAnswer.css';
 import '../utility/MarkdownArea.css';
 
 // Each prompt will either be code or free response (markdown)
-
-const HEIGHT_MULT = 1.4;
 
 export default class ShortAnswer extends React.Component {
   static propTypes = {
@@ -158,63 +152,13 @@ export default class ShortAnswer extends React.Component {
     );
   };
 
-  renderConfirmedAnswer = (answer, isCode) => {
-    if (isCode) {
-      return (
-        <div className="prompt-answer">
-          <AceEditor
-            value={answer}
-            width="100%"
-            fontSize={18}
-            height={`${Math.min((answer.match(/\n/g) || '').length + 1, 20) * HEIGHT_MULT}em`}
-            mode="matlab"
-            theme="sqlserver"
-            readOnly
-            editorProps={{ $blockScrolling: Infinity }}
-          />
-        </div>
-      );
-    }
-    return (
-      <div className="prompt-answer markdown-preview">
-        <Markdown source={answer} renderers={{ code: CodeBlock }} />
-      </div>
-    );
-  };
-
-  renderConfirmed = (n, i) => {
-    const { value, onChange } = this.props;
-    const { prompt, answer, isCode } = n;
-    return (
-      <div key={hash(n)} className="single-prompt">
-        <div className="prompt-view">
-          <div className="prompt markdown-preview">
-            <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-          </div>
-          {this.renderConfirmedAnswer(answer, isCode)}
-        </div>
-        <button
-          type="button"
-          className="prompt-edit-btn"
-          onClick={() => {
-            this.setState(n);
-            value.splice(i, 1);
-            onChange(value);
-          }}
-        >
-          Edit
-        </button>
-      </div>
-    );
-  };
-
   render() {
     const { value, onChange } = this.props;
 
     return (
       <div className="short-answer-editor">
         <div className="confirmed-answers">
-          <OrderedList render={this.renderConfirmed} onChange={onChange}>
+          <OrderedList render={(n, i) => confirmedShort(n, i, this)} onChange={onChange}>
             {value}
           </OrderedList>
         </div>

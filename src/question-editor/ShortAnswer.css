@@ -5,7 +5,6 @@
 }
 
 .short-type-toggler,
-.prompt-edit-btn,
 .add-part-btn {
   padding: 10px;
   border: 2px solid white;
@@ -42,22 +41,4 @@
   margin: 10px;
   width: 80vw;
   justify-content: center;
-}
-
-.single-prompt {
-  border: 3px solid white;
-  border-radius: 10px;
-  margin: 10px;
-}
-
-.prompt-answer {
-  margin: 10px;
-  min-width: 45%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.prompt-edit-btn {
-  background-color: lightblue;
-  color: black;
 }
