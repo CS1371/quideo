@@ -9,14 +9,20 @@ const ShortAnswer = props => {
   // For each one, add a prompt/answer pair.
   const { prompts, answers, hints } = props;
   // map each one to a prompt/answer with hints
-  return prompts.map((p, ind) => (
-    <Prompt
-      key={hash(p.prompt)}
-      prompt={p}
-      answer={answers[ind]}
-      hints={hints.length === 0 ? [] : hints[ind]}
-    />
-  ));
+  return (
+    <React.Fragment>
+      <hr />
+      {prompts.map((p, ind) => (
+        <Prompt
+          key={hash(p.prompt)}
+          prompt={p}
+          answer={answers[ind]}
+          hints={hints.length === 0 ? [] : hints[ind]}
+        />
+      ))}
+    </React.Fragment>
+    
+  );
 };
 
 ShortAnswer.propTypes = {

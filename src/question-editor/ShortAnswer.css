@@ -44,12 +44,6 @@
   justify-content: center;
 }
 
-.prompt,
-.prompt-answer {
-  margin: 10px;
-  width: auto;
-}
-
 .single-prompt {
   border: 3px solid white;
   border-radius: 10px;

@@ -43,30 +43,35 @@ const saResp = {
   ],
   rubric:
     '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
-  preamble: 'Please answer the following questions',
+  preamble:
+    'Suppose the following code is written in the file `helloWorld.m`:\n\n``` matlab\nfunction [out1, out2] = helloWorld(in1, in2);\n    out1 = in1 + in2;\n    if in1 == in2\n        out2 = in2;\n    else\n        out2 = in1 / in2;\n    end\nend\n```',
   difficulty: 5,
   type: 'Short Answer',
   hints: [
-    ["What's up1?", 'Who is there?'],
-    ["What's up2?", 'Who is there?'],
-    ["What's up3?", 'Who is there?']
+    ['Where is `out1` defined?'],
+    ['What is happening on line 4?', 'Are the outputs always defined?'],
+    ['What is determining the value of `out2`?', 'What are the possible results of `a == b`?']
   ],
   prompts: [
     {
       prompt:
-        'a. __Suppose__ **Suppose2**\n\n__\n\n the following is defined in the current folder:\n\n```matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = 2;\nc = zeros(1, 100);\nd = c(1:end/2);\nout = d;\nend\n```\n What is the output when the following is run in the command window?\n\n```matlab-cw\n>> myFun(1, 2);\n```',
+        'What is the value of `out1` if the following is run in the command window:\n\n``` matlab-cw\n>> [out1, out2] = helloWorld(1, 2);\n```\n',
+      isCode: false
+    },
+    {
+      prompt: 'If line 4 was removed, would the code still work as intended? Why or why not?',
+      isCode: false
+    },
+    {
+      prompt: 'Convert the `if` statement on lines 3-7 to an equivalent `switch` statement',
       isCode: true
-    },
-    {
-      prompt: '# Hello\n\nWhat is **up** my _friend_?',
-      isCode: false
-    },
-    {
-      prompt: '## `Hi` **there**',
-      isCode: false
     }
   ],
-  answers: ['function out = myFun(in)\n\nend\n', '2', '1.0']
+  answers: [
+    '3',
+    'No, if in1 == in2 then out2 is never assigned',
+    '``` matlab\nswitch (in1 == in2)\n    case true\n        out2 = in2;\n    otherwise\n        out2 = in1 / in2;\nend\n```'
+  ]
 };
 
 const fbResp = {
