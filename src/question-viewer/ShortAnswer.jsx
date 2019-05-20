@@ -21,7 +21,6 @@ const ShortAnswer = props => {
         />
       ))}
     </React.Fragment>
-    
   );
 };
 
