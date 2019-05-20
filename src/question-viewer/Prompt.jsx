@@ -30,8 +30,33 @@ export default class Prompt extends React.Component {
     };
   }
 
-  render() {
+  renderAnswer = () => {
     const { showAnswer, userAnswer } = this.state;
+    const { answer, hints } = this.props;
+    return (
+      <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
+        <textarea
+          className="user-answer"
+          placeholder="Type your answer here..."
+          value={userAnswer}
+          onChange={e => {
+            this.setState({
+              userAnswer: e.target.value
+            });
+          }}
+        />
+        <div>
+          <HintList hints={hints} />
+        </div>
+        <div className="actual-answer markdown-preview">
+          <Markdown source={answer} renderers={{ code: CodeBlock }} />
+        </div>
+      </div>
+    );
+  };
+
+  render() {
+    const { showAnswer } = this.state;
     const { prompt, answer, hints } = this.props;
     // If we have code, just use the codingAnswer?
     if (prompt.isCode) {
@@ -51,24 +76,7 @@ export default class Prompt extends React.Component {
         <div className="prompt markdown-preview">
           <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
         </div>
-        <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
-          <textarea
-            className="user-answer"
-            placeholder="Type your answer here..."
-            value={userAnswer}
-            onChange={e => {
-              this.setState({
-                userAnswer: e.target.value
-              });
-            }}
-          />
-          <div>
-            <HintList hints={hints} />
-          </div>
-          <div className="actual-answer markdown-preview">
-            <Markdown source={answer} renderers={{ code: CodeBlock }} />
-          </div>
-        </div>
+        {this.renderAnswer()}
         <button
           type="button"
           className="btn-answer"
