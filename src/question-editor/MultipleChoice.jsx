@@ -46,10 +46,9 @@ export default class MultipleChoice extends React.Component {
     });
   };
 
-  renderEditor = () => {
+  renderPreview = () => {
     const { answer, explanation, isCorrect } = this.state;
-    const { value } = this.props;
-    const preview = (
+    return (
       <React.Fragment>
         <p>{`Click the preview to mark your answer as ${isCorrect ? 'incorrect' : 'correct'}`}</p>
         <Option
@@ -65,8 +64,32 @@ export default class MultipleChoice extends React.Component {
         />
       </React.Fragment>
     );
-    // compare answers...
+  };
+
+  renderError = () => {
+    const { answer } = this.state;
+    const { value } = this.props;
     const ind = value.findIndex(a => a.answer === answer);
+    return ind === -1 ? null : (
+      <React.Fragment>
+        <p className="reason-invalid">
+          <i>{`You've already given this as an answer (see #${ind + 1})`}</i>
+        </p>
+        <button
+          type="button"
+          id="addChoice"
+          onClick={this.addChoice}
+          disabled={answer === '' || ind !== -1}
+        >
+          Add this Choice
+        </button>
+      </React.Fragment>
+    );
+  };
+
+  renderEditor = () => {
+    const { answer, explanation } = this.state;
+    // compare answers...
     return (
       <div className="choice-creator">
         <h2>Create a New Choice</h2>
@@ -94,20 +117,8 @@ export default class MultipleChoice extends React.Component {
             }}
           />
         </div>
-        {ind === -1 ? null : (
-          <p className="reason-invalid">
-            <i>{`You've already given this as an answer (see #${ind + 1})`}</i>
-          </p>
-        )}
-        <div className="new-preview">{preview}</div>
-        <button
-          type="button"
-          id="addChoice"
-          onClick={this.addChoice}
-          disabled={answer === '' || ind !== -1}
-        >
-          Add this Choice
-        </button>
+        <div className="new-preview">{this.renderPreview()}</div>
+        {this.renderError()}
       </div>
     );
   };
