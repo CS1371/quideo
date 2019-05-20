@@ -76,41 +76,18 @@ export default class Editor extends React.Component {
   };
 
   setType = t => {
-    switch (t) {
-      case TYPES.MC:
-        this.setState({
-          type: t,
-          prompts: null,
-          answers: []
-        });
-        break;
-      case TYPES.SA:
-        this.setState({
-          type: t,
-          prompts: [],
-          answers: []
-        });
-        break;
-      case TYPES.FB:
-        this.setState({
-          type: t,
-          prompts: [],
-          answers: []
-        });
-        break;
-      case TYPES.CA:
-        this.setState({
-          type: t,
-          prompts: null,
-          answers: ''
-        });
-        break;
-      default:
-        this.setState({
-          type: t,
-          prompts: null,
-          answers: null
-        });
+    if (t === TYPES.CA) {
+      this.setState({
+        type: t,
+        prompts: null,
+        answers: ''
+      });
+    } else {
+      this.setState({
+        type: t,
+        prompts: [],
+        answers: []
+      });
     }
   };
 
