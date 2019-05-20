@@ -100,10 +100,16 @@ export default class ShortAnswer extends React.Component {
     return (
       <div className="short-answer-preview">
         <div className="preview-prompt markdown-preview">
-          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+          <Markdown
+            source={prompt === '' ? '_Start typing to see a preview of your prompt_' : prompt}
+            renderers={{ code: CodeBlock }}
+          />
         </div>
         <div className="preview-answer markdown-preview">
-          <Markdown source={answer} renderers={{ code: CodeBlock }} />
+          <Markdown
+            source={answer === '' ? '_Start typing to see a preview of your answer_' : answer}
+            renderers={{ code: CodeBlock }}
+          />
         </div>
       </div>
     );

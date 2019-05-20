@@ -27,6 +27,7 @@ const MarkdownEditor = props => {
           width={!hidePreview ? '45%' : '90%'}
           className="code-editor"
           fontSize={18}
+          wrapEnabled
         />
         {!hidePreview ? <Viewer value={value.replace(/<\\>/g, '\\_\\_\\_\\_\\_\\_')} /> : null}
       </div>
