@@ -1,0 +1,28 @@
+
+.difficulty-editor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200%;
+  margin: 10px;
+}
+
+.new-peppers svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: red;
+}
+
+.difficulty-editor > svg {
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.difficulty-editor > svg:first-child {
+  color: lightblue;
+}
+
+.difficulty-editor > svg:last-child {
+  color: lightgreen;
+}

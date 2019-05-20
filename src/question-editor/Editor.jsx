@@ -9,6 +9,7 @@ import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
 import './Editor.css';
 import Blanks from './Blanks';
+import Difficulty from './Difficulty';
 
 export default class Editor extends React.Component {
   static propTypes = {
@@ -180,6 +181,7 @@ export default class Editor extends React.Component {
         />
         <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
         {this.renderQuestion()}
+        <Difficulty value={difficulty} onChange={v => this.setState({ difficulty: v })} />
         <button type="button" onClick={this.save}>
           Save
         </button>
