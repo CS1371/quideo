@@ -158,33 +158,40 @@ export default class ShortAnswer extends React.Component {
     );
   };
 
+  renderConfirmedAnswer = (answer, isCode) => {
+    if (isCode) {
+      return (
+        <div className="prompt-answer">
+          <AceEditor
+            value={answer}
+            width="100%"
+            fontSize={18}
+            height={`${Math.min((answer.match(/\n/g) || '').length + 1, 20) * HEIGHT_MULT}em`}
+            mode="matlab"
+            theme="sqlserver"
+            readOnly
+            editorProps={{ $blockScrolling: Infinity }}
+          />
+        </div>
+      );
+    }
+    return (
+      <div className="prompt-answer markdown-preview">
+        <Markdown source={answer} renderers={{ code: CodeBlock }} />
+      </div>
+    );
+  };
+
   renderConfirmed = (n, i) => {
     const { value, onChange } = this.props;
     const { prompt, answer, isCode } = n;
-    let answerArea = null;
-    if (isCode) {
-      answerArea = (
-        <AceEditor
-          value={answer}
-          width="100%"
-          fontSize={18}
-          height={`${Math.min((answer.match(/\n/g) || '').length + 1, 20) * HEIGHT_MULT}em`}
-          mode="matlab"
-          theme="sqlserver"
-          readOnly
-          editorProps={{ $blockScrolling: Infinity }}
-        />
-      );
-    } else {
-      answerArea = <Markdown source={answer} renderers={{ code: CodeBlock }} />;
-    }
     return (
       <div key={hash(n)} className="single-prompt">
         <div className="prompt-view">
           <div className="prompt markdown-preview">
             <Markdown source={prompt} renderers={{ code: CodeBlock }} />
           </div>
-          <div className={`prompt-answer ${isCode ? '' : 'markdown-preview'}`}>{answerArea}</div>
+          {this.renderConfirmedAnswer(answer, isCode)}
         </div>
         <button
           type="button"
