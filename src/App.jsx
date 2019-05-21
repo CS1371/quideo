@@ -193,10 +193,6 @@ const mcResp = {
 function App() {
   return (
     <div className="App">
-      <Editor
-        availableTags={mcResp.tags}
-        availableTypes={['Multiple Choice', 'Short Answer', 'Fill in the Blank', 'Coding']}
-      />
       <Question {...caResp} />
       <Question {...saResp} />
       <Question {...mcResp} />

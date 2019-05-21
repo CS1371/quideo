@@ -16,7 +16,7 @@ const HEIGHT_MULT = 1.4;
 const renderAnswer = (answer, isCode) => {
   if (isCode) {
     return (
-      <div className="prompt-answer">
+      <div className="confirmed-prompt-answer">
         <AceEditor
           value={answer}
           width="100%"
@@ -31,7 +31,7 @@ const renderAnswer = (answer, isCode) => {
     );
   }
   return (
-    <div className="prompt-answer markdown-preview">
+    <div className="confirmed-prompt-answer markdown-preview">
       <Markdown source={answer} renderers={{ code: CodeBlock }} />
     </div>
   );

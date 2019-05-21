@@ -14,10 +14,12 @@ export default class Prompt extends React.Component {
       isCode: PropTypes.bool.isRequired
     }).isRequired,
     answer: PropTypes.string.isRequired,
+    header: PropTypes.node,
     hints: PropTypes.arrayOf(PropTypes.string)
   };
 
   static defaultProps = {
+    header: null,
     hints: []
   };
 
@@ -32,9 +34,9 @@ export default class Prompt extends React.Component {
 
   renderAnswer = () => {
     const { showAnswer, userAnswer } = this.state;
-    const { answer, hints } = this.props;
+    const { hints } = this.props;
     return (
-      <div className={`answer ${showAnswer ? 'show-answer' : ''}`}>
+      <div className="answer">
         <textarea
           className="user-answer"
           placeholder="Type your answer here..."
@@ -45,49 +47,56 @@ export default class Prompt extends React.Component {
             });
           }}
         />
-        <div>
-          <HintList hints={hints} />
-        </div>
-        <div className="actual-answer markdown-preview">
-          <Markdown source={answer} renderers={{ code: CodeBlock }} />
-        </div>
       </div>
     );
   };
 
   render() {
-    const { showAnswer } = this.state;
-    const { prompt, answer, hints } = this.props;
+    const { showAnswer, userAnswer } = this.state;
+    const { prompt, answer, hints, header } = this.props;
     // If we have code, just use the codingAnswer?
     if (prompt.isCode) {
       return (
-        <React.Fragment>
-          <div className="prompt-answer">
-            <div className="prompt markdown-preview">
-              <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
-            </div>
-            <CodingAnswer answer={answer} hints={hints} />
+        <div className="prompt-answer">
+          {header}
+          <div className="prompt markdown-preview">
+            <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
           </div>
-        </React.Fragment>
+          <CodingAnswer answer={answer} hints={hints} />
+        </div>
       );
     }
     return (
       <div className="prompt-answer">
-        <div className="prompt markdown-preview">
-          <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
+        <div className="prompt-question">
+          {header}
+          <div className="prompt markdown-preview">
+            <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
+          </div>
         </div>
-        {this.renderAnswer()}
-        <button
-          type="button"
-          className="btn-answer"
-          onClick={() => {
-            this.setState({
-              showAnswer: !showAnswer
-            });
-          }}
-        >
-          {showAnswer ? 'Hide Answer' : 'Show Answer'}
-        </button>
+        <div className="header-invisible">
+          <div>{header}</div>
+          {this.renderAnswer()}
+          <div className={`actual-answer markdown-preview ${showAnswer ? 'show-answer' : ''}`}>
+            <Markdown source={answer} renderers={{ code: CodeBlock }} />
+          </div>
+        </div>
+        <div className="prompt-buttons">
+          <div className="hint-container">
+            <HintList hints={hints} />
+          </div>
+          <button
+            type="button"
+            className="btn-answer"
+            onClick={() => {
+              this.setState({
+                showAnswer: !showAnswer
+              });
+            }}
+          >
+            {showAnswer ? 'Hide Answer' : 'Show Answer'}
+          </button>
+        </div>
       </div>
     );
   }

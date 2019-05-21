@@ -16,6 +16,7 @@ const ShortAnswer = props => {
         <Prompt
           key={hash(p.prompt)}
           prompt={p}
+          header={<p>{`#${ind + 1}. `}</p>}
           answer={answers[ind]}
           hints={hints.length === 0 ? [] : hints[ind]}
         />
