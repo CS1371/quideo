@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 
 import MarkdownEditor from './MarkdownEditor';
-import CodingAnswer from './CodingAnswer';
 import { OrderedList, CodeBlock } from '../utility';
 import confirmedShort from './confirmedShort';
 
@@ -28,8 +27,7 @@ export default class ShortAnswer extends React.Component {
 
     this.state = {
       prompt: '',
-      answer: '',
-      isCode: false
+      answer: ''
     };
   }
 
@@ -40,38 +38,24 @@ export default class ShortAnswer extends React.Component {
 
   addPart = () => {
     // check that we are valid
-    const { prompt, answer, isCode } = this.state;
+    const { prompt, answer } = this.state;
     const { value, onChange } = this.props;
     if (!this.isReady()) {
       return;
     }
     value.push({
       prompt,
-      answer,
-      isCode
+      answer
     });
     onChange(value);
     this.setState({
       prompt: '',
-      answer: '',
-      isCode: false
+      answer: ''
     });
   };
 
   renderAnswer = () => {
-    const { answer, isCode } = this.state;
-    if (isCode) {
-      return (
-        <CodingAnswer
-          value={answer}
-          onChange={v => {
-            this.setState({
-              answer: v
-            });
-          }}
-        />
-      );
-    }
+    const { answer } = this.state;
     return (
       <MarkdownEditor
         value={answer}
@@ -87,10 +71,7 @@ export default class ShortAnswer extends React.Component {
   };
 
   renderPreview = () => {
-    const { prompt, answer, isCode } = this.state;
-    if (isCode) {
-      return null;
-    }
+    const { prompt, answer } = this.state;
     return (
       <div className="short-answer-preview">
         <div className="preview-prompt markdown-preview">
@@ -110,16 +91,15 @@ export default class ShortAnswer extends React.Component {
   };
 
   renderEditor = () => {
-    const { prompt, isCode } = this.state;
+    const { prompt } = this.state;
     return (
-      <div className={`short-answer-editors ${isCode ? 'short-code' : 'short-free'}`}>
+      <div className="short-answer-editors">
         <MarkdownEditor
           onChange={v => {
             this.setState({
               prompt: v
             });
           }}
-          hidePreview={!isCode}
           value={prompt}
           title="Prompt"
           help=""
@@ -131,7 +111,6 @@ export default class ShortAnswer extends React.Component {
 
   render() {
     const { value, onChange } = this.props;
-    const { isCode } = this.state;
     return (
       <div className="short-answer-editor">
         <div className="confirmed-answers">
@@ -141,17 +120,6 @@ export default class ShortAnswer extends React.Component {
         </div>
         <div className="new-short-answer">
           <h2>New Short Answer</h2>
-          <button
-            type="button"
-            className="short-type-toggler"
-            onClick={() => {
-              this.setState({
-                isCode: !isCode
-              });
-            }}
-          >
-            {isCode ? 'Change to Free Form' : 'Change to Code Entry'}
-          </button>
           {this.renderEditor()}
           {this.renderPreview()}
           <button

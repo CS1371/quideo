@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
-import CodingAnswer from './CodingAnswer';
 import HintList from './HintList';
 import '../utility/MarkdownArea.css';
 import './Prompt.css';
@@ -33,8 +32,7 @@ export default class Prompt extends React.Component {
   }
 
   renderAnswer = () => {
-    const { showAnswer, userAnswer } = this.state;
-    const { hints } = this.props;
+    const { userAnswer } = this.state;
     return (
       <div className="answer">
         <textarea
@@ -52,20 +50,8 @@ export default class Prompt extends React.Component {
   };
 
   render() {
-    const { showAnswer, userAnswer } = this.state;
+    const { showAnswer } = this.state;
     const { prompt, answer, hints, header } = this.props;
-    // If we have code, just use the codingAnswer?
-    if (prompt.isCode) {
-      return (
-        <div className="prompt-answer">
-          {header}
-          <div className="prompt markdown-preview">
-            <Markdown source={prompt.prompt} renderers={{ code: CodeBlock }} />
-          </div>
-          <CodingAnswer answer={answer} hints={hints} />
-        </div>
-      );
-    }
     return (
       <div className="prompt-answer">
         <div className="prompt-question">
