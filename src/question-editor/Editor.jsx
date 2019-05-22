@@ -181,6 +181,14 @@ export default class Editor extends React.Component {
         />
         <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
         {this.renderQuestion()}
+        <MarkdownEditor
+          title="Rubric"
+          help="Optionally, you can provide a rubric for this problem"
+          value={rubric}
+          onChange={v => {
+            this.setState({ rubric: v });
+          }}
+        />
         <Difficulty value={difficulty} onChange={v => this.setState({ difficulty: v })} />
         <button type="button" onClick={this.save}>
           Save
