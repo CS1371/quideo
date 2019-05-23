@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Blank from './Blank';
 
+const DELIM = '%{~~!';
+
 // This is **almost** a complete copy-paste of the default renderer - it is overridden to give
 // input text boxes for lines
 function createStyleObject(classNames, elementStyle = {}, stylesheet) {
@@ -21,8 +23,10 @@ const createElement = props => {
   const { properties, type, tagName: TagName, value } = node;
   if (type === 'text') {
     // check
-    if (/%{~~![^~]+!~~}%/.test(value)) {
-      return <Blank key={key} />;
+    if (/%{~~![^~]*!~~}%/.test(value)) {
+      return (
+        <Blank key={key} value={value.substr(DELIM.length, value.length - 2 * DELIM.length)} />
+      );
     }
     return value;
   }

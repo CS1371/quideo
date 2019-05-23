@@ -93,7 +93,7 @@ export default class Editor extends React.Component {
   };
 
   renderQuestion = () => {
-    const { type, preamble, prompts, answers } = this.state;
+    const { type, preamble, answers } = this.state;
     let help = '';
     let specifics = null;
     const onChange = v => {
@@ -111,11 +111,10 @@ export default class Editor extends React.Component {
         help = 'Here you can provide a setup for each of the part(s) you will write below';
         specifics = <ShortAnswer value={answers} onChange={onChange} />;
         break;
-      case TYPES.FB: {
+      case TYPES.FB:
         help = "Here you'll write the complete question, with blanks written as <\\>";
-        specifics = <Blanks prompts={prompts} value={answers} onChange={onChange} />;
+        specifics = <Blanks value={preamble} onChange={v => this.setState({ preamble: v })} />;
         break;
-      }
       case TYPES.CA:
         help = "Here you'll give the complete coding question, with all the test cases, etc.";
         specifics = <CodingAnswer value={answers} onChange={onChange} />;
@@ -125,7 +124,9 @@ export default class Editor extends React.Component {
     }
     return (
       <div className={`specific-editor ${specifics === null ? 'editor-hide' : 'editor-show'}`}>
-        <MarkdownEditor value={preamble} title={type} help={help} onChange={this.onPreamble} />
+        {type === TYPES.FB ? null : (
+          <MarkdownEditor value={preamble} title={type} help={help} onChange={this.onPreamble} />
+        )}
         {specifics}
       </div>
     );

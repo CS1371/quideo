@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Question } from './question-viewer';
+import { Question, TYPES } from './question-viewer';
 import Editor from './question-editor';
 
 const caResp = {
@@ -189,6 +189,7 @@ const mcResp = {
 function App() {
   return (
     <div className="App">
+      <Editor availableTags={mcResp.tags} availableTypes={Object.values(TYPES)} />
       <Question {...mcResp} />
       <Question {...saResp} />
       <Question {...fbResp} />

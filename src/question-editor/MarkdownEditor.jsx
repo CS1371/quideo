@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import { Preamble as Viewer } from '../question-viewer';
+import Markdown from 'react-markdown';
 
 import 'brace/mode/markdown';
 import 'brace/theme/tomorrow_night_bright';
 
 import './MarkdownEditor.css';
+import { CodeBlock, Blank } from '../utility';
 
 const MarkdownEditor = props => {
   const { value, title, help, onChange, hidePreview, height } = props;
@@ -29,7 +30,11 @@ const MarkdownEditor = props => {
           fontSize={18}
           wrapEnabled
         />
-        {!hidePreview ? <Viewer value={value.replace(/<\\>/g, '\\_\\_\\_\\_\\_\\_')} /> : null}
+        <div className="markdown-preview">
+          {!hidePreview ? (
+            <Markdown source={value} renderers={{ code: CodeBlock, delete: Blank }} />
+          ) : null}
+        </div>
       </div>
     </div>
   );
