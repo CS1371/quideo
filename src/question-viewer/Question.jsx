@@ -84,14 +84,14 @@ export default class Question extends React.Component {
   // feed the other stuff accordingly!
 
   renderQuestion = () => {
-    const { prompts, answers, hints, type } = this.props;
+    const { preamble, prompts, answers, hints, type } = this.props;
     switch (type) {
       case TYPES.MC:
         return <MultipleChoice answers={answers} hints={hints} />;
       case TYPES.SA:
         return <ShortAnswer prompts={prompts} answers={answers} hints={hints} />;
       case TYPES.FB:
-        return <Blanks answers={answers} hints={hints} />;
+        return <Blanks question={preamble} answers={answers} hints={hints} />;
       case TYPES.CA:
         return <CodingAnswer answer={answers} hints={hints} />;
       default:
@@ -115,6 +115,7 @@ export default class Question extends React.Component {
     tags.unshift(primaryTag);
 
     const title = `${index}: ${primaryTag.name} - ${type}`;
+    // Don't print Preamble for Fill in the Blank (Because Blanks prints its own?)
     return (
       <div className="question-view">
         <h1 className="question-title">{title}</h1>
@@ -124,7 +125,7 @@ export default class Question extends React.Component {
             <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
           ))}
         </div>
-        <Preamble value={preamble} />
+        {type === TYPES.FB ? null : <Preamble value={preamble} />}
         <div className="question-content">{this.renderQuestion()}</div>
         <div className="question-rubric">
           <button

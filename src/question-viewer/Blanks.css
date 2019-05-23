@@ -1,0 +1,27 @@
+.question-area {
+  display: flex;
+  align-items: flex-start;
+}
+
+.question-area > div {
+  width: 45%;
+}
+
+.filled-blanks {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.show-answer.filled-blanks {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.btn-show-answer {
+  padding: 20px;
+  margin: 10px;
+  background-color: lightgreen;
+  border: 3px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}

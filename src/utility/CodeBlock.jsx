@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import matlab from './matlab';
 import './CodeBlock.css';
+import Blank from './lineRenderer';
 
 export class CodeBlock extends PureComponent {
   static propTypes = {
@@ -22,7 +23,7 @@ export class CodeBlock extends PureComponent {
       return (
         <SyntaxHighlighter
           className="code-block"
-          customStyle={{ padding: '', margin: '' }}
+          customStyle={{ padding: '', margin: '', whiteSpace: '' }}
           language="plain"
           style={matlab}
         >
@@ -33,12 +34,13 @@ export class CodeBlock extends PureComponent {
     return (
       <SyntaxHighlighter
         className="code-block"
-        customStyle={{ padding: '', margin: '' }}
+        customStyle={{ padding: '', margin: '', whiteSpace: '' }}
         showLineNumbers
         language={language}
         style={matlab}
+        renderer={Blank}
       >
-        {value}
+        {value.replace(/~~![^~]+!~~/g, '%{$&}%')}
       </SyntaxHighlighter>
     );
   }

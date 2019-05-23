@@ -1,0 +1,8 @@
+.blank-input {
+  padding: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid black;
+}

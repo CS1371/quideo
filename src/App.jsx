@@ -88,13 +88,9 @@ const fbResp = {
   ],
   rubric:
     '+1 for getting it right\n\n+2 for writing `wassup`\n\n+5 for explaining `wassup = 2;`\n\n+10 for writing the following function:\n\n``` matlab\nfunction out = myFun(in1, in2)\na = 1;\nb = a(1:end)\n```',
-  preamble: 'Please answer the following questions',
+  preamble: 'Hello ~~!world!~~\n``` matlab\nMy name is ~~!answer!~~ And I am ~~!cool!!~~\n```',
   difficulty: 5,
-  hints: [
-    ["What's up1?", 'Who is there?'],
-    ["What's up2?", 'Who is there?'],
-    ["What's up3?", 'Who is there?']
-  ],
+  hints: ["What's up3?", 'Who is there?'],
   type: 'Fill in the Blank',
   prompts: [],
   answers: ['\n```matlab\nfunction out = myFun(in)\n\nend\n```', '2', '1.0']
@@ -193,10 +189,10 @@ const mcResp = {
 function App() {
   return (
     <div className="App">
-      <Question {...caResp} />
-      <Question {...saResp} />
       <Question {...mcResp} />
+      <Question {...saResp} />
       <Question {...fbResp} />
+      <Question {...caResp} />
     </div>
   );
 }

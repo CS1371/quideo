@@ -2,4 +2,6 @@
   padding: 1em;
   margin: 0.5em;
   overflow: auto;
+  word-wrap: normal;
+  white-space: nowrap;
 }

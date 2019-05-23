@@ -1,27 +1,71 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShortAnswer from './ShortAnswer';
+import Markdown from 'react-markdown';
+import HintList from './HintList';
+import { CodeBlock, Blank } from '../utility';
 
-// For every answer, we have a blank (prompt)
+import '../utility/MarkdownArea.css';
 
-const Blanks = props => {
-  const { answers, hints } = props;
-  const prompts = Array.from(Array(answers.length).keys()).map(e => {
-    return {
-      prompt: `Blank \\#**${e + 1}**`,
-      isCode: false
+import './Blanks.css';
+
+// Show two markdown areas side-by-side - the original (with text boxes)
+// and the new (with answers spliced in)
+//
+
+export default class Blanks extends React.Component {
+  static propTypes = {
+    question: PropTypes.string.isRequired,
+    hints: PropTypes.arrayOf(PropTypes.string)
+  };
+
+  static defaultProps = {
+    hints: []
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showAnswer: false
     };
-  });
-  return <ShortAnswer answers={answers} prompts={prompts} hints={hints} />;
-};
+  }
 
-Blanks.propTypes = {
-  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  hints: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
-};
-
-Blanks.defaultProps = {
-  hints: []
-};
-
-export default Blanks;
+  render() {
+    // first show the normal Markdown (replace with BLANKS), then on showAnswer, show the other stuff
+    const { question, hints } = this.props;
+    const { showAnswer } = this.state;
+    const correct = question.replace(/~~!([^~]+)!~~/g, '$1');
+    return (
+      <div className="fill-blank-question">
+        <div className="question-area">
+          <div className="student-blanks markdown-preview">
+            <Markdown
+              source={question}
+              renderers={{
+                code: CodeBlock,
+                delete: Blank
+              }}
+            />
+          </div>
+          <div className={`filled-blanks markdown-preview ${showAnswer ? 'show-answer' : ''}`}>
+            <Markdown source={correct} renderers={{ code: CodeBlock }} />
+          </div>
+        </div>
+        <div>
+          <button
+            className="btn-show-answer"
+            type="button"
+            onClick={() => {
+              this.setState({
+                showAnswer: !showAnswer
+              });
+            }}
+          >
+            {showAnswer ? 'Hide Answer' : 'Show Answer'}
+          </button>
+        </div>
+        <HintList hints={hints} />
+      </div>
+    );
+  }
+}
