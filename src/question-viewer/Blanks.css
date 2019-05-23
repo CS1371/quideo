@@ -1,20 +1,35 @@
 .question-area {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
-.question-area > div {
-  width: 45%;
+.question-area.hide-answer > .student-blanks {
+  width: 95%;
+  transition: width 1s ease-in-out 0.5s;
 }
 
-.filled-blanks {
+.question-area.hide-answer > .filled-blanks {
+  width: 0%;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: width 1s ease-in-out 0.5s, opacity 1s ease-in-out;
 }
 
-.show-answer.filled-blanks {
+.question-area.show-answer > .student-blanks {
+  width: 45%;
+  transition: width 1s ease-in-out;
+}
+
+.question-area.show-answer > .filled-blanks {
+  width: 45%;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: width 1s ease-in-out, opacity 1s ease-in-out 0.5s;
+}
+
+.question-area.hide-answer > .filled-blanks *,
+.question-area.show-answer > .filled-blanks * {
+  white-space: nowrap;
+  transition: white-space 0s ease-in-out 0.5s;
 }
 
 .btn-show-answer {

@@ -6,3 +6,12 @@
   border-radius: 5px;
   border: 1px solid black;
 }
+
+.invalid-blank {
+  border: 2px solid rgb(250, 66, 46);
+}
+
+/* Make sure we don't show students our mistakes! */
+.question-view .invalid-blank {
+  border: 1px solid black;
+}

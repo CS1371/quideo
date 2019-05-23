@@ -48,10 +48,14 @@ export default class Blank extends React.Component {
         effective = effective.replace(/!([^!]*)!/g, '$1');
       }
     }
+    const help =
+      effective.length > MAX_BLANK_LEN && readonly
+        ? 'You really should only have 20 characters'
+        : '';
     // now, if effective has ! ! as it's child, then let them enter!
     return (
       <input
-        className="blank-input"
+        className={`blank-input ${help.length !== 0 ? 'invalid-blank' : ''}`}
         type="text"
         value={effective.trim() === '' ? answer : effective}
         readOnly={readonly}
@@ -59,6 +63,7 @@ export default class Blank extends React.Component {
         onChange={v => this.setState({ answer: v.target.value })}
         spellCheck="false"
         autoCorrect="false"
+        title={help}
       />
     );
   }
