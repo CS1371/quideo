@@ -26,6 +26,7 @@ export class CodeBlock extends PureComponent {
           customStyle={{ padding: '', margin: '', whiteSpace: '' }}
           language="plain"
           style={matlab}
+          renderer={Blank}
         >
           {value}
         </SyntaxHighlighter>
