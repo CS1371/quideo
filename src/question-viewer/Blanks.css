@@ -32,6 +32,10 @@
   transition: white-space 0s ease-in-out 0.5s;
 }
 
+.question-area.hide-answer > .filled-blanks input {
+  display: none;
+}
+
 .btn-show-answer {
   padding: 20px;
   margin: 10px;
