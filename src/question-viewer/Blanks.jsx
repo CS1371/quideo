@@ -30,33 +30,40 @@ export default class Blanks extends React.Component {
     };
   }
 
+  renderPreview = () => {
+    const { question } = this.props;
+    const { showAnswer } = this.state;
+    return (
+      <div className={`question-area ${showAnswer ? 'show-answer' : 'hide-answer'}`}>
+        <div className="student-blanks markdown-preview">
+          <Markdown
+            source={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')}
+            renderers={{
+              code: CodeBlock,
+              delete: Blank
+            }}
+          />
+        </div>
+        <div className={`filled-blanks markdown-preview ${showAnswer ? 'show-answer' : ''}`}>
+          <Markdown
+            source={question}
+            renderers={{
+              code: CodeBlock,
+              delete: Blank
+            }}
+          />
+        </div>
+      </div>
+    );
+  };
+
   render() {
     // first show the normal Markdown (replace with BLANKS), then on showAnswer, show the other stuff
-    const { question, hints } = this.props;
+    const { hints } = this.props;
     const { showAnswer } = this.state;
-    const asked = question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ');
     return (
       <div className="fill-blank-question">
-        <div className={`question-area ${showAnswer ? 'show-answer' : 'hide-answer'}`}>
-          <div className="student-blanks markdown-preview">
-            <Markdown
-              source={asked}
-              renderers={{
-                code: CodeBlock,
-                delete: Blank
-              }}
-            />
-          </div>
-          <div className={`filled-blanks markdown-preview ${showAnswer ? 'show-answer' : ''}`}>
-            <Markdown
-              source={question}
-              renderers={{
-                code: CodeBlock,
-                delete: Blank
-              }}
-            />
-          </div>
-        </div>
+        {this.renderPreview()}
         <div>
           <button
             className="btn-show-answer"
