@@ -1,43 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import hash from 'object-hash';
-import Prompt from './Prompt';
-// For each prompt, we have an answer. The preamble
-// is already written, but each part has a prompt!
+import Markdown from 'react-markdown';
+import { CodeBlock } from '../utility';
 
-const ShortAnswer = props => {
-  // For each one, add a prompt/answer pair.
-  const { prompts, answers, hints } = props;
-  // map each one to a prompt/answer with hints
-  return (
-    <React.Fragment>
-      <hr />
-      {prompts.map((p, ind) => (
-        <Prompt
-          key={hash(p.prompt)}
-          prompt={p}
-          header={<p>{`#${ind + 1}. `}</p>}
-          answer={answers[ind]}
-          hints={hints.length === 0 ? [] : hints[ind]}
-        />
-      ))}
-    </React.Fragment>
-  );
-};
+import '../utility/MarkdownArea.css';
 
-ShortAnswer.propTypes = {
-  prompts: PropTypes.arrayOf(
-    PropTypes.shape({
-      prompt: PropTypes.string.isRequired,
-      isCode: PropTypes.bool.isRequired
-    })
-  ).isRequired,
-  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  hints: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
-};
+import './ShortAnswer.css';
 
-ShortAnswer.defaultProps = {
-  hints: []
-};
+export default class ShortAnswer extends React.Component {
+  static propTypes = {
+    prompt: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired
+  };
 
-export default ShortAnswer;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userAnswer: '',
+      showAnswer: false
+    };
+  }
+
+  render() {
+    const { prompt, answer } = this.props;
+    const { userAnswer, showAnswer } = this.state;
+
+    return (
+      <div className="short-answer-view">
+        <div className="markdown-preview">
+          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+        </div>
+        <div className={`short-answer-area ${showAnswer ? 'show-answer' : 'hide-answer'}`}>
+          <div className="short-user">
+            <textarea
+              onChange={v => {
+                this.setState({
+                  userAnswer: v
+                });
+              }}
+              value={userAnswer}
+              placeholder="Type your answer here..."
+            />
+          </div>
+          <div className="short-correct markdown-preview">
+            <Markdown source={answer} renderers={{ code: CodeBlock }} />
+          </div>
+        </div>
+        <button
+          type="button"
+          className="btn-show-answer"
+          onClick={() => {
+            this.setState({
+              showAnswer: !showAnswer
+            });
+          }}
+        >
+          {showAnswer ? 'Hide Answer' : 'Show Answer'}
+        </button>
+      </div>
+    );
+  }
+}

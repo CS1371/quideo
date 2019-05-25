@@ -1,0 +1,48 @@
+.short-answer-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.short-answer-area > .short-user {
+  display: flex;
+  justify-content: left;
+}
+
+.short-answer-area textarea {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  resize: vertical;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px;
+}
+
+.short-answer-area.hide-answer > .short-user {
+  width: 75%;
+  transition: width 1s ease-in-out 0.5s;
+}
+
+.short-answer-area.hide-answer > .short-correct {
+  width: 0%;
+  opacity: 0;
+  transition: width 1s ease-in-out 0.5s, opacity 1s ease-in-out;
+}
+
+.short-answer-area.show-answer > .short-user {
+  width: 45%;
+  transition: width 1s ease-in-out;
+}
+
+.short-answer-area.show-answer > .short-correct {
+  width: 45%;
+  opacity: 1;
+  transition: width 1s ease-in-out, opacity 1s ease-in-out 0.5s;
+}
+
+.short-answer-area.hide-answer > .short-correct *,
+.short-answer-area.show-answer > .short-correct * {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: white-space 0s ease-in-out 0.5s;
+}

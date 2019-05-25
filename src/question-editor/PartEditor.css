@@ -1,0 +1,13 @@
+.part-editor {
+  width: 90vw;
+}
+
+.specific-editor.editor-hide {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.specific-editor.editor-show {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}

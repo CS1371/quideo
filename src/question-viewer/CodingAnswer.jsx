@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
-import './CodingAnswer.css';
+import Markdown from 'react-markdown';
 import HintList from './HintList';
+import { CodeBlock } from '../utility';
+
+import '../utility/MarkdownArea.css';
+import './CodingAnswer.css';
 
 export default class CodingAnswer extends React.Component {
   static propTypes = {
+    prompt: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
     hints: PropTypes.arrayOf(PropTypes.string)
   };
@@ -29,7 +34,7 @@ export default class CodingAnswer extends React.Component {
     // if showing answer, we want our code side by side with theirs. Otherwise,
     // show our textarea and their preview.
     const { showAnswer, userAnswer } = this.state;
-    const { answer, hints } = this.props;
+    const { prompt, answer, hints } = this.props;
 
     let aceClass = '';
     if (showAnswer !== null && showAnswer) {
@@ -39,6 +44,9 @@ export default class CodingAnswer extends React.Component {
     }
     return (
       <div className="coding-answer">
+        <div className="markdown-preview">
+          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+        </div>
         <p>Type your code below. When ready, press Show Answer to compare</p>
         <div className={`code-area ${aceClass}`}>
           <AceEditor

@@ -30,11 +30,11 @@ const MarkdownEditor = props => {
           fontSize={18}
           wrapEnabled
         />
-        <div className="markdown-preview">
-          {!hidePreview ? (
+        {!hidePreview ? (
+          <div className="markdown-preview">
             <Markdown source={value} renderers={{ code: CodeBlock, delete: Blank }} />
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

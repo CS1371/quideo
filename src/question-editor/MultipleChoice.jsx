@@ -69,21 +69,23 @@ export default class MultipleChoice extends React.Component {
   renderError = () => {
     const { answer } = this.state;
     const { value } = this.props;
+    if (answer.length === 0) {
+      return null;
+    }
     const ind = value.findIndex(a => a.answer === answer);
-    return ind === -1 ? null : (
-      <React.Fragment>
-        <p className="reason-invalid">
-          <i>{`You've already given this as an answer (see #${ind + 1})`}</i>
-        </p>
-        <button
-          type="button"
-          id="addChoice"
-          onClick={this.addChoice}
-          disabled={answer === '' || ind !== -1}
-        >
-          Add this Choice
-        </button>
-      </React.Fragment>
+    return ind !== -1 ? (
+      <p className="reason-invalid">
+        <i>{`You've already given this as an answer (see #${ind + 1})`}</i>
+      </p>
+    ) : (
+      <button
+        type="button"
+        id="addChoice"
+        onClick={this.addChoice}
+        disabled={answer === '' || ind !== -1}
+      >
+        Add this Choice
+      </button>
     );
   };
 

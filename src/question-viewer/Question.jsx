@@ -2,21 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
+import hash from 'object-hash';
 import Tag from './Tag';
-import MultipleChoice from './MultipleChoice';
 import Rubric from './Rubric';
-import ShortAnswer from './ShortAnswer';
-import CodingAnswer from './CodingAnswer';
 import Preamble from './Preamble';
-import Blanks from './Blanks';
-import TYPES from './QuestionTypes';
-import { MultipleChoiceAnswer as AnswerType } from '../utility';
+import { Question as QuestionType } from '../utility';
 import './Question.css';
+import QuestionPart from './QuestionPart';
 
 export default class Question extends React.Component {
   static propTypes = {
     /** The ordering of this question */
-    index: PropTypes.number.isRequired,
+    index: PropTypes.number,
     /** The primary topic for this question */
     primaryTag: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -35,42 +32,12 @@ export default class Question extends React.Component {
     preamble: PropTypes.string.isRequired,
     /** The rating, from 0 to 4 */
     difficulty: PropTypes.number.isRequired,
-    /** The type of question (an enum?) */
-    type: PropTypes.oneOf(Object.values(TYPES)).isRequired,
-    /** The hints, which is just a string array in the order they should be given */
-    hints: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.string).isRequired,
-      PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired
-    ]).isRequired,
-    /** The question prompts, only for SA */
-    prompts: PropTypes.arrayOf(
-      PropTypes.shape({
-        prompt: PropTypes.string.isRequired,
-        isCode: PropTypes.bool.isRequired
-      })
-    ),
-    /** The answers as an array. Even though it always has the same shape,
-     * there are important implications on how it should be used in different
-     * question type contexts:
-     * * If we have MC, then this is an array of possible answer choices, with
-     * `isCorrect` set to true if the answer is correct. `explanation` is a
-     * markdown string that explains the answer
-     * * If we have SA, then this is an array of answers whose length should
-     * be the same as prompts
-     * * If we have FB, then this is the same as SA
-     * * If we have CA, this is a unary array with the TA's answer
-     *
-     * All answers support markdown in the entry.
-     */
-    answers: PropTypes.oneOfType([
-      PropTypes.arrayOf(AnswerType).isRequired,
-      PropTypes.arrayOf(PropTypes.string).isRequired,
-      PropTypes.string.isRequired
-    ]).isRequired
+    /** The questions to present */
+    questions: PropTypes.arrayOf(PropTypes.shape(QuestionType)).isRequired
   };
 
   static defaultProps = {
-    prompts: []
+    index: 0
   };
 
   constructor(props) {
@@ -80,24 +47,6 @@ export default class Question extends React.Component {
       showRubric: false
     };
   }
-  // Some stuff is common, some not so much. We print the common stuff,
-  // feed the other stuff accordingly!
-
-  renderQuestion = () => {
-    const { preamble, prompts, answers, hints, type } = this.props;
-    switch (type) {
-      case TYPES.MC:
-        return <MultipleChoice answers={answers} hints={hints} />;
-      case TYPES.SA:
-        return <ShortAnswer prompts={prompts} answers={answers} hints={hints} />;
-      case TYPES.FB:
-        return <Blanks question={preamble} answers={answers} hints={hints} />;
-      case TYPES.CA:
-        return <CodingAnswer answer={answers} hints={hints} />;
-      default:
-        return null;
-    }
-  };
 
   renderPeppers = () => {
     const { difficulty } = this.props;
@@ -109,12 +58,12 @@ export default class Question extends React.Component {
   };
 
   render() {
-    const { index, tags, primaryTag, rubric, preamble, type } = this.props;
+    const { index, tags, primaryTag, rubric, preamble, questions } = this.props;
     const { showRubric } = this.state;
     tags.sort((a, b) => a.week - b.week);
     tags.unshift(primaryTag);
 
-    const title = `${index}: ${primaryTag.name} - ${type}`;
+    const title = `${index}: ${primaryTag.name}`;
     // Don't print Preamble for Fill in the Blank (Because Blanks prints its own?)
     return (
       <div className="question-view">
@@ -125,8 +74,16 @@ export default class Question extends React.Component {
             <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
           ))}
         </div>
-        {type === TYPES.FB ? null : <Preamble value={preamble} />}
-        <div className="question-content">{this.renderQuestion()}</div>
+        {preamble === '' ? null : <Preamble value={preamble} />}
+        <div className="question-parts">
+          {questions.map((q, i) => (
+            <QuestionPart
+              header={<h2 className="question-header">{`#${i + 1} - ${q.type}`}</h2>}
+              {...q}
+              key={hash(q)}
+            />
+          ))}
+        </div>
         <div className="question-rubric">
           <button
             type="button"
