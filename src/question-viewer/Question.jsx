@@ -57,42 +57,34 @@ export default class Question extends React.Component {
     return peppers;
   };
 
+  renderPart = (q, i) => {
+    const { type } = q;
+    return (
+      <QuestionPart
+        header={<h2 className="question-header">{`#${i + 1} - ${type}`}</h2>}
+        key={hash(q)}
+        {...q}
+      />
+    );
+  };
+
   render() {
     const { index, tags, primaryTag, rubric, preamble, questions } = this.props;
     const { showRubric } = this.state;
-    tags.sort((a, b) => a.week - b.week);
-    tags.unshift(primaryTag);
-
-    const title = `${index}: ${primaryTag.name}`;
     // Don't print Preamble for Fill in the Blank (Because Blanks prints its own?)
     return (
       <div className="question-view">
-        <h1 className="question-title">{title}</h1>
+        <h1 className="question-title">{`${index}: ${primaryTag.name}`}</h1>
         <div className="question-difficulty">{this.renderPeppers()}</div>
         <div className="question-tags">
-          {tags.map(tag => (
-            <Tag key={`question-tag-${tag.name}`} week={tag.week} name={tag.name} />
+          {Array.concat(primaryTag, tags.sort((a, b) => a.week - b.week)).map(tag => (
+            <Tag key={hash(tag)} {...tag} />
           ))}
         </div>
         {preamble === '' ? null : <Preamble value={preamble} />}
-        <div className="question-parts">
-          {questions.map((q, i) => (
-            <QuestionPart
-              header={<h2 className="question-header">{`#${i + 1} - ${q.type}`}</h2>}
-              {...q}
-              key={hash(q)}
-            />
-          ))}
-        </div>
+        <div className="question-parts">{questions.map(this.renderPart)}</div>
         <div className="question-rubric">
-          <button
-            type="button"
-            onClick={() => {
-              this.setState({
-                showRubric: !showRubric
-              });
-            }}
-          >
+          <button type="button" onClick={() => this.setState({ showRubric: !showRubric })}>
             {showRubric ? 'Hide Rubric' : 'Show Rubric'}
           </button>
           <Rubric isShown={showRubric} text={rubric} />
