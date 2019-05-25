@@ -30,52 +30,44 @@ export default class CodingAnswer extends React.Component {
     };
   }
 
-  render() {
-    // if showing answer, we want our code side by side with theirs. Otherwise,
-    // show our textarea and their preview.
+  renderEditors = () => {
     const { showAnswer, userAnswer } = this.state;
-    const { prompt, answer, hints } = this.props;
+    const { answer } = this.props;
+    const editorProps = {
+      mode: 'matlab',
+      theme: 'sqlserver',
+      editorProps: { $blockScrolling: Infinity },
+      fontSize: 18,
+      width: '45%'
+    };
+    return (
+      <div className={`code-area ${showAnswer ? 'answer-show' : 'answer-hide'}`}>
+        <AceEditor
+          value={userAnswer}
+          onChange={val => {
+            this.setState({
+              userAnswer: val
+            });
+          }}
+          className="code-editor"
+          {...editorProps}
+        />
+        <AceEditor value={answer} className="answer-code-viewer" readOnly {...editorProps} />
+      </div>
+    );
+  };
 
-    let aceClass = '';
-    if (showAnswer !== null && showAnswer) {
-      aceClass = 'answer-show';
-    } else if (showAnswer !== null && !showAnswer) {
-      aceClass = 'answer-hide';
-    }
+  render() {
+    const { showAnswer } = this.state;
+    const { prompt, hints } = this.props;
+
     return (
       <div className="coding-answer">
         <div className="markdown-preview">
           <Markdown source={prompt} renderers={{ code: CodeBlock }} />
         </div>
         <p>Type your code below. When ready, press Show Answer to compare</p>
-        <div className={`code-area ${aceClass}`}>
-          <AceEditor
-            mode="matlab"
-            theme="sqlserver"
-            value={userAnswer}
-            onChange={val => {
-              this.setState({
-                userAnswer: val
-              });
-            }}
-            setOptions={{ autoScrollEditorIntoView: true }}
-            editorProps={{ $blockScrolling: true }}
-            width="45vw"
-            className="code-editor"
-            fontSize={18}
-          />
-          <AceEditor
-            mode="matlab"
-            theme="sqlserver"
-            value={answer}
-            className="answer-code-viewer"
-            fontSize={18}
-            width="45vw"
-            editorProps={{ $blockScrolling: Infinity }}
-            setOptions={{ autoScrollEditorIntoView: true }}
-            readOnly
-          />
-        </div>
+        {this.renderEditors()}
         <HintList hints={hints} />
         <button
           type="button"
