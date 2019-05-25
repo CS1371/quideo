@@ -17,7 +17,7 @@ export default class Option extends React.Component {
   };
 
   static defaultProps = {
-    handler: () => {},
+    handler: null,
     shouldExpand: false
   };
 
@@ -40,7 +40,9 @@ export default class Option extends React.Component {
           className="mc-answer"
           type="button"
           onClick={() => {
-            handler();
+            if (handler) {
+              handler();
+            }
             this.setState({
               isChosen: !isChosen
             });

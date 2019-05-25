@@ -37,7 +37,7 @@ Tag.defaultProps = {
   // For random, nothing!
   week: -1,
   color: 'random',
-  handler: () => {}
+  handler: null
 };
 
 export default Tag;

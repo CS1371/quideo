@@ -30,11 +30,7 @@ const TypeChooser = props => {
 TypeChooser.propTypes = {
   availableTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func
-};
-
-TypeChooser.defaultProps = {
-  onChange: () => {}
+  onChange: PropTypes.func.isRequired
 };
 
 export default TypeChooser;
