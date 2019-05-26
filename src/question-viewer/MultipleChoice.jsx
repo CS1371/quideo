@@ -13,9 +13,11 @@ const MultipleChoice = props => {
   const { answers, hints, prompt, showAnswer } = props;
   return (
     <div className="multiple-choice-question">
-      <div className="markdown-preview">
-        <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-      </div>
+      {prompt === '' ? null : (
+        <div className="markdown-preview">
+          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+        </div>
+      )}
       <p>Click the answer you think is correct</p>
       <div className="mc-answers">
         {answers.map(ans => (

@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimesSquare,
   faChevronSquareUp,
-  faChevronSquareDown
+  faChevronSquareDown,
+  faPencil
 } from '@fortawesome/pro-solid-svg-icons';
 import './OrderedList.css';
 
@@ -48,7 +49,7 @@ const renderMovers = (i, children, onChange) => {
 };
 
 const renderChildren = props => {
-  const { children, render, onChange } = props;
+  const { children, render, onChange, onEdit } = props;
   return children.map((n, i) => {
     const child = render(n, i);
     // for each child, map with the FA, the x, and the item itself
@@ -56,27 +57,36 @@ const renderChildren = props => {
       <div key={child.key} className="list-item">
         {renderMovers(i, children, onChange)}
         {child}
-        <FontAwesomeIcon
-          icon={faTimesSquare}
-          onClick={() => {
-            onRemove(i, children, onChange);
-          }}
-        />
+        <div className="list-ops">
+          <FontAwesomeIcon
+            icon={faPencil}
+            onClick={() => {
+              onEdit(n, i);
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faTimesSquare}
+            onClick={() => {
+              onRemove(i, children, onChange);
+            }}
+          />
+        </div>
       </div>
     );
   });
 };
 
 const OrderedList = props => {
-  const { children, render, onChange } = props;
-  return <React.Fragment>{renderChildren({ children, render, onChange })}</React.Fragment>;
+  const { children, render, onChange, onEdit } = props;
+  return <React.Fragment>{renderChildren({ children, render, onChange, onEdit })}</React.Fragment>;
 };
 
 OrderedList.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   children: PropTypes.array.isRequired,
   render: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default OrderedList;

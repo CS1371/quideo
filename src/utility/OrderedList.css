@@ -4,12 +4,21 @@
   align-items: center;
 }
 
-.list-item svg {
+.list-item .list-ops svg,
+.list-item .list-movers svg {
   color: rgb(250, 132, 132);
   font-size: 200%;
   margin-right: 20px;
   margin-left: 20px;
   cursor: pointer;
+}
+
+.list-item .list-ops svg:first-child {
+  color: rgb(158, 224, 247);
+}
+
+.list-item .list-ops svg:last-child {
+  color: rgb(250, 132, 132);
 }
 
 .list-movers {

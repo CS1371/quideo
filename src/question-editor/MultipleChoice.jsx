@@ -125,27 +125,23 @@ export default class MultipleChoice extends React.Component {
     );
   };
 
+  onEdit = (n, i) => {
+    const { onChange, value } = this.props;
+    this.setState(n);
+    value.splice(i, 1);
+    onChange(value);
+  };
+
   render() {
     const { onChange, value } = this.props;
     return (
       <div className="multipe-choice-container">
         <h2>Possible Choices</h2>
         <div className="confirmed-choices">
-          {value.length !== 0 ? <p>Click on a choice to edit it</p> : null}
           <OrderedList
-            render={(v, i) => (
-              <Option
-                key={hash(v)}
-                {...v}
-                shouldExpand
-                handler={() => {
-                  this.setState(v);
-                  value.splice(i, 1);
-                  onChange(value);
-                }}
-              />
-            )}
+            render={v => <Option key={hash(v)} {...v} shouldExpand />}
             onChange={onChange}
+            onEdit={this.onEdit}
           >
             {value}
           </OrderedList>
