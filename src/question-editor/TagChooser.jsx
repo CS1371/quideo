@@ -65,11 +65,9 @@ export default class TagChooser extends React.Component {
   renderSelector = () => {
     const { searchTerm } = this.state;
     const { value } = this.props;
-
-    const isValid =
-      this.possibleTags().filter(
-        t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
-      ).length !== 0;
+    const isValid = this.possibleTags().some(
+      t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
+    );
 
     return (
       <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
@@ -82,11 +80,7 @@ export default class TagChooser extends React.Component {
           list="possibleTags"
           placeholder="Type a tag name..."
           value={searchTerm}
-          onChange={e => {
-            this.setState({
-              searchTerm: e.target.value
-            });
-          }}
+          onChange={e => this.setState({ searchTerm: e.target.value })}
           onKeyDown={e => {
             if (e.key === 'Enter') {
               e.preventDefault();

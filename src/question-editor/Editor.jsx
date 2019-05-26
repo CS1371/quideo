@@ -28,11 +28,11 @@ export default class Editor extends React.Component {
     };
   }
 
-  render() {
-    const { tags, preamble, questions, difficulty, rubric } = this.state;
+  renderIntro = () => {
+    const { tags, preamble } = this.state;
     const { availableTags } = this.props;
     return (
-      <div className="question-editor">
+      <React.Fragment>
         <TagChooser
           availableTags={availableTags}
           value={tags}
@@ -52,6 +52,15 @@ export default class Editor extends React.Component {
             });
           }}
         />
+      </React.Fragment>
+    );
+  };
+
+  render() {
+    const { questions, difficulty, rubric } = this.state;
+    return (
+      <div className="question-editor">
+        {this.renderIntro()}
         <PartEditor
           availableTypes={Object.values(TYPES)}
           onChange={q => {
