@@ -3,19 +3,21 @@
   justify-content: center;
 }
 
-.type-buttons button {
+.type-select-btn {
   padding: 10px;
   margin: 10px;
   border: 3px solid white;
   border-radius: 5px;
-  background-color: rgb(43, 43, 43);
+  background-color: transparent;
   color: white;
   cursor: pointer;
+  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 }
 
-.type-buttons button.type-selected {
+.type-select-btn.type-selected {
   background-color: lightgreen;
   color: black;
+  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 }
 
 .type-buttons button svg {

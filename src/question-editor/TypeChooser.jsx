@@ -15,7 +15,7 @@ const TypeChooser = props => {
           <button
             key={hash(t)}
             type="button"
-            className={value === t ? 'type-selected' : ''}
+            className={`type-select-btn ${value === t ? 'type-selected' : ''}`}
             onClick={() => onChange(t)}
           >
             {value === t ? <FontAwesomeIcon icon={faCheckCircle} /> : null}

@@ -60,6 +60,7 @@ export default class Editor extends React.Component {
     const { confirmed, difficulty, rubric } = this.state;
     return (
       <div className="question-editor">
+        <h1>Question Editor</h1>
         {this.renderIntro()}
         <PartEditor
           availableTypes={Object.values(TYPES)}

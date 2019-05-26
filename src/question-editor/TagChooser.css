@@ -4,12 +4,19 @@
   border-radius: 5px;
 }
 
-.tag-selector button {
+.tag-add-btn {
   margin: 10px;
   padding: 10px;
+  border: 1px solid white;
   border-radius: 5px;
   background-color: lightblue;
   cursor: pointer;
+}
+
+.tag-add-btn:disabled {
+  background-color: rgb(94, 94, 94);
+  color: white;
+  cursor: not-allowed;
 }
 
 .tag-selector.is-valid button {

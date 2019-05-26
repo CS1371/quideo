@@ -10,6 +10,7 @@ import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
 import Blanks from './Blanks';
 import './PartEditor.css';
+import Hint from '../question-viewer/Hint';
 
 export default class PartEditor extends React.Component {
   static propTypes = {
@@ -21,12 +22,12 @@ export default class PartEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    // What do we need to keep
     this.state = {
       type: '',
       prompt: '',
       answer: '',
-      hints: []
+      hints: [],
+      hint: ''
     };
   }
 
@@ -42,6 +43,39 @@ export default class PartEditor extends React.Component {
         answer: ''
       });
     }
+  };
+
+  renderHints = () => {
+    const { hints, hint } = this.state;
+
+    return (
+      <div className="new-hints">
+        <OrderedList
+          onChange={h => this.setState({ hints: h })}
+          onEdit={(h, i) => {
+            hints.splice(i, 1);
+            this.setState({ hint: h, hints });
+          }}
+          render={h => <Hint key={hash(h)} text={h} isShown />}
+        >
+          {hints}
+        </OrderedList>
+        <MarkdownEditor
+          value={hint}
+          onChange={h => this.setState({ hint: h })}
+          height="150px"
+          title="Add Some Hints"
+        />
+        <button
+          type="button"
+          className="hint-add-btn"
+          onClick={() => this.setState({ hints: hints.concat(hint), hint: '' })}
+          disabled={hint === ''}
+        >
+          Add Hint
+        </button>
+      </div>
+    );
   };
 
   renderQuestion = () => {
@@ -85,6 +119,7 @@ export default class PartEditor extends React.Component {
           />
         ) : null}
         {specifics}
+        {this.renderHints()}
       </div>
     );
   };
@@ -137,11 +172,10 @@ export default class PartEditor extends React.Component {
   };
 
   render() {
-    const { type, hints } = this.state;
+    const { type } = this.state;
     const { availableTypes, onChange, confirmed } = this.props;
 
     const title = `Part Editor${type === '' ? '' : `: ${type}`}`;
-
     return (
       <div className="question-editor-parts">
         <div className="confirmed-parts">
@@ -153,8 +187,8 @@ export default class PartEditor extends React.Component {
           <h2>{title}</h2>
           <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
           {this.renderQuestion()}
-          {this.renderAdder()}
         </div>
+        {this.renderAdder()}
       </div>
     );
   }

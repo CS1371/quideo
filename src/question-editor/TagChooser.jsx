@@ -93,7 +93,12 @@ export default class TagChooser extends React.Component {
             <option key={tag.name} value={tag.name} />
           ))}
         </datalist>
-        <button type="button" onClick={() => this.addTag()} disabled={!isValid}>
+        <button
+          className="tag-add-btn"
+          type="button"
+          onClick={() => this.addTag()}
+          disabled={!isValid}
+        >
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
