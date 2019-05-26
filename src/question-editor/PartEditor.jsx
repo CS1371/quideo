@@ -120,7 +120,7 @@ export default class PartEditor extends React.Component {
     );
   };
 
-  renderConfirmed = (n, i) => {
+  renderConfirmed = n => {
     return (
       <div key={hash(n)} className="confirmed-part">
         <QuestionPart key={hash(n)} showAnswer {...n} />
@@ -144,11 +144,7 @@ export default class PartEditor extends React.Component {
     return (
       <div className="question-parts">
         <div className="confirmed-parts">
-          <OrderedList
-            onChange={v => onChange(v)}
-            onEdit={(n, i) => this.onEdit(n, i)}
-            render={this.renderConfirmed}
-          >
+          <OrderedList onChange={onChange} onEdit={this.onEdit} render={this.renderConfirmed}>
             {confirmed}
           </OrderedList>
         </div>
