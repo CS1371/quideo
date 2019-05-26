@@ -22,7 +22,7 @@ export default class Editor extends React.Component {
     this.state = {
       tags: [],
       preamble: '',
-      questions: [],
+      confirmed: [],
       rubric: '',
       difficulty: 0
     };
@@ -57,15 +57,16 @@ export default class Editor extends React.Component {
   };
 
   render() {
-    const { questions, difficulty, rubric } = this.state;
+    const { confirmed, difficulty, rubric } = this.state;
     return (
       <div className="question-editor">
         {this.renderIntro()}
         <PartEditor
           availableTypes={Object.values(TYPES)}
+          confirmed={confirmed}
           onChange={q => {
             this.setState({
-              questions: questions.concat(q)
+              confirmed: q
             });
           }}
         />

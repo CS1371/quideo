@@ -11,3 +11,17 @@
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+
+.part-add-btn,
+.edit-confirmed-btn {
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: lightgreen;
+}
+
+.edit-confirmed-btn {
+  background-color: lightblue;
+}

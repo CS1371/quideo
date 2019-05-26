@@ -14,25 +14,28 @@ export default class CodingAnswer extends React.Component {
   static propTypes = {
     prompt: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
-    hints: PropTypes.arrayOf(PropTypes.string)
+    hints: PropTypes.arrayOf(PropTypes.string),
+    showAnswer: PropTypes.bool
   };
 
   static defaultProps = {
-    hints: []
+    hints: [],
+    showAnswer: false
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      showAnswer: null,
+      toggleAnswer: false,
       userAnswer: ''
     };
   }
 
   renderEditors = () => {
-    const { showAnswer, userAnswer } = this.state;
-    const { answer } = this.props;
+    const { toggleAnswer, userAnswer } = this.state;
+    const { answer, showAnswer } = this.props;
+    const shouldShow = showAnswer || toggleAnswer;
     const editorProps = {
       mode: 'matlab',
       theme: 'sqlserver',
@@ -41,7 +44,7 @@ export default class CodingAnswer extends React.Component {
       width: '45%'
     };
     return (
-      <div className={`code-area ${showAnswer ? 'answer-show' : 'answer-hide'}`}>
+      <div className={`code-area ${shouldShow ? 'answer-show' : 'answer-hide'}`}>
         <AceEditor
           value={userAnswer}
           onChange={val => {
@@ -58,9 +61,9 @@ export default class CodingAnswer extends React.Component {
   };
 
   render() {
-    const { showAnswer } = this.state;
-    const { prompt, hints } = this.props;
-
+    const { toggleAnswer } = this.state;
+    const { showAnswer, prompt, hints } = this.props;
+    const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="coding-answer">
         <div className="markdown-preview">
@@ -74,11 +77,11 @@ export default class CodingAnswer extends React.Component {
           className="btn-answer"
           onClick={() => {
             this.setState({
-              showAnswer: !showAnswer
+              toggleAnswer: !toggleAnswer
             });
           }}
         >
-          {showAnswer ? 'Hide Answer' : 'Show Answer'}
+          {shouldShow ? 'Hide Answer' : 'Show Answer'}
         </button>
       </div>
     );

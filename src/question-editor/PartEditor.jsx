@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import hash from 'object-hash';
 import TypeChooser from './TypeChooser';
 import MarkdownEditor from './MarkdownEditor';
-import { TYPES } from '../utility';
+import { QuestionPart } from '../question-viewer';
+import { TYPES, Question as QuestionType, OrderedList } from '../utility';
 import MultipleChoice from './MultipleChoice';
 import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
@@ -12,6 +14,7 @@ import './PartEditor.css';
 export default class PartEditor extends React.Component {
   static propTypes = {
     availableTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    confirmed: PropTypes.arrayOf(PropTypes.shape(QuestionType)).isRequired,
     onChange: PropTypes.func.isRequired
   };
 
@@ -87,7 +90,7 @@ export default class PartEditor extends React.Component {
 
   renderAdder = () => {
     const { type, prompt, answer, hints } = this.state;
-    const { onChange } = this.props;
+    const { confirmed, onChange } = this.props;
     if (type === '' || (prompt === '' && answer === '')) {
       return null;
     }
@@ -96,12 +99,14 @@ export default class PartEditor extends React.Component {
         type="button"
         className="part-add-btn"
         onClick={() => {
-          onChange({
-            type,
-            prompt,
-            answer,
-            hints
-          });
+          onChange(
+            confirmed.concat({
+              type,
+              prompt,
+              answer,
+              hints
+            })
+          );
           this.setState({
             type: '',
             prompt: '',
@@ -115,18 +120,46 @@ export default class PartEditor extends React.Component {
     );
   };
 
+  renderConfirmed = (n, i) => {
+    const { onChange, confirmed } = this.props;
+    return (
+      <div key={hash(n)} className="confirmed-part">
+        <QuestionPart key={hash(n)} showAnswer {...n} />
+        <button
+          type="button"
+          className="edit-confirmed-btn"
+          onClick={() => {
+            // set our own state
+            this.setState(n);
+            confirmed.splice(i, 1);
+            onChange(confirmed);
+          }}
+        >
+          Edit
+        </button>
+      </div>
+    );
+  };
+
   render() {
     const { type, hints } = this.state;
-    const { availableTypes } = this.props;
+    const { availableTypes, onChange, confirmed } = this.props;
 
     const title = `Part Editor${type === '' ? '' : `: ${type}`}`;
 
     return (
-      <div className="part-editor">
-        <h2>{title}</h2>
-        <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
-        {this.renderQuestion()}
-        {this.renderAdder()}
+      <div className="question-parts">
+        <div className="confirmed-parts">
+          <OrderedList onChange={v => onChange(v)} render={this.renderConfirmed}>
+            {confirmed}
+          </OrderedList>
+        </div>
+        <div className="part-editor">
+          <h2>{title}</h2>
+          <TypeChooser availableTypes={availableTypes} value={type} onChange={this.setType} />
+          {this.renderQuestion()}
+          {this.renderAdder()}
+        </div>
       </div>
     );
   }

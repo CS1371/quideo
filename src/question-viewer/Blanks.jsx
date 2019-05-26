@@ -15,26 +15,29 @@ import './Blanks.css';
 export default class Blanks extends React.Component {
   static propTypes = {
     question: PropTypes.string.isRequired,
-    hints: PropTypes.arrayOf(PropTypes.string)
+    hints: PropTypes.arrayOf(PropTypes.string),
+    showAnswer: PropTypes.bool
   };
 
   static defaultProps = {
-    hints: []
+    hints: [],
+    showAnswer: false
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      showAnswer: false
+      toggleAnswer: false
     };
   }
 
   renderPreview = () => {
-    const { question } = this.props;
-    const { showAnswer } = this.state;
+    const { question, showAnswer } = this.props;
+    const { toggleAnswer } = this.state;
+    const shouldShow = showAnswer || toggleAnswer;
     return (
-      <div className={`question-area ${showAnswer ? 'show-answer' : 'hide-answer'}`}>
+      <div className={`question-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
         <div className="student-blanks markdown-preview">
           <Markdown
             source={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')}
@@ -44,7 +47,7 @@ export default class Blanks extends React.Component {
             }}
           />
         </div>
-        <div className={`filled-blanks markdown-preview ${showAnswer ? 'show-answer' : ''}`}>
+        <div className={`filled-blanks markdown-preview ${shouldShow ? 'show-answer' : ''}`}>
           <Markdown
             source={question}
             renderers={{
@@ -59,8 +62,9 @@ export default class Blanks extends React.Component {
 
   render() {
     // first show the normal Markdown (replace with BLANKS), then on showAnswer, show the other stuff
-    const { hints } = this.props;
-    const { showAnswer } = this.state;
+    const { showAnswer, hints } = this.props;
+    const { toggleAnswer } = this.state;
+
     return (
       <div className="fill-blank-question">
         {this.renderPreview()}
@@ -70,11 +74,11 @@ export default class Blanks extends React.Component {
             type="button"
             onClick={() => {
               this.setState({
-                showAnswer: !showAnswer
+                toggleAnswer: !toggleAnswer
               });
             }}
           >
-            {showAnswer ? 'Hide Answer' : 'Show Answer'}
+            {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
           </button>
         </div>
         <HintList hints={hints} />

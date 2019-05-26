@@ -50,11 +50,12 @@ const renderMovers = (i, children, onChange) => {
 const renderChildren = props => {
   const { children, render, onChange } = props;
   return children.map((n, i) => {
+    const child = render(n, i);
     // for each child, map with the FA, the x, and the item itself
     return (
-      <div key={render(n).key} className="list-item">
+      <div key={child.key} className="list-item">
         {renderMovers(i, children, onChange)}
-        {render(n, i)}
+        {child}
         <FontAwesomeIcon
           icon={faTimesSquare}
           onClick={() => {

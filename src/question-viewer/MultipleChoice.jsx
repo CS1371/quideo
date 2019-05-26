@@ -10,7 +10,7 @@ import '../utility/MarkdownArea.css';
 import './MultipleChoice.css';
 
 const MultipleChoice = props => {
-  const { answers, hints, prompt } = props;
+  const { answers, hints, prompt, showAnswer } = props;
   return (
     <div className="multiple-choice-question">
       <div className="markdown-preview">
@@ -19,7 +19,7 @@ const MultipleChoice = props => {
       <p>Click the answer you think is correct</p>
       <div className="mc-answers">
         {answers.map(ans => (
-          <Option key={hash(ans.answer)} {...ans} />
+          <Option key={hash(ans.answer)} {...ans} shouldExpand={showAnswer} />
         ))}
       </div>
       <div>
@@ -32,11 +32,13 @@ const MultipleChoice = props => {
 MultipleChoice.propTypes = {
   prompt: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(Answer).isRequired,
-  hints: PropTypes.arrayOf(PropTypes.string)
+  hints: PropTypes.arrayOf(PropTypes.string),
+  showAnswer: PropTypes.bool
 };
 
 MultipleChoice.defaultProps = {
-  hints: []
+  hints: [],
+  showAnswer: false
 };
 
 export default MultipleChoice;

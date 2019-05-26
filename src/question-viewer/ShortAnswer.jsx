@@ -10,7 +10,12 @@ import './ShortAnswer.css';
 export default class ShortAnswer extends React.Component {
   static propTypes = {
     prompt: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired
+    answer: PropTypes.string.isRequired,
+    showAnswer: PropTypes.bool
+  };
+
+  static defaultProps = {
+    showAnswer: false
   };
 
   constructor(props) {
@@ -18,20 +23,20 @@ export default class ShortAnswer extends React.Component {
 
     this.state = {
       userAnswer: '',
-      showAnswer: false
+      toggleAnswer: false
     };
   }
 
   render() {
-    const { prompt, answer } = this.props;
-    const { userAnswer, showAnswer } = this.state;
-
+    const { prompt, answer, showAnswer } = this.props;
+    const { userAnswer, toggleAnswer } = this.state;
+    const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="short-answer-view">
         <div className="markdown-preview">
           <Markdown source={prompt} renderers={{ code: CodeBlock }} />
         </div>
-        <div className={`short-answer-area ${showAnswer ? 'show-answer' : 'hide-answer'}`}>
+        <div className={`short-answer-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
           <div className="short-user">
             <textarea
               onChange={v => {
@@ -52,11 +57,11 @@ export default class ShortAnswer extends React.Component {
           className="btn-show-answer"
           onClick={() => {
             this.setState({
-              showAnswer: !showAnswer
+              toggleAnswer: !toggleAnswer
             });
           }}
         >
-          {showAnswer ? 'Hide Answer' : 'Show Answer'}
+          {shouldShow ? 'Hide Answer' : 'Show Answer'}
         </button>
       </div>
     );

@@ -6,6 +6,11 @@
   max-width: 95vw;
 }
 
+.coding-answer {
+  width: 95%;
+  min-width: 75vw;
+}
+
 .answer-code-viewer {
   opacity: 0;
 }

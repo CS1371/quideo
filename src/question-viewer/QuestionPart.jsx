@@ -10,20 +10,20 @@ import CodingAnswer from './CodingAnswer';
 import './QuestionPart.css';
 
 const QuestionPart = props => {
-  const { prompt, answer, hints, type, header } = props;
+  const { prompt, answer, hints, type, header, showAnswer } = props;
   let question = null;
   switch (type) {
     case TYPES.MC:
-      question = <MultipleChoice prompt={prompt} answers={answer} />;
+      question = <MultipleChoice showAnswer={showAnswer} prompt={prompt} answers={answer} />;
       break;
     case TYPES.SA:
-      question = <ShortAnswer prompt={prompt} answer={answer} />;
+      question = <ShortAnswer showAnswer={showAnswer} prompt={prompt} answer={answer} />;
       break;
     case TYPES.FB:
-      question = <Blanks question={answer} />;
+      question = <Blanks showAnswer={showAnswer} question={answer} />;
       break;
     case TYPES.CA:
-      question = <CodingAnswer prompt={prompt} answer={answer} />;
+      question = <CodingAnswer showAnswer={showAnswer} prompt={prompt} answer={answer} />;
       break;
     default:
       return null;
@@ -32,18 +32,20 @@ const QuestionPart = props => {
     <div className="question-part">
       {header}
       {question}
-      <HintList hints={hints} />
+      <HintList hints={hints} showAll={showAnswer} />
     </div>
   );
 };
 
 QuestionPart.propTypes = {
   header: PropTypes.node,
+  showAnswer: PropTypes.bool,
   ...QuestionType
 };
 
 QuestionPart.defaultProps = {
-  header: null
+  header: null,
+  showAnswer: false
 };
 
 export default QuestionPart;
