@@ -76,6 +76,7 @@ export default class PartEditor extends React.Component {
             value={prompt}
             title="Prompt"
             help="Write your question here"
+            height="300px"
             onChange={v => {
               this.setState({
                 prompt: v
@@ -142,7 +143,7 @@ export default class PartEditor extends React.Component {
     const title = `Part Editor${type === '' ? '' : `: ${type}`}`;
 
     return (
-      <div className="question-parts">
+      <div className="question-editor-parts">
         <div className="confirmed-parts">
           <OrderedList onChange={onChange} onEdit={this.onEdit} render={this.renderConfirmed}>
             {confirmed}
