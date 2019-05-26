@@ -1,0 +1,14 @@
+.hint-add-btn {
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: lightgreen;
+}
+
+.hint-add-btn:disabled {
+  cursor: not-allowed;
+  background-color: rgb(88, 88, 88);
+  color: white;
+}

@@ -10,7 +10,7 @@ import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
 import Blanks from './Blanks';
 import './PartEditor.css';
-import Hint from '../question-viewer/Hint';
+import HintEditor from './HintEditor';
 
 export default class PartEditor extends React.Component {
   static propTypes = {
@@ -45,41 +45,8 @@ export default class PartEditor extends React.Component {
     }
   };
 
-  renderHints = () => {
-    const { hints, hint } = this.state;
-
-    return (
-      <div className="new-hints">
-        <OrderedList
-          onChange={h => this.setState({ hints: h })}
-          onEdit={(h, i) => {
-            hints.splice(i, 1);
-            this.setState({ hint: h, hints });
-          }}
-          render={h => <Hint key={hash(h)} text={h} isShown />}
-        >
-          {hints}
-        </OrderedList>
-        <MarkdownEditor
-          value={hint}
-          onChange={h => this.setState({ hint: h })}
-          height="150px"
-          title="Add Some Hints"
-        />
-        <button
-          type="button"
-          className="hint-add-btn"
-          onClick={() => this.setState({ hints: hints.concat(hint), hint: '' })}
-          disabled={hint === ''}
-        >
-          Add Hint
-        </button>
-      </div>
-    );
-  };
-
   renderQuestion = () => {
-    const { type, prompt, answer } = this.state;
+    const { type, prompt, answer, hints, hint } = this.state;
     let specifics = null;
     const questionProps = {
       value: answer,
@@ -119,7 +86,7 @@ export default class PartEditor extends React.Component {
           />
         ) : null}
         {specifics}
-        {this.renderHints()}
+        <HintEditor hints={hints} hint={hint} onChange={h => this.setState(h)} />
       </div>
     );
   };
