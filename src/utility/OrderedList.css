@@ -27,6 +27,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .list-item .list-ops svg:first-child {
   color: rgb(158, 224, 247);
 }
