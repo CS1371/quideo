@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
-import HintList from './HintList';
 import { CodeBlock, Blank } from '../utility';
+import HintList from './HintList';
 
 import '../utility/MarkdownArea.css';
-
 import './Blanks.css';
 
 // Show two markdown areas side-by-side - the original (with text boxes)

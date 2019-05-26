@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import Markdown from 'react-markdown';
+import { MultipleChoiceAnswer as Answer, CodeBlock } from '../utility';
 import HintList from './HintList';
 import Option from './Option';
-import { MultipleChoiceAnswer as Answer, CodeBlock } from '../utility';
 
 import '../utility/MarkdownArea.css';
 import './MultipleChoice.css';

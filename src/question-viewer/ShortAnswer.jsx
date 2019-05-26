@@ -4,7 +4,6 @@ import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
 
 import '../utility/MarkdownArea.css';
-
 import './ShortAnswer.css';
 
 export default class ShortAnswer extends React.Component {

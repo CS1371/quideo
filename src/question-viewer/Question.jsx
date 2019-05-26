@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot } from '@fortawesome/free-solid-svg-icons';
 import hash from 'object-hash';
+import { Question as QuestionType } from '../utility';
 import Tag from './Tag';
 import Rubric from './Rubric';
 import Preamble from './Preamble';
-import { Question as QuestionType } from '../utility';
-import './Question.css';
 import QuestionPart from './QuestionPart';
+
+import './Question.css';
 
 export default class Question extends React.Component {
   static propTypes = {

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import TypeChooser from './TypeChooser';
-import MarkdownEditor from './MarkdownEditor';
 import { QuestionPart } from '../question-viewer';
 import { TYPES, Question as QuestionType, OrderedList } from '../utility';
+import TypeChooser from './TypeChooser';
+import MarkdownEditor from './MarkdownEditor';
 import MultipleChoice from './MultipleChoice';
 import CodingAnswer from './CodingAnswer';
 import ShortAnswer from './ShortAnswer';
 import Blanks from './Blanks';
-import './PartEditor.css';
 import HintEditor from './HintEditor';
+
+import './PartEditor.css';
 
 export default class PartEditor extends React.Component {
   static propTypes = {

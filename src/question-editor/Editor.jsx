@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TYPES } from '../utility';
 import MarkdownEditor from './MarkdownEditor';
 import PartEditor from './PartEditor';
 import Difficulty from './Difficulty';
 import TagChooser from './TagChooser';
-import { TYPES } from '../utility';
+
+import './Editor.css';
 
 export default class Editor extends React.Component {
   static propTypes = {

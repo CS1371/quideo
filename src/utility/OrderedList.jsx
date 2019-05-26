@@ -7,6 +7,7 @@ import {
   faChevronSquareDown,
   faPencil
 } from '@fortawesome/pro-solid-svg-icons';
+
 import './OrderedList.css';
 
 const onSwap = (a, b, value, onChange) => {

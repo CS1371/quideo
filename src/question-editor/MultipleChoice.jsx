@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import { MultipleChoiceAnswer as AnswerType } from '../utility';
+import { MultipleChoiceAnswer as AnswerType, OrderedList } from '../utility';
 import { Option } from '../question-viewer';
 import MarkdownEditor from './MarkdownEditor';
 
 import './MultipleChoice.css';
-import OrderedList from '../utility/OrderedList';
 
 export default class MultipleChoice extends React.Component {
   static propTypes = {

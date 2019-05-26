@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './Difficulty.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPepperHot, faMinusCircle, faPlusCircle } from '@fortawesome/pro-solid-svg-icons';
+
+import './Difficulty.css';
 
 const Difficulty = props => {
   const { value, onChange } = props;

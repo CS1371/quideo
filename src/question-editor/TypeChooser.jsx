@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/pro-light-svg-icons';
+
 import './TypeChooser.css';
 
 const TypeChooser = props => {

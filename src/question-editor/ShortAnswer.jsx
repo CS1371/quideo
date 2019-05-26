@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import MarkdownEditor from './MarkdownEditor';
 
-import './ShortAnswer.css';
 import '../utility/MarkdownArea.css';
-
+import './ShortAnswer.css';
 // Each prompt will either be code or free response (markdown)
 
 const ShortAnswer = props => {

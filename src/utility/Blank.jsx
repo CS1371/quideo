@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './Blank.css';
 
 const MAX_BLANK_LEN = 20;

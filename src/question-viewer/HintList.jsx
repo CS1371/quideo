@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import Hint from './Hint';
+
 import './HintList.css';
 
 export default class HintList extends React.Component {

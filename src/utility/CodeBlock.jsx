@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import matlab from './matlab';
-import './CodeBlock.css';
 import Blank from './lineRenderer';
+
+import './CodeBlock.css';
 
 export class CodeBlock extends PureComponent {
   static propTypes = {

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-light-svg-icons';
 import { Tag } from '../question-viewer';
 import { Tag as TagShape } from '../utility';
+
 import './TagChooser.css';
 
 export default class TagChooser extends React.Component {

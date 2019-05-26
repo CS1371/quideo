@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { CodeBlock } from '../utility';
-import '../utility/MarkdownArea.css';
 
+import '../utility/MarkdownArea.css';
 import './Preamble.css';
 
 const Preamble = props => {

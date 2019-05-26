@@ -2,6 +2,7 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { CodeBlock } from '../utility';
+
 import '../utility/MarkdownArea.css';
 import './Rubric.css';
 

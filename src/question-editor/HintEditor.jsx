@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import MarkdownEditor from './MarkdownEditor';
 import { OrderedList } from '../utility';
 import { Hint } from '../question-viewer';
+import MarkdownEditor from './MarkdownEditor';
+
+import './HintEditor.css';
 
 const HintEditor = props => {
   const { hints, hint, onChange } = props;

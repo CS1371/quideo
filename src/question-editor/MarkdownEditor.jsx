@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
 import Markdown from 'react-markdown';
+import { CodeBlock, Blank } from '../utility';
 
 import 'brace/mode/markdown';
 import 'brace/theme/tomorrow_night_bright';
 
 import './MarkdownEditor.css';
-import { CodeBlock, Blank } from '../utility';
 
 const MarkdownEditor = props => {
   const { value, title, help, onChange, hidePreview, height } = props;

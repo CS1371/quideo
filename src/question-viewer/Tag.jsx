@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './Tag.css';
 
 const COLORS = ['red', 'green', 'blue', 'orange', 'grey', 'random'];

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
+import Markdown from 'react-markdown';
+import { CodeBlock } from '../utility';
+import HintList from './HintList';
+
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
-import Markdown from 'react-markdown';
-import HintList from './HintList';
-import { CodeBlock } from '../utility';
 
 import '../utility/MarkdownArea.css';
 import './CodingAnswer.css';
