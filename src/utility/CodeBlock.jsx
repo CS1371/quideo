@@ -29,7 +29,7 @@ export class CodeBlock extends PureComponent {
           style={matlab}
           renderer={Blank}
         >
-          {value}
+          {value.replace(/~~![^~]+!~~/g, '%{$&}%')}
         </SyntaxHighlighter>
       );
     }
