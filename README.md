@@ -1,6 +1,6 @@
 # Quideo
 
-[![codebeat badge](https://codebeat.co/badges/a8e9687d-ca45-4cbc-8174-be672b2d6832)](https://codebeat.co/projects/github-com-cs1371-quideo-redo)
+[![codebeat badge](https://codebeat.co/badges/0df09b6f-ba49-4007-8194-bc081351fc17)](https://codebeat.co/projects/github-com-cs1371-quideo-master)
 
 Qudieo is the next generation of online learning.
 
