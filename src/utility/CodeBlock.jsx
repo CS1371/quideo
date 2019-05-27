@@ -20,6 +20,7 @@ export class CodeBlock extends PureComponent {
   render() {
     const { language, value } = this.props;
     // if in command window OR only one line, no new lines
+    const blankValue = value.replace(/~~![^~]+!~~/g, '%{$&}%');
     if (language !== 'matlab') {
       return (
         <SyntaxHighlighter
@@ -29,7 +30,7 @@ export class CodeBlock extends PureComponent {
           style={matlab}
           renderer={Blank}
         >
-          {value.replace(/~~![^~]+!~~/g, '%{$&}%')}
+          {blankValue}
         </SyntaxHighlighter>
       );
     }
@@ -42,7 +43,7 @@ export class CodeBlock extends PureComponent {
         style={matlab}
         renderer={Blank}
       >
-        {value.replace(/~~![^~]+!~~/g, '%{$&}%')}
+        {blankValue}
       </SyntaxHighlighter>
     );
   }
