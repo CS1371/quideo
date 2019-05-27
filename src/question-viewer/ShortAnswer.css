@@ -4,6 +4,11 @@
   width: 100%;
 }
 
+.short-prompt {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .short-answer-area > .short-user {
   display: flex;
   justify-content: left;

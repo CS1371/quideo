@@ -32,7 +32,7 @@ export default class ShortAnswer extends React.Component {
     const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="short-answer-view">
-        <div className="markdown-preview">
+        <div className="short-prompt markdown-preview">
           <Markdown source={prompt} renderers={{ code: CodeBlock }} />
         </div>
         <div className={`short-answer-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>

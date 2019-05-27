@@ -72,6 +72,15 @@ export default class Question extends React.Component {
   render() {
     const { index, tags, primaryTag, rubric, preamble, questions } = this.props;
     const { showRubric } = this.state;
+
+    const rubricView = (
+      <div className="question-rubric">
+        <button type="button" onClick={() => this.setState({ showRubric: !showRubric })}>
+          {showRubric ? 'Hide Rubric' : 'Show Rubric'}
+        </button>
+        <Rubric isShown={showRubric} text={rubric} />
+      </div>
+    );
     // Don't print Preamble for Fill in the Blank (Because Blanks prints its own?)
     return (
       <div className="question-view">
@@ -89,12 +98,7 @@ export default class Question extends React.Component {
         </div>
         {preamble === '' ? null : <Preamble value={preamble} />}
         <div className="question-parts">{questions.map(this.renderPart)}</div>
-        <div className="question-rubric">
-          <button type="button" onClick={() => this.setState({ showRubric: !showRubric })}>
-            {showRubric ? 'Hide Rubric' : 'Show Rubric'}
-          </button>
-          <Rubric isShown={showRubric} text={rubric} />
-        </div>
+        {rubric === '' ? null : rubricView}
       </div>
     );
   }

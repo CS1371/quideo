@@ -80,7 +80,6 @@ export default class Editor extends React.Component {
     return (
       <div className="question-preview">
         {toggler}
-        <h2>Preview</h2>
         <Question
           primaryTag={tags[0]}
           tags={tags.slice(1)}
