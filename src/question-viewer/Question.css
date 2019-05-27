@@ -10,6 +10,15 @@
 }
 
 .question-difficulty {
+  margin: 20px;
+}
+
+.question-difficulty p {
+  font-size: 150%;
+  margin-bottom: 0;
+}
+
+.question-difficulty svg {
   color: red;
   font-size: 200%;
 }
