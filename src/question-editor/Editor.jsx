@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Question } from '../question-viewer';
 import { TYPES } from '../utility';
 import MarkdownEditor from './MarkdownEditor';
 import PartEditor from './PartEditor';
@@ -26,7 +27,8 @@ export default class Editor extends React.Component {
       preamble: '',
       confirmed: [],
       rubric: '',
-      difficulty: 0
+      difficulty: 0,
+      showPreview: false
     };
   }
 
@@ -58,6 +60,39 @@ export default class Editor extends React.Component {
     );
   };
 
+  renderPreview = () => {
+    const { tags, difficulty, rubric, preamble, confirmed, showPreview } = this.state;
+    if (tags.length === 0) {
+      return null;
+    }
+    const toggler = (
+      <button
+        type="button"
+        className="preview-btn"
+        onClick={() => this.setState({ showPreview: !showPreview })}
+      >
+        {showPreview ? 'Hide Preview' : 'Show Preview'}
+      </button>
+    );
+    if (!showPreview) {
+      return toggler;
+    }
+    return (
+      <div className="question-preview">
+        {toggler}
+        <h2>Preview</h2>
+        <Question
+          primaryTag={tags[0]}
+          tags={tags.slice(1)}
+          preamble={preamble}
+          rubric={rubric}
+          difficulty={difficulty + 1}
+          questions={confirmed}
+        />
+      </div>
+    );
+  };
+
   render() {
     const { confirmed, difficulty, rubric } = this.state;
     return (
@@ -82,6 +117,7 @@ export default class Editor extends React.Component {
           }}
         />
         <Difficulty value={difficulty} onChange={v => this.setState({ difficulty: v })} />
+        {this.renderPreview()}
       </div>
     );
   }
