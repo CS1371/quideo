@@ -11,3 +11,7 @@
 .btn-no-hint {
   display: none;
 }
+
+.hint-list {
+  padding: 20px;
+}

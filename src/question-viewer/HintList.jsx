@@ -42,7 +42,7 @@ export default class HintList extends React.Component {
             {showHints === 0 ? 'Show a Hint' : 'Show Another Hint'}
           </button>
         )}
-        <ol>
+        <ol className="hint-list">
           {hints.map((h, ind) => (
             <Hint key={hash(h)} text={h} isShown={showAll || ind < showHints} />
           ))}
