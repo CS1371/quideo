@@ -32,6 +32,10 @@
   transition: white-space 0s ease-in-out 0.5s;
 }
 
+.question-area.show-answer > .filled-blanks * {
+  white-space: normal;
+}
+
 .question-area.hide-answer > .filled-blanks input {
   display: none;
 }
