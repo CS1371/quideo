@@ -24,8 +24,15 @@
 }
 
 .short-answer-area.hide-answer > .short-user {
-  width: 75%;
-  transition: width 1s ease-in-out 0.5s;
+  width: 100%;
+
+  /*
+  This is to make it look "centered". There has to be a better way to do this
+  The problem is that the markdown area has border, margin, and padding that take up width.
+  Empirically, this equates to ~4%.
+  */
+  margin-left: 4%;
+  transition: width 1s ease-in-out 0.5s, margin-left 1s ease-in-out;
 }
 
 .short-answer-area.hide-answer > .short-correct {
@@ -36,7 +43,8 @@
 
 .short-answer-area.show-answer > .short-user {
   width: 45%;
-  transition: width 1s ease-in-out;
+  margin-left: 0;
+  transition: width 1s ease-in-out, margin-left 1s ease-in-out;
 }
 
 .short-answer-area.show-answer > .short-correct {
