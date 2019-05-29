@@ -18,7 +18,8 @@ export default class TagChooser extends React.Component {
     super(props);
 
     this.state = {
-      searchTerm: ''
+      searchTerm: '',
+      showShrug: false
     };
   }
 
@@ -31,6 +32,11 @@ export default class TagChooser extends React.Component {
     // If we have valid tag, make it!
     const { value, onChange } = this.props;
     const { searchTerm } = this.state;
+
+    if (searchTerm.localeCompare('shrug', 'en', { sensitivity: 'base' }) === 0) {
+      // Hannah, this one's for you
+      this.setState({ showShrug: true });
+    }
 
     const tag = this.possibleTags().filter(
       t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
@@ -64,14 +70,16 @@ export default class TagChooser extends React.Component {
   };
 
   renderSelector = () => {
-    const { searchTerm } = this.state;
+    const { searchTerm, showShrug } = this.state;
     const { value } = this.props;
-    const isValid = this.possibleTags().some(
-      t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
-    );
+    const isValid =
+      this.possibleTags().some(
+        t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
+      ) || searchTerm.localeCompare('shrug', 'en', { sensitivity: 'base' }) === 0;
 
     return (
       <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
+        <p>{showShrug ? 'Have a shrug for the road...¯\\_(ツ)_/¯' : null}</p>
         <p>
           {value.length === 0
             ? 'What is this problem primarily about?'
