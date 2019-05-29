@@ -37,15 +37,17 @@ export default class Blanks extends React.Component {
     const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className={`question-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
-        <div className="student-blanks markdown-preview">
-          <Markdown
-            source={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')}
-            renderers={{
-              code: CodeBlock,
-              delete: Blank
-            }}
-          />
-        </div>
+        {showAnswer ? null : (
+          <div className="student-blanks markdown-preview">
+            <Markdown
+              source={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')}
+              renderers={{
+                code: CodeBlock,
+                delete: Blank
+              }}
+            />
+          </div>
+        )}
         <div className={`filled-blanks markdown-preview ${shouldShow ? 'show-answer' : ''}`}>
           <Markdown
             source={question}
@@ -68,17 +70,19 @@ export default class Blanks extends React.Component {
       <div className="fill-blank-question">
         {this.renderPreview()}
         <div>
-          <button
-            className="btn-show-answer"
-            type="button"
-            onClick={() => {
-              this.setState({
-                toggleAnswer: !toggleAnswer
-              });
-            }}
-          >
-            {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
-          </button>
+          {showAnswer ? null : (
+            <button
+              className="btn-show-answer"
+              type="button"
+              onClick={() => {
+                this.setState({
+                  toggleAnswer: !toggleAnswer
+                });
+              }}
+            >
+              {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
+            </button>
+          )}
         </div>
         <HintList hints={hints} />
       </div>

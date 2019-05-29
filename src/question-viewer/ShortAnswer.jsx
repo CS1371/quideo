@@ -51,17 +51,19 @@ export default class ShortAnswer extends React.Component {
             <Markdown source={answer} renderers={{ code: CodeBlock }} />
           </div>
         </div>
-        <button
-          type="button"
-          className="btn-show-answer"
-          onClick={() => {
-            this.setState({
-              toggleAnswer: !toggleAnswer
-            });
-          }}
-        >
-          {shouldShow ? 'Hide Answer' : 'Show Answer'}
-        </button>
+        {showAnswer ? null : (
+          <button
+            type="button"
+            className="btn-show-answer"
+            onClick={() => {
+              this.setState({
+                toggleAnswer: !toggleAnswer
+              });
+            }}
+          >
+            {shouldShow ? 'Hide Answer' : 'Show Answer'}
+          </button>
+        )}
       </div>
     );
   }

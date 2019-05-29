@@ -73,17 +73,19 @@ export default class CodingAnswer extends React.Component {
         <p>Type your code below. When ready, press Show Answer to compare</p>
         {this.renderEditors()}
         <HintList hints={hints} />
-        <button
-          type="button"
-          className="btn-answer"
-          onClick={() => {
-            this.setState({
-              toggleAnswer: !toggleAnswer
-            });
-          }}
-        >
-          {shouldShow ? 'Hide Answer' : 'Show Answer'}
-        </button>
+        {showAnswer ? null : (
+          <button
+            type="button"
+            className="btn-answer"
+            onClick={() => {
+              this.setState({
+                toggleAnswer: !toggleAnswer
+              });
+            }}
+          >
+            {shouldShow ? 'Hide Answer' : 'Show Answer'}
+          </button>
+        )}
       </div>
     );
   }
