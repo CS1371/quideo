@@ -83,7 +83,7 @@ export default class TagChooser extends React.Component {
         <p>
           {value.length === 0
             ? 'What is this problem primarily about?'
-            : 'Anything else related to this problem?'}
+            : 'Anything else related to this problem? (Click a tag to remove it)'}
         </p>
         <input
           list="possibleTags"
