@@ -36,6 +36,11 @@
   white-space: normal;
 }
 
+.question-area.show-answer > .filled-blanks pre,
+.question-area.show-answer > .filled-blanks pre * {
+  white-space: pre;
+}
+
 .question-area.hide-answer > .filled-blanks input {
   display: none;
 }
