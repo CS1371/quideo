@@ -28,18 +28,20 @@ export default class HintList extends React.Component {
     const { hints, showAll } = this.props;
     return (
       <React.Fragment>
-        <button
-          className={showHints < hints.length ? 'btn-hint' : 'btn-no-hint'}
-          type="button"
-          onClick={() => {
-            // Make next hint available
-            this.setState({
-              showHints: showHints + 1
-            });
-          }}
-        >
-          {showHints === 0 ? 'Show a Hint' : 'Show Another Hint'}
-        </button>
+        {showAll ? null : (
+          <button
+            className={showHints < hints.length ? 'btn-hint' : 'btn-no-hint'}
+            type="button"
+            onClick={() => {
+              // Make next hint available
+              this.setState({
+                showHints: showHints + 1
+              });
+            }}
+          >
+            {showHints === 0 ? 'Show a Hint' : 'Show Another Hint'}
+          </button>
+        )}
         <ol>
           {hints.map((h, ind) => (
             <Hint key={hash(h)} text={h} isShown={showAll || ind < showHints} />
