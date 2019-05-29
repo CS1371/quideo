@@ -40,7 +40,7 @@ export default class ShortAnswer extends React.Component {
             <textarea
               onChange={v => {
                 this.setState({
-                  userAnswer: v
+                  userAnswer: v.target.value
                 });
               }}
               value={userAnswer}
