@@ -96,7 +96,7 @@ export default class MultipleChoice extends React.Component {
         <h2>Create a New Choice</h2>
         <div className="new-choices">
           <MarkdownEditor
-            title="Answer"
+            title="Option"
             value={answer}
             height="250px"
             hidePreview
