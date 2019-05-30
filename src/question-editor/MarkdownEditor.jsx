@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
 import Markdown from 'react-markdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/pro-light-svg-icons';
+import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
 import { CodeBlock, Blank } from '../utility';
 
 import 'brace/mode/markdown';
@@ -47,7 +47,6 @@ To insert blanks (for fill in the blank), use \`~~!Answer!~~\`. This can be used
 In general, you should try to make your ~~!blanks!~~ less than 20 characters.
 Otherwise, it ~~!turns red, like this box is. You should keep it to fewer than 20 characters!!~~
 
-
 ## Lists
 
 There are two types of lists - ordered and unordered.
@@ -71,10 +70,14 @@ Becomes
 
 * Bullet 1
 * Bullet 2
+
 ...
+
 - Bullet 1
 - Bullet 2
+
 ...
+
 1. Order one
 2. Order two
 
@@ -103,6 +106,33 @@ function myFun(in1, in2, in3)
     disp('hello, world!');
 end
 \`\`\`
+
+## Links
+
+To make a link, wrap the text to display in brackets, then the URL in parentheses.
+
+This:
+
+\`\`\`
+[Click Here](https://www.google.com)
+\`\`\`
+
+Becomes
+
+[Click Here](https://www.google.com)
+
+## Images
+
+Images are actually links preceded by the \`!\`, which turn into images. So to show an image,
+use the same syntax, but the "text" becomes the alternate description:
+
+\`\`\`
+![Historian](https://cdn.stockphotosecrets.com/wp-content/uploads/2018/08/hide-the-pain-stockphoto-840x560.jpg)
+\`\`\`
+
+Becomes
+
+![Historian](https://cdn.stockphotosecrets.com/wp-content/uploads/2018/08/hide-the-pain-stockphoto-840x560.jpg)
 `;
 
 class MarkdownSyntax extends React.Component {
@@ -133,13 +163,29 @@ class MarkdownSyntax extends React.Component {
             className="markdown-syntax-btn"
             onClick={() => this.setState({ isShown: !isShown })}
           >
-            <FontAwesomeIcon icon={faQuestionCircle} />
+            <em>Psst... This supports</em>
+            <FontAwesomeIcon icon={faMarkdown} />
           </button>
         )}
         {!isShown && !alwaysShow ? null : (
-          <div className="markdown-preview">
-            <Markdown source={MARKDOWN_GUIDE} renderers={{ code: CodeBlock, delete: Blank }} />
-          </div>
+          <React.Fragment>
+            <div className="markdown-preview">
+              <Markdown source={MARKDOWN_GUIDE} renderers={{ code: CodeBlock, delete: Blank }} />
+              <AceEditor
+                mode="markdown"
+                theme="tomorrow_night_bright"
+                value="Anywhere you see a dark editor, Markdown is supported!"
+                height="150px"
+                setOptions={{ autoScrollEditorIntoView: true }}
+                editorProps={{ $blockScrolling: true }}
+                width="50%"
+                className="code-editor"
+                fontSize={18}
+                wrapEnabled
+                readOnly
+              />
+            </div>
+          </React.Fragment>
         )}
       </div>
     );

@@ -22,9 +22,22 @@
 }
 
 .markdown-syntax-btn {
-  margin: 10px;
-  padding: 10px;
   cursor: pointer;
   border: 1px solid white;
   border-radius: 5px;
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.markdown-syntax-btn svg {
+  padding-left: 10px;
+}
+
+.markdown-preview .ace_editor {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown-syntax {
+  margin: 20px;
 }
