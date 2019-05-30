@@ -163,8 +163,14 @@ class MarkdownSyntax extends React.Component {
             className="markdown-syntax-btn"
             onClick={() => this.setState({ isShown: !isShown })}
           >
-            <em>Psst... This supports</em>
-            <FontAwesomeIcon icon={faMarkdown} />
+            {isShown ? (
+              <em>Close Help</em>
+            ) : (
+              <React.Fragment>
+                <em>Psst... This supports</em>
+                <FontAwesomeIcon icon={faMarkdown} />
+              </React.Fragment>
+            )}
           </button>
         )}
         {!isShown && !alwaysShow ? null : (
