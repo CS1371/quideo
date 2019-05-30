@@ -143,7 +143,7 @@ export default class PartEditor extends React.Component {
     const { type } = this.state;
     const { availableTypes, onChange, confirmed } = this.props;
 
-    const title = `Part Editor${type === '' ? '' : `: ${type}`}`;
+    const title = `Question Element Editor${type === '' ? '' : `: ${type}`}`;
     return (
       <div className="question-editor-parts">
         <div className="confirmed-parts">
