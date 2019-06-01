@@ -101,8 +101,9 @@ export default class TagChooser extends React.Component {
         <p>{showShrug ? 'Have a shrug for the road...¯\\_(ツ)_/¯' : null}</p>
         <p>
           {primaryTag === null
-            ? 'What is this problem primarily about?'
-            : 'Anything else related to this problem? (Click a tag to remove it)'}
+            ? "What's this problem about? "
+            : 'Anything else related to this problem? '}
+          (Click a tag to remove it)
         </p>
         <input
           list="possibleTags"
