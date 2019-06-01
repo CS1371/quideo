@@ -49,12 +49,7 @@ export default class PartEditor extends React.Component {
   renderQuestion = () => {
     const { type, prompt, answer, hints, hint } = this.state;
     let specifics = null;
-    const questionProps = {
-      value: answer,
-      onChange: v => {
-        this.setState({ answer: v });
-      }
-    };
+    const questionProps = { value: answer, onChange: v => this.setState({ answer: v }) };
     switch (type) {
       case TYPES.MC:
         specifics = <MultipleChoice {...questionProps} />;
@@ -79,11 +74,7 @@ export default class PartEditor extends React.Component {
             title="Prompt"
             help="Write your question here"
             height="300px"
-            onChange={v => {
-              this.setState({
-                prompt: v
-              });
-            }}
+            onChange={v => this.setState({ prompt: v })}
           />
         ) : null}
         {specifics}
