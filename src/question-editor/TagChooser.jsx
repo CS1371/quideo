@@ -88,23 +88,10 @@ export default class TagChooser extends React.Component {
     );
   };
 
-  renderSelector = () => {
-    const { searchTerm, showShrug } = this.state;
-    const { primaryTag } = this.props;
-    const isValid =
-      this.possibleTags().some(
-        t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
-      ) || searchTerm.localeCompare('shrug', 'en', { sensitivity: 'base' }) === 0;
-
+  renderList = () => {
+    const { searchTerm } = this.state;
     return (
-      <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
-        <p>{showShrug ? 'Have a shrug for the road...¯\\_(ツ)_/¯' : null}</p>
-        <p>
-          {primaryTag === null
-            ? "What's this problem about? "
-            : 'Anything else related to this problem? '}
-          (Click a tag to remove it)
-        </p>
+      <React.Fragment>
         <input
           list="possibleTags"
           placeholder="Type a tag name..."
@@ -122,12 +109,29 @@ export default class TagChooser extends React.Component {
             <option key={tag.name} value={tag.name} />
           ))}
         </datalist>
-        <button
-          className="tag-add-btn"
-          type="button"
-          onClick={() => this.addTag()}
-          disabled={!isValid}
-        >
+      </React.Fragment>
+    );
+  };
+
+  renderSelector = () => {
+    const { searchTerm, showShrug } = this.state;
+    const { primaryTag } = this.props;
+    const isValid =
+      this.possibleTags().some(
+        t => t.name.localeCompare(searchTerm, 'en', { sensitivity: 'base' }) === 0
+      ) || searchTerm.localeCompare('shrug', 'en', { sensitivity: 'base' }) === 0;
+
+    return (
+      <div className={`tag-selector ${isValid ? 'is-valid' : ''}`}>
+        <p>{showShrug ? 'Have a shrug for the road...¯\\_(ツ)_/¯' : null}</p>
+        <p>
+          {primaryTag === null
+            ? "What's this problem about? "
+            : 'Anything else related to this problem? '}
+          (Click a tag to remove it)
+        </p>
+        {this.renderList()}
+        <button className="tag-add-btn" type="button" onClick={this.addTag} disabled={!isValid}>
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
