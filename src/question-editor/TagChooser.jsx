@@ -79,7 +79,7 @@ export default class TagChooser extends React.Component {
               {...tag}
               key={tag.name}
               handler={() => {
-                onChange({ primaryTag, tags: tags.splice(i, 1) });
+                onChange({ primaryTag, tags: tags.slice(0, i).concat(tags.slice(i + 1)) });
               }}
             />
           );
