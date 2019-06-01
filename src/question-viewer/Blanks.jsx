@@ -70,19 +70,17 @@ export default class Blanks extends React.Component {
       <div className="fill-blank-question">
         {this.renderPreview()}
         <div>
-          {showAnswer ? null : (
-            <button
-              className="btn-show-answer"
-              type="button"
-              onClick={() => {
-                this.setState({
-                  toggleAnswer: !toggleAnswer
-                });
-              }}
-            >
-              {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
-            </button>
-          )}
+          <button
+            className="btn-show-answer"
+            type="button"
+            onClick={() => {
+              this.setState({
+                toggleAnswer: !toggleAnswer
+              });
+            }}
+          >
+            {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
+          </button>
         </div>
         <HintList hints={hints} />
       </div>

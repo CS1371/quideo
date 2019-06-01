@@ -4,3 +4,7 @@
   margin: 10px;
   padding: 10px;
 }
+
+.question-part.should-show .btn-show-answer {
+  display: none;
+}

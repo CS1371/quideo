@@ -46,16 +46,18 @@ export default class CodingAnswer extends React.Component {
     };
     return (
       <div className={`code-area ${shouldShow ? 'answer-show' : 'answer-hide'}`}>
-        <AceEditor
-          value={userAnswer}
-          onChange={val => {
-            this.setState({
-              userAnswer: val
-            });
-          }}
-          className="code-editor"
-          {...editorProps}
-        />
+        {showAnswer ? null : (
+          <AceEditor
+            value={userAnswer}
+            onChange={val => {
+              this.setState({
+                userAnswer: val
+              });
+            }}
+            className="code-editor"
+            {...editorProps}
+          />
+        )}
         <AceEditor value={answer} className="answer-code-viewer" readOnly {...editorProps} />
       </div>
     );
@@ -67,25 +69,25 @@ export default class CodingAnswer extends React.Component {
     const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="coding-answer">
-        <div className="markdown-preview">
-          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-        </div>
-        <p>Type your code below. When ready, press Show Answer to compare</p>
+        {prompt === '' ? null : (
+          <div className="markdown-preview">
+            <Markdown source={prompt} renderers={{ code: CodeBlock }} />
+          </div>
+        )}
+        {showAnswer ? null : <p>Type your code below. When ready, press Show Answer to compare</p>}
         {this.renderEditors()}
         <HintList hints={hints} />
-        {showAnswer ? null : (
-          <button
-            type="button"
-            className="btn-answer"
-            onClick={() => {
-              this.setState({
-                toggleAnswer: !toggleAnswer
-              });
-            }}
-          >
-            {shouldShow ? 'Hide Answer' : 'Show Answer'}
-          </button>
-        )}
+        <button
+          type="button"
+          className="btn-show-answer"
+          onClick={() => {
+            this.setState({
+              toggleAnswer: !toggleAnswer
+            });
+          }}
+        >
+          {shouldShow ? 'Hide Answer' : 'Show Answer'}
+        </button>
       </div>
     );
   }

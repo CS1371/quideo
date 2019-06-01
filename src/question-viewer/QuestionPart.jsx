@@ -29,7 +29,7 @@ const QuestionPart = props => {
       return null;
   }
   return (
-    <div className="question-part">
+    <div className={`question-part ${showAnswer ? 'should-show' : ''}`}>
       {header}
       {question}
       <HintList hints={hints} showAll={showAnswer} />
