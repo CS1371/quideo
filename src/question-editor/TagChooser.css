@@ -27,7 +27,7 @@
   font-size: 125%;
 }
 
-.selected-tags .tag:first-child {
+.selected-tags.is-primary .tag:first-child {
   font-size: 300%;
   display: block;
   margin-left: auto;

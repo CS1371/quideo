@@ -23,6 +23,7 @@ export default class Editor extends React.Component {
     super(props);
 
     this.state = {
+      primaryTag: null,
       tags: [],
       preamble: '',
       confirmed: [],
@@ -33,17 +34,16 @@ export default class Editor extends React.Component {
   }
 
   renderIntro = () => {
-    const { tags, preamble } = this.state;
+    const { primaryTag, tags, preamble } = this.state;
     const { availableTags } = this.props;
     return (
       <React.Fragment>
         <TagChooser
           availableTags={availableTags}
-          value={tags}
+          primaryTag={primaryTag}
+          tags={tags}
           onChange={val => {
-            this.setState({
-              tags: val
-            });
+            this.setState(val);
           }}
         />
         <MarkdownEditor
