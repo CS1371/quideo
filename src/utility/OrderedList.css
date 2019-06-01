@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+.list-item :not(:first-child):not(:last-child) {
+  flex-grow: 1;
+}
+
 .list-item .list-ops svg,
 .list-item .list-movers svg {
   color: rgb(250, 132, 132);
