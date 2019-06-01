@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import Markdown from 'react-markdown';
-import { CodeBlock } from '../utility';
+import MarkdownViewer from './MarkdownViewer';
 import HintList from './HintList';
 
 import 'brace/mode/matlab';
@@ -69,11 +68,7 @@ export default class CodingAnswer extends React.Component {
     const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="coding-answer">
-        {prompt === '' ? null : (
-          <div className="markdown-preview">
-            <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-          </div>
-        )}
+        <MarkdownViewer value={prompt} />
         {showAnswer ? null : <p>Type your code below. When ready, press Show Answer to compare</p>}
         {this.renderEditors()}
         <HintList hints={hints} />

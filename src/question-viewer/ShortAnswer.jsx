@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
-import { CodeBlock } from '../utility';
+import MarkdownViewer from './MarkdownViewer';
 
 import '../utility/MarkdownArea.css';
 import './ShortAnswer.css';
@@ -32,9 +31,7 @@ export default class ShortAnswer extends React.Component {
     const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="short-answer-view">
-        <div className="short-prompt markdown-preview">
-          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-        </div>
+        <MarkdownViewer value={prompt} className="short-prompt" />
         <div className={`short-answer-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
           <div className="short-user">
             <textarea
@@ -47,9 +44,7 @@ export default class ShortAnswer extends React.Component {
               placeholder="Type your answer here..."
             />
           </div>
-          <div className="short-correct markdown-preview">
-            <Markdown source={answer} renderers={{ code: CodeBlock }} />
-          </div>
+          <MarkdownViewer value={answer} className="short-correct" />
         </div>
         <button
           type="button"

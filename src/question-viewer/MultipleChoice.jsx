@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
-import Markdown from 'react-markdown';
-import { MultipleChoiceAnswer as Answer, CodeBlock } from '../utility';
+import { MultipleChoiceAnswer as Answer } from '../utility';
+import MarkdownViewer from './MarkdownViewer';
 import HintList from './HintList';
 import Option from './Option';
 
@@ -13,11 +13,7 @@ const MultipleChoice = props => {
   const { answers, hints, prompt, showAnswer } = props;
   return (
     <div className="multiple-choice-question">
-      {prompt === '' ? null : (
-        <div className="markdown-preview">
-          <Markdown source={prompt} renderers={{ code: CodeBlock }} />
-        </div>
-      )}
+      <MarkdownViewer value={prompt} />
       <p>Click the answer you think is correct</p>
       <div className="mc-answers">
         {answers.map(ans => (
