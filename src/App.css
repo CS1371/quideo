@@ -10,11 +10,6 @@
   text-align: center;
 }
 
-html,
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
 button,
 textarea {
   font-size: 100%;
