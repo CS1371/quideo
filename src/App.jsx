@@ -143,16 +143,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/editor">
-            <Editor availableTags={tags} />
-          </Route>
-          <Route path="/question">
-            <Question {...resp} />
-          </Route>
-          <Route path="/">
-            <Editor availableTags={tags} />
-            <Question {...resp} />
-          </Route>
+          <Route path="/editor" render={props => <Editor {...props} availableTags={tags} />} />
+          <Route path="/question" render={props => <Question {...props} {...resp} />} />
         </Switch>
       </div>
     </BrowserRouter>
