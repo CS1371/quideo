@@ -7,6 +7,8 @@ import { CodeBlock } from '../utility';
 
 import './Option.css';
 
+// NOTE: We explicitly are NOT importing MarkdownViewer - the option
+// Markdown needs are extremely specific.
 export default class Option extends React.Component {
   static propTypes = {
     answer: PropTypes.string.isRequired,

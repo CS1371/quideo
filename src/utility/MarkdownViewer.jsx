@@ -1,30 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
-import { CodeBlock, Blank } from '../utility';
-
-import '../utility/MarkdownArea.css';
+import { CodeBlock } from './CodeBlock';
+import Blank from './Blank';
 
 const MarkdownViewer = props => {
-  const { value, className } = props;
-  if (value === '') {
+  const { value, className, alwaysShow } = props;
+  if (value === '' && !alwaysShow) {
     return null;
   }
   return (
     <div className={`markdown-preview ${className}`}>
-      <Markdown source={value} renderers={{ code: CodeBlock, delete: Blank }} />
+      <Markdown
+        source={value}
+        renderers={{ inlineCode: CodeBlock, code: CodeBlock, delete: Blank }}
+      />
     </div>
   );
 };
 
 MarkdownViewer.propTypes = {
   value: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  alwaysShow: PropTypes.bool
 };
 
 MarkdownViewer.defaultProps = {
   value: '',
-  className: ''
+  className: '',
+  alwaysShow: false
 };
 
 export default MarkdownViewer;

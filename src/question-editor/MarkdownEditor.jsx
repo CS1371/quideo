@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import Markdown from 'react-markdown';
-import { CodeBlock, Blank, MarkdownSyntax } from '../utility';
+
+import { MarkdownSyntax, MarkdownViewer } from '../utility';
 
 import 'brace/mode/markdown';
 import 'brace/theme/tomorrow_night_bright';
 
-import '../utility/MarkdownArea.css';
 import './MarkdownEditor.css';
 
 const MarkdownEditor = props => {
@@ -32,11 +31,7 @@ const MarkdownEditor = props => {
           fontSize={18}
           wrapEnabled
         />
-        {!hidePreview ? (
-          <div className="markdown-preview">
-            <Markdown source={value} renderers={{ code: CodeBlock, delete: Blank }} />
-          </div>
-        ) : null}
+        {!hidePreview ? <MarkdownViewer value={value} /> : null}
       </div>
     </div>
   );

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
-import { CodeBlock, Blank } from '../utility';
+import { MarkdownViewer } from '../utility';
 import HintList from './HintList';
 
-import '../utility/MarkdownArea.css';
 import './Blanks.css';
 
 // Show two markdown areas side-by-side - the original (with text boxes)
@@ -39,23 +37,11 @@ export default class Blanks extends React.Component {
       <div className={`question-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
         {showAnswer ? null : (
           <div className="student-blanks markdown-preview">
-            <Markdown
-              source={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')}
-              renderers={{
-                code: CodeBlock,
-                delete: Blank
-              }}
-            />
+            <MarkdownViewer value={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')} />
           </div>
         )}
         <div className={`filled-blanks markdown-preview ${shouldShow ? 'show-answer' : ''}`}>
-          <Markdown
-            source={question}
-            renderers={{
-              code: CodeBlock,
-              delete: Blank
-            }}
-          />
+          <MarkdownViewer value={question} />
         </div>
       </div>
     );

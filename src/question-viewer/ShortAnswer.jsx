@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MarkdownViewer from './MarkdownViewer';
+import MarkdownViewer from '../utility/MarkdownViewer';
 
-import '../utility/MarkdownArea.css';
 import './ShortAnswer.css';
 
 export default class ShortAnswer extends React.Component {

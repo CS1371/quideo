@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import matlab from './matlab';
-import Blank from './lineRenderer';
+import lineRenderer from './lineRenderer';
 
 import './CodeBlock.css';
 
@@ -28,7 +28,7 @@ export class CodeBlock extends PureComponent {
           customStyle={{ padding: '', margin: '', whiteSpace: '' }}
           language="plain"
           style={matlab}
-          renderer={Blank}
+          renderer={lineRenderer}
         >
           {blankValue}
         </SyntaxHighlighter>
@@ -41,7 +41,7 @@ export class CodeBlock extends PureComponent {
         showLineNumbers
         language={language}
         style={matlab}
-        renderer={Blank}
+        renderer={lineRenderer}
       >
         {blankValue}
       </SyntaxHighlighter>

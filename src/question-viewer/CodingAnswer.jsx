@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
-import MarkdownViewer from './MarkdownViewer';
+import MarkdownViewer from '../utility/MarkdownViewer';
 import HintList from './HintList';
 
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
 
-import '../utility/MarkdownArea.css';
 import './CodingAnswer.css';
 
 export default class CodingAnswer extends React.Component {

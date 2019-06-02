@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MarkdownEditor from './MarkdownEditor';
 
-import '../utility/MarkdownArea.css';
 import './Blanks.css';
 
 const Blanks = props => {

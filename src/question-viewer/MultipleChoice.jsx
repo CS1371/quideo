@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hash from 'object-hash';
 import { MultipleChoiceAnswer as Answer } from '../utility';
-import MarkdownViewer from './MarkdownViewer';
+import MarkdownViewer from '../utility/MarkdownViewer';
 import HintList from './HintList';
 import Option from './Option';
 
-import '../utility/MarkdownArea.css';
 import './MultipleChoice.css';
 
 const MultipleChoice = props => {

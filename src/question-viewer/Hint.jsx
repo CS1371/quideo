@@ -1,7 +1,6 @@
 import React from 'react';
-import Markdown from 'react-markdown';
 import PropTypes from 'prop-types';
-import { CodeBlock } from '../utility/CodeBlock';
+import { MarkdownViewer } from '../utility';
 
 import '../utility/MarkdownArea.css';
 import './Hint.css';
@@ -11,7 +10,7 @@ const Hint = props => {
 
   return (
     <li className={`question-hint markdown-preview ${isShown ? 'hint-show' : ''}`}>
-      <Markdown source={text} renderers={{ code: CodeBlock }} />
+      <MarkdownViewer value={text} />
     </li>
   );
 };
