@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Question } from './question-viewer';
 import Editor from './question-editor';
 
@@ -139,10 +140,22 @@ const tags = [
 
 function App() {
   return (
-    <div className="App">
-      <Editor availableTags={tags} />
-      <Question {...resp} />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/editor">
+            <Editor availableTags={tags} />
+          </Route>
+          <Route path="/question">
+            <Question {...resp} />
+          </Route>
+          <Route path="/">
+            <Editor availableTags={tags} />
+            <Question {...resp} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
