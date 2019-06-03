@@ -7,7 +7,7 @@ import './Preamble.css';
 const Preamble = props => {
   const { value } = props;
   return (
-    <div className="question-preamble markdown-preview">
+    <div className="question-preamble">
       <MarkdownViewer value={value} />
     </div>
   );

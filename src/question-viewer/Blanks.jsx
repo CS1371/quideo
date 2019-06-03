@@ -36,7 +36,7 @@ export default class Blanks extends React.Component {
     return (
       <div className={`question-area ${shouldShow ? 'show-answer' : 'hide-answer'}`}>
         {showAnswer ? null : (
-          <div className="student-blanks markdown-preview">
+          <div className="student-blanks">
             <MarkdownViewer value={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')} />
           </div>
         )}

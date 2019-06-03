@@ -38,7 +38,7 @@ export default class Blank extends React.Component {
       // Still check value.trim!
       effective = children[0].props.value;
       readonly = true;
-      // if no exclamation points - then literally just strong
+      // if no exclamation points - then literally just delete
       if (effective.length < 2 || effective[0] !== '!' || effective[effective.length - 1] !== '!') {
         return <s>{effective}</s>;
       }

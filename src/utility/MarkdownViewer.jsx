@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 import { CodeBlock } from './CodeBlock';
+import InlineCode from './InlineCode';
 import Blank from './Blank';
 
 const MarkdownViewer = props => {
@@ -13,7 +14,7 @@ const MarkdownViewer = props => {
     <div className={`markdown-preview ${className}`}>
       <Markdown
         source={value}
-        renderers={{ inlineCode: CodeBlock, code: CodeBlock, delete: Blank }}
+        renderers={{ inlineCode: InlineCode, code: CodeBlock, delete: Blank }}
       />
     </div>
   );

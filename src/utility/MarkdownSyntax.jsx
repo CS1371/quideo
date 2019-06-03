@@ -6,11 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
 import { CodeBlock } from './CodeBlock';
 import Blank from './Blank';
+import InlineCode from './InlineCode';
 
 import 'brace/mode/markdown';
 import 'brace/theme/tomorrow_night_bright';
 
 import './MarkdownArea.css';
+import MarkdownViewer from './MarkdownViewer';
 
 const MARKDOWN_GUIDE = `
 # Markdown Syntax
@@ -186,7 +188,10 @@ export default class MarkdownSyntax extends React.Component {
         {!isShown && !alwaysShow ? null : (
           <React.Fragment>
             <div className="markdown-preview">
-              <Markdown source={MARKDOWN_GUIDE} renderers={{ code: CodeBlock, delete: Blank }} />
+              <Markdown
+                source={MARKDOWN_GUIDE}
+                renderers={{ inlineCode: InlineCode, code: CodeBlock, delete: Blank }}
+              />
               <AceEditor
                 mode="markdown"
                 theme="tomorrow_night_bright"
