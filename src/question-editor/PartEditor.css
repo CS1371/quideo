@@ -1,6 +1,7 @@
 .part-editor {
   border: 5px solid white;
   border-radius: 8px;
+  padding: 20px;
 }
 
 .specific-editor.editor-hide {
@@ -14,8 +15,7 @@
 }
 
 .part-add-btn,
-.edit-confirmed-btn,
-.hint-add-btn {
+.edit-confirmed-btn {
   padding: 20px;
   margin: 10px;
   border: 1px solid white;

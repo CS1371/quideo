@@ -12,6 +12,7 @@ import 'brace/mode/markdown';
 import 'brace/theme/tomorrow_night_bright';
 
 import './MarkdownArea.css';
+import './MarkdownSyntax.css';
 
 const MARKDOWN_GUIDE = `
 # Markdown Syntax

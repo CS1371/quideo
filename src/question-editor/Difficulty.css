@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 200%;
   margin: 10px;
 }
 
@@ -13,10 +12,17 @@
   color: red;
 }
 
-.difficulty-editor > svg {
+.new-peppers {
+  text-align: center;
+  font-size: 200%;
+}
+
+.difficulty-editor > svg,
+.difficult-peppers > svg {
   cursor: pointer;
   margin-left: 20px;
   margin-right: 20px;
+  font-size: 200%;
 }
 
 .difficulty-editor > svg:first-child {

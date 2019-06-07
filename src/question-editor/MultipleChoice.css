@@ -1,6 +1,7 @@
 .new-choices {
   width: 100%;
   display: flex;
+  text-align: center;
 }
 
 .choice-creator {
@@ -18,6 +19,10 @@
   cursor: pointer;
   background-color: lightgreen;
   color: black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 #addChoice:disabled {
@@ -29,4 +34,8 @@
 .reason-invalid {
   color: rgb(226, 102, 102);
   font-size: 200%;
+}
+
+.new-preview {
+  text-align: center;
 }

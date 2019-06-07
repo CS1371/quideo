@@ -23,11 +23,13 @@ const Difficulty = props => {
 
   return (
     <div className="new-difficulty">
-      <h2>How difficult is this problem?</h2>
       <div className="difficulty-editor">
         {minus}
-        <div className="new-peppers">{peppers}</div>
+        <h2>Difficulty</h2>
         {plus}
+      </div>
+      <div className="difficulty-peppers">
+        <div className="new-peppers">{peppers}</div>
       </div>
     </div>
   );

@@ -46,6 +46,7 @@ export default class Editor extends React.Component {
             this.setState(val);
           }}
         />
+        <hr />
         <MarkdownEditor
           value={preamble}
           title="Preamble"
@@ -97,6 +98,7 @@ export default class Editor extends React.Component {
     return (
       <div className="question-editor">
         <h1>Question Editor</h1>
+        <h2>Tags</h2>
         {this.renderIntro()}
         <PartEditor
           availableTypes={Object.values(TYPES)}

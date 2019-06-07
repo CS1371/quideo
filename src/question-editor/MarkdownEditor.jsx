@@ -31,7 +31,7 @@ const MarkdownEditor = props => {
           fontSize={18}
           wrapEnabled
         />
-        {!hidePreview ? <MarkdownViewer value={value} /> : null}
+        {!hidePreview ? <MarkdownViewer alwaysShow value={value} /> : null}
       </div>
     </div>
   );

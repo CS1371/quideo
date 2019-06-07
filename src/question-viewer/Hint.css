@@ -2,10 +2,11 @@
   text-align: center;
   list-style-type: none;
   display: none;
+  width: 100%;
 }
 
 .question-hint.hint-show {
-  display: inherit;
+  display: block;
   width: 80%;
   margin-top: 5px;
   margin-bottom: 5px;

@@ -14,7 +14,7 @@ const HintEditor = props => {
     <div className="hint-editor">
       <OrderedList
         onChange={h => onChange({ hints: h, hint })}
-        onEdit={(h, i) => onChange({ hints: hints.splice(i, 1), hint: h })}
+        onEdit={(h, i) => onChange({ hints: hints.splice(i - 1, 1), hint: h })}
         render={h => <Hint key={hash(h)} text={h} isShown />}
       >
         {hints}

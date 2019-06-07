@@ -9,7 +9,7 @@ const Hint = props => {
   const { text, isShown } = props;
 
   return (
-    <li className={`question-hint markdown-preview ${isShown ? 'hint-show' : ''}`}>
+    <li className={`question-hint ${isShown ? 'hint-show' : ''}`}>
       <MarkdownViewer value={text} />
     </li>
   );

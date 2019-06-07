@@ -30,6 +30,4 @@
 .selected-tags.is-primary .tag:first-child {
   font-size: 300%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }

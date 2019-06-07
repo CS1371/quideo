@@ -56,7 +56,9 @@ export default class Option extends React.Component {
           type="button"
           className="mc-explanation"
           onClick={() => {
-            handler();
+            if (handler) {
+              handler();
+            }
             this.setState({
               isChosen: !isChosen
             });

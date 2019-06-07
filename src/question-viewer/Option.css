@@ -9,6 +9,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  text-align: center;
 }
 
 .mc-chosen .mc-answer {
@@ -54,4 +55,8 @@
 
 .mc-incorrect .mc-explanation svg {
   color: darkred;
+}
+
+.mc-option {
+  text-align: center;
 }
