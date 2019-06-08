@@ -40,7 +40,7 @@ export default class Blanks extends React.Component {
             <MarkdownViewer value={question.replace(/(?<=~~!)[^~]+(?=!~~)/g, ' ')} />
           </div>
         )}
-        <div className={`filled-blanks markdown-preview ${shouldShow ? 'show-answer' : ''}`}>
+        <div className="filled-blanks">
           <MarkdownViewer value={question} />
         </div>
       </div>
