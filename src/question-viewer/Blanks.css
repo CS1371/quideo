@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.question-area input {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 .question-area.hide-answer > .student-blanks {
   width: 80%;
   transition: width 1s ease-in-out 0.5s;
@@ -52,12 +57,6 @@
 
 .question-area.hide-answer > .filled-blanks input {
   display: none;
-}
-
-.question-area input,
-.question-area input {
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 .btn-show-answer {
