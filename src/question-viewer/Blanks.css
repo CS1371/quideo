@@ -5,7 +5,7 @@
 }
 
 .question-area.hide-answer > .student-blanks {
-  width: 95%;
+  width: 80%;
   transition: width 1s ease-in-out 0.5s;
 }
 
@@ -29,11 +29,16 @@
 .question-area.hide-answer > .filled-blanks *,
 .question-area.show-answer > .filled-blanks * {
   white-space: nowrap;
-  transition: white-space 0s ease-in-out 0.5s;
+  transition: white-space 0s ease-in-out 1s;
+}
+
+.question-area p {
+  display: inline-flex;
 }
 
 .question-area.show-answer > .filled-blanks * {
   white-space: normal;
+  transition: white-space 10s ease-in-out 10s;
 }
 
 .question-area.show-answer > .filled-blanks pre,
@@ -47,6 +52,12 @@
 
 .question-area.hide-answer > .filled-blanks input {
   display: none;
+}
+
+.question-area input,
+.question-area input {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .btn-show-answer {
