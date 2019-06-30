@@ -4,6 +4,7 @@ import { Question } from './question-viewer';
 import Editor from './question-editor';
 
 import './App.css';
+import Sidebar from './sidebar';
 
 const resp = {
   index: 1,
@@ -142,6 +143,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Sidebar />
         <Switch>
           <Route path="/editor" render={props => <Editor {...props} availableTags={tags} />} />
           <Route path="/question" render={props => <Question {...props} {...resp} />} />
