@@ -10,7 +10,7 @@ const Rubric = props => {
     return null;
   }
   return (
-    <div className="rubric markdown-preview">
+    <div className="rubric">
       <MarkdownViewer value={text} />
     </div>
   );

@@ -22,11 +22,16 @@
 .question-rubric button {
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin: 30px;
   color: rgb(43, 43, 43);
   background-color: white;
   border: 2px solid white;
   cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 125%;
+  width: 75%;
 }
 
 .question-header {
