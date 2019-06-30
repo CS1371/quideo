@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AceEditor from 'react-ace';
 import MarkdownViewer from '../utility/MarkdownViewer';
-import HintList from './HintList';
+import AnswerButton from './AnswerButton';
 
 import 'brace/mode/matlab';
 import 'brace/theme/sqlserver';
@@ -13,13 +13,13 @@ export default class CodingAnswer extends React.Component {
   static propTypes = {
     prompt: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
-    hints: PropTypes.arrayOf(PropTypes.string),
-    showAnswer: PropTypes.bool
+    showAnswer: PropTypes.bool,
+    hints: PropTypes.node
   };
 
   static defaultProps = {
-    hints: [],
-    showAnswer: false
+    showAnswer: false,
+    hints: null
   };
 
   constructor(props) {
@@ -64,24 +64,20 @@ export default class CodingAnswer extends React.Component {
   render() {
     const { toggleAnswer } = this.state;
     const { showAnswer, prompt, hints } = this.props;
-    const shouldShow = showAnswer || toggleAnswer;
     return (
       <div className="coding-answer">
         <MarkdownViewer value={prompt} />
+        {hints}
         {showAnswer ? null : <p>Type your code below. When ready, press Show Answer to compare</p>}
         {this.renderEditors()}
-        <HintList hints={hints} />
-        <button
-          type="button"
-          className="btn-show-answer"
-          onClick={() => {
+        <AnswerButton
+          handler={() => {
             this.setState({
               toggleAnswer: !toggleAnswer
             });
           }}
-        >
-          {shouldShow ? 'Hide Answer' : 'Show Answer'}
-        </button>
+          showAnswer={showAnswer || toggleAnswer}
+        />
       </div>
     );
   }

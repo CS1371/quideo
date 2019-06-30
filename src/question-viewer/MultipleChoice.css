@@ -3,3 +3,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.multiple-choice-question > p {
+  text-align: center;
+}

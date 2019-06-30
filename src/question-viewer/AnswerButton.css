@@ -1,0 +1,14 @@
+.btn-show-answer {
+  padding: 20px;
+  margin: 10px;
+  font-size: 125%;
+  background-color: lightgreen;
+  border: 3px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+  display: block;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}

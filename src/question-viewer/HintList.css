@@ -2,16 +2,14 @@
   font-size: 100%;
   border-radius: 8px;
   border: 1px solid white;
-  color: rgb(43, 43, 43);
-  background-color: white;
+  color: black;
+  background-color: lightblue;
   cursor: pointer;
-  margin: 10px;
+  padding: 20px;
+  display: block;
+  width: 45%;
 }
 
 .btn-no-hint {
   display: none;
-}
-
-.hint-list {
-  padding: 20px;
 }

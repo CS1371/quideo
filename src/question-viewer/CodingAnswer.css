@@ -24,15 +24,3 @@
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
-
-.btn-answer {
-  font-size: 125%;
-  border-radius: 5px;
-  border: 1px solid black;
-  background-color: palegreen;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  padding: 20px;
-  color: black;
-  cursor: pointer;
-}

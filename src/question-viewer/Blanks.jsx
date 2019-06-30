@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MarkdownViewer } from '../utility';
-import HintList from './HintList';
 
 import './Blanks.css';
+import AnswerButton from './AnswerButton';
 
 // Show two markdown areas side-by-side - the original (with text boxes)
 // and the new (with answers spliced in)
@@ -12,12 +12,12 @@ import './Blanks.css';
 export default class Blanks extends React.Component {
   static propTypes = {
     question: PropTypes.string.isRequired,
-    hints: PropTypes.arrayOf(PropTypes.string),
+    hints: PropTypes.node,
     showAnswer: PropTypes.bool
   };
 
   static defaultProps = {
-    hints: [],
+    hints: null,
     showAnswer: false
   };
 
@@ -54,21 +54,18 @@ export default class Blanks extends React.Component {
 
     return (
       <div className="fill-blank-question">
+        {hints}
         {this.renderPreview()}
         <div>
-          <button
-            className="btn-show-answer"
-            type="button"
-            onClick={() => {
+          <AnswerButton
+            handler={() => {
               this.setState({
                 toggleAnswer: !toggleAnswer
               });
             }}
-          >
-            {showAnswer || toggleAnswer ? 'Hide Answer' : 'Show Answer'}
-          </button>
+            showAnswer={showAnswer || toggleAnswer}
+          />
         </div>
-        <HintList hints={hints} />
       </div>
     );
   }

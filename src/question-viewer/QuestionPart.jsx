@@ -10,29 +10,29 @@ import CodingAnswer from './CodingAnswer';
 import './QuestionPart.css';
 
 const QuestionPart = props => {
-  const { prompt, answer, hints, type, header, showAnswer } = props;
+  const { prompt: p, answer: ans, hints, type: t, header: h, showAnswer: s } = props;
   let question = null;
-  switch (type) {
+  const hintList = <HintList hints={hints} showAll={s} />;
+  switch (t) {
     case TYPES.MC:
-      question = <MultipleChoice showAnswer={showAnswer} prompt={prompt} answers={answer} />;
+      question = <MultipleChoice showAnswer={s} prompt={p} answers={ans} hints={hintList} />;
       break;
     case TYPES.SA:
-      question = <ShortAnswer showAnswer={showAnswer} prompt={prompt} answer={answer} />;
+      question = <ShortAnswer showAnswer={s} prompt={p} answer={ans} hints={hintList} />;
       break;
     case TYPES.FB:
-      question = <Blanks showAnswer={showAnswer} question={answer} />;
+      question = <Blanks showAnswer={s} question={ans} hints={hintList} />;
       break;
     case TYPES.CA:
-      question = <CodingAnswer showAnswer={showAnswer} prompt={prompt} answer={answer} />;
+      question = <CodingAnswer showAnswer={s} prompt={p} answer={ans} hints={hintList} />;
       break;
     default:
       return null;
   }
   return (
-    <div className={`question-part ${showAnswer ? 'should-show' : ''}`}>
-      {header}
+    <div className={`question-part ${s ? 'should-show' : ''}`}>
+      {h}
       {question}
-      <HintList hints={hints} showAll={showAnswer} />
     </div>
   );
 };

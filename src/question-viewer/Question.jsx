@@ -85,12 +85,7 @@ export default class Question extends React.Component {
     return (
       <div className="question-view">
         <h1 className="question-title">{`${index}: ${primaryTag.name}`}</h1>
-        <div className="question-difficulty">
-          <p>
-            <em>Difficulty</em>
-          </p>
-          {this.renderPeppers()}
-        </div>
+        <div className="question-difficulty">{this.renderPeppers()}</div>
         <div className="question-tags">
           {[primaryTag, ...tags.sort((a, b) => a.week - b.week)].map(tag => (
             <Tag key={hash(tag)} {...tag} />

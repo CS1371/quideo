@@ -58,12 +58,3 @@
 .question-area.hide-answer > .filled-blanks input {
   display: none;
 }
-
-.btn-show-answer {
-  padding: 20px;
-  margin: 10px;
-  background-color: lightgreen;
-  border: 3px solid white;
-  border-radius: 5px;
-  cursor: pointer;
-}
