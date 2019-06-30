@@ -34,9 +34,8 @@
   width: 75%;
 }
 
-.question-header {
-  text-align: left;
-  margin-left: 3vw;
+.question-view > .question-header {
+  text-align: center;
 }
 
 .question-title {

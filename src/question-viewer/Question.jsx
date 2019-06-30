@@ -84,12 +84,14 @@ export default class Question extends React.Component {
     // Don't print Preamble for Fill in the Blank (Because Blanks prints its own?)
     return (
       <div className="question-view">
-        <h1 className="question-title">{`${index}: ${primaryTag.name}`}</h1>
-        <div className="question-difficulty">{this.renderPeppers()}</div>
-        <div className="question-tags">
-          {[primaryTag, ...tags.sort((a, b) => a.week - b.week)].map(tag => (
-            <Tag key={hash(tag)} {...tag} />
-          ))}
+        <div className="question-header">
+          <h1>{`${index}: ${primaryTag.name}`}</h1>
+          <div className="question-difficulty">{this.renderPeppers()}</div>
+          <div className="question-tags">
+            {[primaryTag, ...tags.sort((a, b) => a.week - b.week)].map(tag => (
+              <Tag key={hash(tag)} {...tag} />
+            ))}
+          </div>
         </div>
         {preamble === '' ? null : <Preamble value={preamble} />}
         <div className="question-parts">{questions.map(this.renderPart)}</div>
