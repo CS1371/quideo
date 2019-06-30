@@ -1,20 +1,30 @@
-.App {
+.app {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 125%;
+  min-width: 100vw;
   color: white;
-  padding: 20px;
+  font-size: 125%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 0;
 }
 
-.App h1 {
+.app-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.app h1 {
   font-size: 300%;
 }
 
-.App h2 {
+.app > h1 {
+  text-align: center;
+}
+.app h2 {
   font-size: 200%;
 }
 

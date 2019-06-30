@@ -142,12 +142,15 @@ const tags = [
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Sidebar />
-        <Switch>
-          <Route path="/editor" render={props => <Editor {...props} availableTags={tags} />} />
-          <Route path="/question" render={props => <Question {...props} {...resp} />} />
-        </Switch>
+      <div className="app">
+        <h1>Quideo</h1>
+        <div className="app-content">
+          <Sidebar />
+          <Switch>
+            <Route path="/editor" render={props => <Editor {...props} availableTags={tags} />} />
+            <Route path="/question" render={props => <Question {...props} {...resp} />} />
+          </Switch>
+        </div>
       </div>
     </BrowserRouter>
   );
